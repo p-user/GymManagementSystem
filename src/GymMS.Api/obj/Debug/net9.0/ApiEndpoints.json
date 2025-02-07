@@ -1,0 +1,862 @@
+[
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById.GetExerciseByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "excercise/{id:guid}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.ViewExerciseDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise"
+    ],
+    "EndpointName": "GetExerciseById",
+    "Description": "Retrieves an exercise by its unique identifier.",
+    "Summary": "Get a specific exercise by ID."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Exercise.GetExercises.GetExercisesEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "execercise",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WorkoutCatalog.Workouts.Dtos.ViewExerciseDto, WorkoutCatalog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Exercise"
+    ],
+    "EndpointName": "GetExercises",
+    "Description": "Get all exercises registered",
+    "Summary": "Get all exercises"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Exercise.CreateExcercise.CreateExerciseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WorkoutCatalog.Workouts.Dtos.CreateExerciseDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Guid",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise"
+    ],
+    "EndpointName": "CreateExercise",
+    "Description": "Creates a new exercise in the workout catalog",
+    "Summary": "Create a new exercise for the workout catalog"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise.UpdateExerciseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/{id:guid}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "WorkoutCatalog.Workouts.Dtos.UpdateExerciseDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise"
+    ],
+    "EndpointName": "UpdateExercise",
+    "Description": "Updates an exercise in the workout catalog using its unique identifier.",
+    "Summary": "Update an exercise by its ID."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Exercise.DeleteExcercise.DeleteExerciseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/{id:guid}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise"
+    ],
+    "EndpointName": "DeleteExercise",
+    "Description": "Deletes an exercise from the workout catalog using its unique identifier.",
+    "Summary": "Delete an exercise by its ID."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.ExerciseCategory.GetExerciseCategories.GetExerciseCategoriesEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/categories",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WorkoutCatalog.Workouts.Dtos.ViewExerciseCategoryDto, WorkoutCatalog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise Categories"
+    ],
+    "EndpointName": "GetExerciseCategories",
+    "Description": "Retrieves all exercise categories for the gym\u0027s workout catalog.",
+    "Summary": "Get all exercise categories."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.ExerciseCategory.CreateExerciseCategory.CreateExerciseCategoryEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/categories",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WorkoutCatalog.Workouts.Dtos.CreateExerciseCategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Guid",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise Categories"
+    ],
+    "EndpointName": "CreateExerciseCategory",
+    "Description": "Creates a new exercise category for the workout catalog.",
+    "Summary": "Create a new exercise category."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory.UpdateExerciseCategoryEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/categories/{id:guid}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "WorkoutCatalog.Workouts.Dtos.CreateExerciseCategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise Categories"
+    ],
+    "EndpointName": "UpdateExerciseCategory",
+    "Description": "Updates an exercise category in the gym\u0027s workout catalog by its unique identifier.",
+    "Summary": "Update an exercise category by ID."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.ExerciseCategory.GetExerciseCategoryById.GetExerciseCategoryByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/categories/{id:guid}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.ViewExerciseDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Exercise Categories"
+    ],
+    "EndpointName": "GetExerciseCategoryById",
+    "Description": "Retrieves an exercise category by its unique identifier.",
+    "Summary": "Get a specific exercise category by ID"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.ExerciseCategory.DeleteExerciseCategory.DeleteExerciseCategoryEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/categories/{id:guid}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise Categories"
+    ],
+    "EndpointName": "DeleteExerciseCategory",
+    "Description": "Deletes an exercise category from the workout catalog using its unique identifier.",
+    "Summary": "Delete an exercise category by its ID."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroups.GetMuscleGroupsEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/muscle-groups",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WorkoutCatalog.Workouts.Dtos.ViewMuscleGroupDto, WorkoutCatalog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Muscle Groups"
+    ],
+    "EndpointName": "GetMuscleGroups",
+    "Description": "Retrieves all muscle groups for the gym\u0027s workout catalog.",
+    "Summary": "Get all muscle groups."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.MuscleGroups.CreateMuscleGroup.CreateMuscleGroupEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/muscle-groups",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WorkoutCatalog.Workouts.Dtos.CreateMuscleGroupDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Guid",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Muscle Groups"
+    ],
+    "EndpointName": "CreateMuscleGroup",
+    "Description": "Creates a new muscle group for the workout catalog.",
+    "Summary": "Create a new muscle group."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup.UpdateMuscleGroupEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/muscle-groups/{id:guid}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "WorkoutCatalog.Workouts.Dtos.UpdateMuscleGroupDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.ViewMuscleGroupDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Muscle Groups"
+    ],
+    "EndpointName": "UpdateMuscleGroup",
+    "Description": "Updates a muscle group in the workout catalog using its unique identifier.",
+    "Summary": "Update a specific muscle group using its unique identifier."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.MuscleGroups.DeleteMuscleGroup.DeleteMuscleGroupEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercise/muscle-groups/{id:guid}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Muscle Groups"
+    ],
+    "EndpointName": "DeleteMuscleGroup",
+    "Description": "Deletes a muscle group from the workout catalog using its unique identifier.",
+    "Summary": "Delete a muscle group by its ID."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise.AddMuscleGroupToExerciseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercises/{exerciseId}/muscleGroups",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "exerciseId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "MuscleGroupId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.ViewExerciseDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise"
+    ],
+    "Description": "Add muscle group to exercise",
+    "Summary": "Add muscle group to exercise"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Exercise.RemoveMuscleGroupFromExercise.RemoveMuscleGroupFromExerciseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "exercises/{exerciseId}/muscleGroups/{muscleGroupId}",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "exerciseId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "muscleGroupId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.ViewExerciseDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Exercise"
+    ],
+    "Description": "Remove muscle group from exercise",
+    "Summary": "Remove muscle group from exercise"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout.UpdateWorkoutEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workout/{id:guid}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "WorkoutCatalog.Workouts.Dtos.UpdateWorkoutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.UpdateWorkoutDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Workouts"
+    ],
+    "EndpointName": "UpdateWorkout",
+    "Description": "Updates a workout in the workout catalog.",
+    "Summary": "Update a specific workout routine using its unique identifier"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.WorkoutCategory.GetWorkoutCategories.GetWorkoutCategoriesEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workout/categories",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WorkoutCatalog.Workouts.Dtos.ViewWorkoutCategoryDto, WorkoutCatalog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Workout Categories"
+    ],
+    "EndpointName": "workout-categories",
+    "Description": "Retrieves all workout categories for the gym\u0027s workout catalog.",
+    "Summary": "Get all workout categories."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.WorkoutCategory.CreateWorkoutCategory.CreateWorkoutCategoryEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workout/categories",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WorkoutCatalog.Workouts.Dtos.CreateWorkoutCategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Guid",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Workout Categories"
+    ],
+    "EndpointName": "CreateWorkoutCategory",
+    "Description": "Creates a new workout category for the gym\u0027s workout catalog.",
+    "Summary": "Create a new workout category."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.WorkoutCategory.UpdateWorkoutCategory.UpdateWorkoutCategoryEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workout/categories/{id:guid}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "WorkoutCatalog.Workouts.Dtos.UpdateWorkoutCategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.UpdateWorkoutCategoryDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Workout Categories"
+    ],
+    "EndpointName": "UpdateWorkoutCategory",
+    "Description": "Updates a workout category in the workout catalog.",
+    "Summary": "Update a specific workout category using its unique identifier"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.WorkoutCategory.GetWorkoutCategoryById.GetWorkoutCategoryByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workout/categories/{id:guid}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.ViewWorkoutCategoryDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Workout Categories"
+    ],
+    "EndpointName": "GetWorkoutCategoryById",
+    "Description": "Retrieves a workout category by its unique identifier.",
+    "Summary": "Get a specific workout category by ID"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.WorkoutCategory.DeleteWorkoutCategory.DeleteWorkoutCategoryEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workout/categories/{id:guid}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Workout Categories"
+    ],
+    "EndpointName": "DeleteWorkoutCategory",
+    "Description": "Deletes a workout category from the workout catalog using its unique identifier.",
+    "Summary": "Delete a workout category by its ID."
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroupById.GetMuscleGroupByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workout/muscle-groups/{id:guid}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WorkoutCatalog.Workouts.Dtos.ViewMuscleGroupDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Muscle Groups"
+    ],
+    "EndpointName": "GetMuscleGroupById",
+    "Description": "Retrieves a muscle group by its unique identifier.",
+    "Summary": "Get a specific muscle group by ID"
+  },
+  {
+    "ContainingType": "WorkoutCatalog.Workouts.Features.Workout.CreateWorkout.CreateWorkoutEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CAddRoutes\u003Eb__0_0",
+    "RelativePath": "workouts",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WorkoutCatalog.Workouts.Dtos.CreateWorkoutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Tags": [
+      "Workouts"
+    ],
+    "EndpointName": "CreateWorkout",
+    "Description": "Creates a new workout routine for the gym\u0027s workout catalog.",
+    "Summary": "Create a new workout routine."
+  }
+]

@@ -1,0 +1,11 @@
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\bin\Debug\net8.0\StaffManagement.Contracts.deps.json
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\bin\Debug\net8.0\StaffManagement.Contracts.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\bin\Debug\net8.0\StaffManagement.Contracts.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\StaffManagement.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\StaffManagement.Contracts.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\StaffManagement.Contracts.AssemblyInfo.cs
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\StaffManagement.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\StaffManagement.Contracts.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\refint\StaffManagement.Contracts.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\StaffManagement.Contracts.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement.Contracts\obj\Debug\net8.0\ref\StaffManagement.Contracts.dll

@@ -1,0 +1,15 @@
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\bin\Debug\net9.0\Membership.deps.json
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\bin\Debug\net9.0\Membership.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\bin\Debug\net9.0\Membership.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\bin\Debug\net9.0\Shared.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\bin\Debug\net9.0\Shared.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.AssemblyInfo.cs
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.csproj.Up2Date
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\refint\Membership.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\ref\Membership.dll

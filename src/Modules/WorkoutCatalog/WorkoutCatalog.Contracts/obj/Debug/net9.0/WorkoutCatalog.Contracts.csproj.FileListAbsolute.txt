@@ -1,0 +1,17 @@
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\bin\Debug\net9.0\WorkoutCatalog.Contracts.deps.json
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\bin\Debug\net9.0\WorkoutCatalog.Contracts.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\bin\Debug\net9.0\WorkoutCatalog.Contracts.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\bin\Debug\net9.0\Shared.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\bin\Debug\net9.0\WorkoutCatalog.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\bin\Debug\net9.0\WorkoutCatalog.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\bin\Debug\net9.0\Shared.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.AssemblyInfo.cs
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutC.F926AFB7.Up2Date
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\refint\WorkoutCatalog.Contracts.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\ref\WorkoutCatalog.Contracts.dll
