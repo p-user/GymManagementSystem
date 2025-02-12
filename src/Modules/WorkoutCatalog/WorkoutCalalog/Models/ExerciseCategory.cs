@@ -9,24 +9,24 @@
 
         public List<Exercise> Exercises { get; private set; } = new();
 
-        public static ExerciseCategory Create(string Name, string? Description)
+        public static ExerciseCategory Create(string name, string? description)
         {
-            ArgumentException.ThrowIfNullOrEmpty(Name, nameof(Name));
+            ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));
 
             return new ExerciseCategory
             {
                 Id = Guid.NewGuid(),
-                Name = Name,
-                Description = Description
+                Name = name,
+                Description = description
             };
         }
 
-        public void Update(string Name, string? Description)
+        public void Update(string name, string? description)
         {
-            ArgumentException.ThrowIfNullOrEmpty(Name, nameof(Name));
+            ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));
 
-            Name = Name;
-            Description = Description;
+            Name = name;
+            Description = description;
         }
 
     }

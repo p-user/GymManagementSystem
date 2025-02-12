@@ -168,3 +168,4 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\GymMS.Api\bin\
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\GymMS.Api\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\GymMS.Api\bin\Debug\net9.0\Carter.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\GymMS.Api\bin\Debug\net9.0\Carter.Analyzers.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\GymMS.Api\obj\Debug\net9.0\GymMS.Api.sourcelink.json

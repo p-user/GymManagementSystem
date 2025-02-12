@@ -17,7 +17,7 @@ namespace WorkoutCatalog.Models
         {
             ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));
             ArgumentException.ThrowIfNullOrEmpty(description, nameof(description));
-            ArgumentException.ThrowIfNullOrEmpty(descriptionLink, nameof(descriptionLink));
+            //ArgumentException.ThrowIfNullOrEmpty(descriptionLink, nameof(descriptionLink));
             return new Exercise
             {
                 Id = Guid.NewGuid(),
@@ -79,6 +79,11 @@ namespace WorkoutCatalog.Models
             Description = description;
             DescriptionLink = descriptionLink;
             ExerciseCategory = exerciseCategory;
+        }
+
+        public static Exercise Create(string v1, string v2, ExerciseCategory exerciseCategory)
+        {
+            throw new NotImplementedException();
         }
     }
 

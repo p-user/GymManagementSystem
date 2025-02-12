@@ -12,6 +12,7 @@
                 throw new Exception("Exercise category not found");
             }
             entity.Update(request.dto.Name, request.dto.Description);
+            context.ExerciseCategories.Update(entity);
             await context.SaveChangesAsync(cancellationToken);
             return true;
         }

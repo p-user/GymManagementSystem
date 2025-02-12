@@ -1,0 +1,16 @@
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\bin\Debug\net9.0\Shared.Tests.deps.json
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\bin\Debug\net9.0\Shared.Tests.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\bin\Debug\net9.0\Shared.Tests.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\bin\Debug\net9.0\Shared.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\bin\Debug\net9.0\Shared.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.AssemblyInfo.cs
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.sourcelink.json
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.T.612256F2.Up2Date
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\refint\Shared.Tests.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\Shared.Tests.pdb
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared.Tests\obj\Debug\net9.0\ref\Shared.Tests.dll

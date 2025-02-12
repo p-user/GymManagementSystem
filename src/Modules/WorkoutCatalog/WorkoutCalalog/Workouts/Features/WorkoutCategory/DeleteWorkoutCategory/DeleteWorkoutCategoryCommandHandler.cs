@@ -11,7 +11,8 @@
                 throw new Exception("Workout category not found!");
             }
 
-            var isDeletable = await context.Workouts.AnyAsync(w => w.WorkoutCategories.Any(s => s.Id == request.Id), cancellationToken);
+            var isDeletable = await context.WorkoutCategories.Include(w => w.Workouts)
+                .AnyAsync(w => w.Id == request.Id && w.Workouts.Count > 0, cancellationToken);
             if (isDeletable)
             {
                 throw new Exception("Workout category is in use and cannot be deleted!");

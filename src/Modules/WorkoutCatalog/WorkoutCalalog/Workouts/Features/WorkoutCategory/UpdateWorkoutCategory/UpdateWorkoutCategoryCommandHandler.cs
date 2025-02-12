@@ -5,7 +5,7 @@
     {
         public async Task<Guid> Handle(UpdateWorkoutCategoryCommand request, CancellationToken cancellationToken)
         {
-            var entity = await context.WorkoutCategories.FindAsync(request.dto.Id);
+            var entity = await context.WorkoutCategories.FirstOrDefaultAsync(s=>s.Id==request.dto.Id, cancellationToken);
             if (entity == null)
             {
                 throw new Exception("Workout category not found!");

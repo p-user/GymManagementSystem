@@ -5,31 +5,31 @@ namespace WorkoutCatalog.Workouts.Dtos
     public record CreateExerciseDto
     {
 
-        public string? Name { get; private set; }
-        public string? Description { get; private set; }
-        public string? DescriptionLink { get; private set; }
+        public string? Name { get; init ; }
+        public string? Description { get; init; }
+        public string? DescriptionLink { get; init; }
 
-        public IReadOnlyList<ViewMuscleGroupDto> MuscleGroups = new List<ViewMuscleGroupDto>();
+        public List<ViewMuscleGroupDto> MuscleGroups { get; init; } = new List<ViewMuscleGroupDto>();
 
-        public Guid ExerciseCategory { get; private set; } 
+        public Guid ExerciseCategory { get; init; } 
     }
 
 
     public record ViewExerciseDto : CreateExerciseDto
     {
-        public Guid Id { get; set; }
-        public DateTime? CreatedAt { get; set; }
-        public string? CreatedBy { get; set; }
-        public string? LastModifiedBy { get; set; }
-        public DateTime? LastModifiedAt { get; set; }
+        public Guid Id { get; init; }
+        public DateTime? CreatedAt { get;   init; }
+        public string? CreatedBy { get; init; }
+        public string? LastModifiedBy { get; init; }
+        public DateTime? LastModifiedAt { get; init; }
     }
 
     public record UpdateExerciseDto
     {
 
-        public string? Name { get; private set; }
-        public string? Description { get; private set; }
-        public string? DescriptionLink { get; private set; }
-        public Guid ExerciseCategory { get; private set; }
+        public string? Name { get; init; }
+        public string? Description { get; init; }
+        public string? DescriptionLink { get; init; }
+        public Guid ExerciseCategory { get; init; }
     }
 }

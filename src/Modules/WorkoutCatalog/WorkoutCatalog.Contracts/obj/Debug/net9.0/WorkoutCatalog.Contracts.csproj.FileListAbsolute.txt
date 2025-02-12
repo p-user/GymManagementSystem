@@ -15,3 +15,4 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Workou
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\refint\WorkoutCatalog.Contracts.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.pdb
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\ref\WorkoutCatalog.Contracts.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Contracts\obj\Debug\net9.0\WorkoutCatalog.Contracts.sourcelink.json

@@ -13,3 +13,4 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement\obj\Debug\net9.0\refint\StaffManagement.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement\obj\Debug\net9.0\StaffManagement.pdb
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement\obj\Debug\net9.0\ref\StaffManagement.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Staff\StaffManagement\obj\Debug\net9.0\StaffManagement.sourcelink.json

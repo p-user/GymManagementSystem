@@ -15,6 +15,19 @@ namespace WorkoutCalalog.Data
 
             CreateMap<Exercise, ViewExerciseDto>()
                 .ReverseMap();
+
+            CreateMap<Exercise, UpdateExerciseDto>()
+               .ReverseMap();
+
+            CreateMap<WorkoutCategory, ViewWorkoutCategoryDto>()
+              .ReverseMap();
+
+            CreateMap<WorkoutCategory, CreateWorkoutCategoryDto>()
+             .ReverseMap();
+            CreateMap<WorkoutCategory, UpdateWorkoutCategoryDto>()
+             .ReverseMap();
+
+            
         }
     }
 }

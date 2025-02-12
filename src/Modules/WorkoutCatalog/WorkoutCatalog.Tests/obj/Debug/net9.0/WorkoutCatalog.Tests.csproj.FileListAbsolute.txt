@@ -1,4 +1,3 @@
-C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_WorkoutCatalog.Tests
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\testhost.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\testhost.exe
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\WorkoutCatalog.Tests.deps.json
@@ -43,7 +42,6 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Workou
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\Microsoft.VisualStudio.TestPlatform.Common.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\Newtonsoft.Json.dll
-C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\NuGet.Frameworks.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\System.ClientModel.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\System.Drawing.Common.dll
@@ -182,3 +180,10 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Workou
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\FluentAssertions.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\Moq.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\Moq.EntityFrameworkCore.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\obj\Debug\net9.0\WorkoutCatalog.Tests.sourcelink.json
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\MockQueryable.Core.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\MockQueryable.EntityFrameworkCore.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\MockQueryable.Moq.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\.msCoverageSourceRootsMapping_WorkoutCatalog.Tests
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\Shared.Tests.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCatalog.Tests\bin\Debug\net9.0\Shared.Tests.pdb

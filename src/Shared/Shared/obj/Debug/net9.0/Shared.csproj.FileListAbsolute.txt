@@ -12,3 +12,4 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared\
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared\obj\Debug\net9.0\Shared.pdb
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared\obj\Debug\net9.0\Shared.genruntimeconfig.cache
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared\obj\Debug\net9.0\ref\Shared.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Shared\Shared\obj\Debug\net9.0\Shared.sourcelink.json

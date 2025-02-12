@@ -13,3 +13,4 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Member
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\refint\Membership.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.pdb
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\ref\Membership.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Membership\Membership\Membership\obj\Debug\net9.0\Membership.sourcelink.json

@@ -11,7 +11,7 @@
                 throw new Exception("Muscle group not found");
             }
 
-            var deleteCriteria = await context.Exercises.Where(e => e.MuscleGroups.Select(mg => mg.Id).Contains(entity.Id)).AnyAsync(cancellationToken);
+            var deleteCriteria = await context.MuscleGroups.Include(s => s.Exercises).AnyAsync(s=>s.Exercises.Count>0, cancellationToken);
             if (deleteCriteria)
             {
                 throw new Exception("Muscle group is in use");

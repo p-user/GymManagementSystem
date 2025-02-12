@@ -13,3 +13,4 @@ C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\Workou
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCalalog\obj\Debug\net9.0\refint\WorkoutCatalog.dll
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCalalog\obj\Debug\net9.0\WorkoutCatalog.pdb
 C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCalalog\obj\Debug\net9.0\ref\WorkoutCatalog.dll
+C:\Users\User\Desktop\GymManagementSystem\GymManagementSystem\src\Modules\WorkoutCatalog\WorkoutCalalog\obj\Debug\net9.0\WorkoutCatalog.sourcelink.json
