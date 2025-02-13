@@ -11,7 +11,7 @@ namespace WorkoutCatalog.Models
 
         public Guid ExerciseCategory { get; private set; } //fk to exercise category
 
-
+      
 
         public static Exercise Create(string name, string? description, string? descriptionLink, Guid exerciseCategory, List<MuscleGroup> muscleGroups)
         {
@@ -81,10 +81,7 @@ namespace WorkoutCatalog.Models
             ExerciseCategory = exerciseCategory;
         }
 
-        public static Exercise Create(string v1, string v2, ExerciseCategory exerciseCategory)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 
 

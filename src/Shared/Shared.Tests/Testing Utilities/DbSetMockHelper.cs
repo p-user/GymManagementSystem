@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MockQueryable.Moq;
 using Moq;
 using Shared.DDD;
@@ -10,7 +11,7 @@ namespace IntegrationTesting.Testing_Utilities
     public static  class DbSetMockHelper
     {
 
-        public static Mock<DbSet<T>> CreateDbSetMock<T, TKey>(this IEnumerable<T> data) 
+        public static Mock<DbSet<T>> CreateDbSetMock<T, TKey>(this ICollection<T> data) 
             where T : Entity<TKey>
         {
            
@@ -28,6 +29,45 @@ namespace IntegrationTesting.Testing_Utilities
                 });
 
 
+
+            //Mock AddAsync
+             mockSet.Setup(x => x.AddAsync(It.IsAny<T>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync((T entity, CancellationToken _) =>
+            {
+                // Return a mocked EntityEntry
+
+                var entityEntryMock = new Mock<EntityEntry<T>>();
+
+                entityEntryMock.Setup(e => e.Entity).Returns(entity);
+                data.Add(entity); // Add the entity to the data collection
+                return null;
+            });
+
+            //   mockSet.Setup(m => m.AddAsync(It.IsAny<T>(), It.IsAny<CancellationToken>()))
+            //.Callback<T, CancellationToken>((entity, _) => data.Add(entity))
+            //.ReturnsAsync((T entity, CancellationToken _) =>
+            //{
+            //    var entryMock = new Mock<EntityEntry<T>>();
+            //    entryMock.Setup(e => e.Entity).Returns(entity);
+            //    return entryMock.Object;
+            //});
+
+
+            //mockSet.Setup(m => m.Include(It.IsAny<Expression<Func<T, object>>>()))
+            //.Returns((Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<T, object>)mockSet.Object);
+
+
+
+
+            // Mock async FirstOrDefault
+            //mockSet.Setup(m => m.FirstOrDefaultAsync(It.IsAny<Expression<Func<T, bool>>>(), It.IsAny<CancellationToken>()))
+            //    .ReturnsAsync((Expression<Func<T, bool>> predicate, CancellationToken cancellationToken) =>
+            //    {
+            //        // Simulate the async behavior for FirstOrDefault
+            //        return data.AsQueryable().FirstOrDefault(predicate);
+            //    });
+
+           
 
             return mockSet;
         }

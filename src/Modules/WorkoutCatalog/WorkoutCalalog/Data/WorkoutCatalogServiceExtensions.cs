@@ -29,7 +29,7 @@ namespace WorkoutCalalog.Data
            
             using var scope = app.ApplicationServices.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<WorkoutCatalogDbContext>();
-            dbContext.Database.Migrate();
+            //dbContext.Database.Migrate();
             return app;
         }
     }

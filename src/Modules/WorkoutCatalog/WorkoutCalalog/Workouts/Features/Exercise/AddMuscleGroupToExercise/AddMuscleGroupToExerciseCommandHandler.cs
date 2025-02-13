@@ -23,6 +23,7 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
             }
 
             exercise.AddMuscleGroup(muscleGroup);
+            context.Exercises.Update(exercise);
             await context.SaveChangesAsync(cancellationToken);
             return mapper.Map<ViewExerciseDto>(exercise);
         }

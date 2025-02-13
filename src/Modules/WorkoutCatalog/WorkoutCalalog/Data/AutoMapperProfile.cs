@@ -27,7 +27,9 @@ namespace WorkoutCalalog.Data
             CreateMap<WorkoutCategory, UpdateWorkoutCategoryDto>()
              .ReverseMap();
 
-            
+            CreateMap<MuscleGroup, ViewMuscleGroupDto>()
+             .ReverseMap();
+
         }
     }
 }
