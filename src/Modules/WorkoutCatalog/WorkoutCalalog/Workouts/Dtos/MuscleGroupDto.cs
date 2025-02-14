@@ -15,6 +15,8 @@ namespace WorkoutCatalog.Workouts.Dtos
         public string? CreatedBy { get; init; }
         public string? LastModifiedBy { get; init; }
         public DateTime? LastModifiedAt { get; init; }
+
+        // public List<ViewExerciseDto> Exercises { get; init; } = new List<ViewExerciseDto>();
     }
 
     public record UpdateMuscleGroupDto : CreateMuscleGroupDto

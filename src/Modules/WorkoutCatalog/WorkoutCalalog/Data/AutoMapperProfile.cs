@@ -11,12 +11,15 @@ namespace WorkoutCalalog.Data
         {
 
             CreateMap<Exercise, CreateExerciseDto>()
+                 .ForMember(dest => dest.ExerciseCategory, opt => opt.MapFrom(src => src.ExerciseCategory))
                  .ReverseMap();
 
             CreateMap<Exercise, ViewExerciseDto>()
+                 .ForMember(dest => dest.MuscleGroups, opt => opt.MapFrom(src => src.MuscleGroups))
                 .ReverseMap();
 
             CreateMap<Exercise, UpdateExerciseDto>()
+                
                .ReverseMap();
 
             CreateMap<WorkoutCategory, ViewWorkoutCategoryDto>()
@@ -28,6 +31,7 @@ namespace WorkoutCalalog.Data
              .ReverseMap();
 
             CreateMap<MuscleGroup, ViewMuscleGroupDto>()
+              // .ForMember(dest => dest.Exercises, opt => opt.MapFrom(src => src.Exercises))
              .ReverseMap();
 
         }

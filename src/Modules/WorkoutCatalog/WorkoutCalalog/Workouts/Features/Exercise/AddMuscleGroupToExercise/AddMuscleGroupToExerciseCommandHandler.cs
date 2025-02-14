@@ -25,6 +25,15 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
             exercise.AddMuscleGroup(muscleGroup);
             context.Exercises.Update(exercise);
             await context.SaveChangesAsync(cancellationToken);
+            try
+            {
+
+            var test =  mapper.Map<ViewExerciseDto>(exercise);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
             return mapper.Map<ViewExerciseDto>(exercise);
         }
     }
