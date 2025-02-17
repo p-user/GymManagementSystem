@@ -28,8 +28,4 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Workouts\Features\Workout\" />
-  </ItemGroup>
-
 </Project>

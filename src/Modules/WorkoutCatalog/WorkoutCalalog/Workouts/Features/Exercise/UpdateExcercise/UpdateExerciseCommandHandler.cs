@@ -7,7 +7,7 @@
     {
         public async Task<Guid> Handle(UpdateExerciseCommand request, CancellationToken cancellationToken)
         {
-            var entity = await context.Exercises.FindAsync(request.Id, cancellationToken);
+            var entity = await context.Exercises.FirstOrDefaultAsync(s=>s.Id==request.Id, cancellationToken);
             if (entity == null)
             {
                 throw new Exception("Exercise not found");

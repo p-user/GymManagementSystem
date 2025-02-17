@@ -4,53 +4,55 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MockQueryable.Moq;
 using Moq;
 using Shared.DDD;
-using System.Linq.Expressions;
+using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace IntegrationTesting.Testing_Utilities
 {
     public static  class DbSetMockHelper
     {
 
-        public static Mock<DbSet<T>> CreateDbSetMock<T, TKey>(this ICollection<T> data) 
+        public static Mock<DbSet<T>> CreateDbSetMock<T, TKey>(this IList<T> data) 
             where T : Entity<TKey>
         {
-           
+
+
+            //**************************
+            //
+            //
+            //Todo : why customized mockes are not working ????
+            //
+            //
+            //
+            //**************************
+
+
+
+
             var mockSet = data.AsQueryable().BuildMockDbSet(); // Create a new mock DbSet
 
 
-            // Mock FindAsync to return the entity 
-            mockSet.Setup(m => m.FindAsync(It.IsAny<object[]>()))
-                .ReturnsAsync((object[] keyValues) =>
-                {
-                    // Simulate finding the entity by the key
-                    var key = (TKey)keyValues[0]; 
-
-                    return data.AsQueryable().FirstOrDefault(e => e.Id.Equals(key));
-                });
-
+         
+            mockSet.Setup(x => x.FindAsync(It.IsAny<object[]>()))
+               .ReturnsAsync((object[] keyValues) =>
+               {
+                   var id = (Guid)keyValues[0];  // Id is a Guid
+                   return data.FirstOrDefault(e => e.Id.Equals(id));  // Find the exercise by Id
+               });
 
 
             //Mock AddAsync
-             mockSet.Setup(x => x.AddAsync(It.IsAny<T>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync((T entity, CancellationToken _) =>
-            {
-                // Return a mocked EntityEntry
+            mockSet.Setup(m => m.AddAsync(It.IsAny<T>(), It.IsAny<CancellationToken>()))
+              .Callback<T, CancellationToken>((entity, _) => data.Add(entity))
+              .Returns<T, CancellationToken>((entity, _) => ValueTask.FromResult((EntityEntry<T>)null!));
 
-                var entityEntryMock = new Mock<EntityEntry<T>>();
 
-                entityEntryMock.Setup(e => e.Entity).Returns(entity);
-                data.Add(entity); // Add the entity to the data collection
-                return null;
-            });
+            //Mock AnyAsync
+            //mockSet.Setup(m => m.AnyAsync(It.IsAny<CancellationToken>()))
+            //   .Returns<CancellationToken>(ct => Task.FromResult(data.Any()));
 
-            //   mockSet.Setup(m => m.AddAsync(It.IsAny<T>(), It.IsAny<CancellationToken>()))
-            //.Callback<T, CancellationToken>((entity, _) => data.Add(entity))
-            //.ReturnsAsync((T entity, CancellationToken _) =>
-            //{
-            //    var entryMock = new Mock<EntityEntry<T>>();
-            //    entryMock.Setup(e => e.Entity).Returns(entity);
-            //    return entryMock.Object;
-            //});
+
+
 
 
             //mockSet.Setup(m => m.Include(It.IsAny<Expression<Func<T, object>>>()))
@@ -67,7 +69,7 @@ namespace IntegrationTesting.Testing_Utilities
             //        return data.AsQueryable().FirstOrDefault(predicate);
             //    });
 
-           
+
 
             return mockSet;
         }

@@ -54,6 +54,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
             var result = await _handler.Handle(command, CancellationToken.None);
 
             
+            _dbContextMock.Verify(x => x.Exercises.AddAsync(It.IsAny<Models.Exercise>(), It.IsAny<CancellationToken>()), Times.Once);
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
 
            var dbEntity = await  _dbContextMock.Object.Exercises.FindAsync(entity.Id);

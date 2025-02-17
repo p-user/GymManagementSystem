@@ -5,14 +5,15 @@
     {
         public async Task<bool> Handle(DeleteExerciseCommand request, CancellationToken cancellationToken)
         {
-            var entity = await context.Exercises.FindAsync(request.Id);
+           
+            var entity = await context.Exercises.Include(s=>s.Workouts).FirstOrDefaultAsync(s=>s.Id == request.Id);
             if (entity == null)
             {
                 throw new Exception("Exercise not found");
             }
 
-            var isDeletable = await context.Workouts.AnyAsync(e => e.Id == request.Id, cancellationToken);
-            if (isDeletable)
+          
+            if (entity.Workouts.Count()>0)
             {
                 throw new Exception("Exercise belongs to a workout routine, pleasae remove it from the routine");
             }

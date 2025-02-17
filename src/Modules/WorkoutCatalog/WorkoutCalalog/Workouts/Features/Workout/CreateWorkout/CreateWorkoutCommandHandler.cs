@@ -13,6 +13,13 @@
             {
                 throw new Exception("Workout with same name  already exists!");
             }
+            var test = await context.WorkoutCategories.ToListAsync(cancellationToken);
+
+            var categories = await context.WorkoutCategories.Where(w => request.dto.Categories.Contains(w.Id)).ToListAsync(cancellationToken);
+            if (!categories.Any())
+            {
+                throw new Exception("Workout must have at least one valid category!");
+            }
 
             var exercises = await context.Exercises.Where(e => request.dto.Exercises.Contains(e.Id)).ToListAsync(cancellationToken);
             if (!exercises.Any())
@@ -22,16 +29,16 @@
 
 
             // create workout
-            var entity = CreateWorkout(request.dto, exercises);
+            var entity = CreateWorkout(request.dto, exercises, categories);
             //save to db
             await context.Workouts.AddAsync(entity, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
 
             return entity.Id;
         }
-        private Models.Workout CreateWorkout(CreateWorkoutDto dto, List<Models.Exercise> exercises)
+        private Models.Workout CreateWorkout(CreateWorkoutDto dto, List<Models.Exercise> exercises, List<Models.WorkoutCategory> workoutCategories)
         {
-            return Models.Workout.Create(dto.Name, dto.Description, exercises);
+            return Models.Workout.Create(dto.Name, dto.Description, exercises, workoutCategories);
         }
     }
 

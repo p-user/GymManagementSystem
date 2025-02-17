@@ -11,7 +11,10 @@ namespace WorkoutCatalog.Models
 
         public Guid ExerciseCategory { get; private set; } //fk to exercise category
 
-      
+        private List<Workout> workouts { get; set; } = new();
+        public IReadOnlyList<Workout> Workouts => workouts.AsReadOnly();
+
+
 
         public static Exercise Create(string name, string? description, string? descriptionLink, Guid exerciseCategory, List<MuscleGroup> muscleGroups)
         {

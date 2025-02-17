@@ -13,7 +13,7 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.RemoveMuscleGroupFromExercis
             {
                 var command = new RemoveMuscleGroupFromExerciseCommand(exerciseId, muscleGroupId);
                 var result = await sender.Send(command, cancellationToken);
-                return result is not null ? Results.Ok(result) : Results.NotFound();
+                return Results.Ok(result);
             })
                 .Produces<ViewExerciseDto>(StatusCodes.Status200OK)
                 .Produces(StatusCodes.Status404NotFound)
