@@ -1,4 +1,4 @@
-﻿namespace WorkoutCatalog.Workouts.Features.Exercise.DeleteExcercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.DeleteExercise
 {
     public record DeleteExerciseCommand(Guid Id) : IRequest<bool>;
     public class DeleteExerciseCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<DeleteExerciseCommand, bool>

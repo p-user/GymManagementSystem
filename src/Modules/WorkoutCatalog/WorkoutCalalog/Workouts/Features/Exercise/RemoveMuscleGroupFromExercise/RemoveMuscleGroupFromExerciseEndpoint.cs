@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WorkoutCatalog.Workouts.Features.Exercise.RemoceMuscleGroupFromExercise;
 
 namespace WorkoutCatalog.Workouts.Features.Exercise.RemoveMuscleGroupFromExercise
@@ -9,20 +7,25 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.RemoveMuscleGroupFromExercis
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/exercises/{exerciseId}/muscleGroups/{muscleGroupId}", async ([FromRoute] Guid exerciseId, [FromRoute] Guid muscleGroupId, ISender sender, CancellationToken cancellationToken) =>
-            {
-                var command = new RemoveMuscleGroupFromExerciseCommand(exerciseId, muscleGroupId);
-                var result = await sender.Send(command, cancellationToken);
-                return Results.Ok(result);
-            })
+            app.MapPost("/exercises/{exerciseId}/muscleGroups/{muscleGroupId}", RemoveMuscleGroupFromExercise)
                 .Produces<ViewExerciseDto>(StatusCodes.Status200OK)
                 .Produces(StatusCodes.Status404NotFound)
                 .ProducesValidationProblem()
                 .Produces(StatusCodes.Status400BadRequest)
                 .WithDescription("Remove muscle group from exercise")
                 .WithTags("Exercise")
-                .WithSummary("Remove muscle group from exercise")
-                ;
+                .WithSummary("Remove muscle group from exercise");
+        }
+
+        private async Task<IResult> RemoveMuscleGroupFromExercise(
+            [FromRoute] Guid exerciseId,
+            [FromRoute] Guid muscleGroupId,
+            ISender sender,
+            CancellationToken cancellationToken)
+        {
+            var command = new RemoveMuscleGroupFromExerciseCommand(exerciseId, muscleGroupId);
+            var result = await sender.Send(command, cancellationToken);
+            return result is true ? Results.Ok(result) : Results.NotFound();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿
-
 using AutoMapper;
 
 namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.GetExerciseCategories

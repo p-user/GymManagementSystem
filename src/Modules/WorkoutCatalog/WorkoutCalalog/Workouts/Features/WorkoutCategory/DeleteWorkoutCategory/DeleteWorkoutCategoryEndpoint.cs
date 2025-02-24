@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.DeleteWorkoutCategory
 {
@@ -8,11 +6,7 @@ namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.DeleteWorkoutCategory
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/workout/categories/{id:guid}", async (ISender sender, [FromRoute] Guid id) =>
-            {
-                var response = await sender.Send(new DeleteWorkoutCategoryCommand(id));
-                return response ? Results.NoContent() : Results.NotFound();
-            })
+            app.MapDelete("/workout/categories/{id:guid}", DeleteWorkoutCategory)
                 .WithName("DeleteWorkoutCategory")
                 .WithTags("Workout Categories")
                 .Produces(StatusCodes.Status204NoContent)
@@ -21,6 +15,11 @@ namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.DeleteWorkoutCategory
                 .WithDescription("Deletes a workout category from the workout catalog using its unique identifier.")
                 .WithSummary("Delete a workout category by its ID.");
         }
-    }
 
+        private async Task<IResult> DeleteWorkoutCategory(ISender sender, [FromRoute] Guid id)
+        {
+            var response = await sender.Send(new DeleteWorkoutCategoryCommand(id));
+            return response ? Results.NoContent() : Results.NotFound();
+        }
+    }
 }

@@ -1,9 +1,9 @@
-﻿namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExcercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
 {
-    public record CreateExcerciseCommand(CreateExerciseDto dto) : IRequest<Guid>;
-    public class CreateExcerciseCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<CreateExcerciseCommand, Guid>
+    public record CreateExerciseCommand(CreateExerciseDto dto) : IRequest<Guid>;
+    public class CreateExerciseCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<CreateExerciseCommand, Guid>
     {
-        public async Task<Guid> Handle(CreateExcerciseCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateExerciseCommand request, CancellationToken cancellationToken)
         {
             //validate FKs and retrive muscle groups
             var muscleIds = request.dto.MuscleGroups.Select(mg => mg.Id).ToList();  

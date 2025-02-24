@@ -1,17 +1,13 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById;
 
-namespace WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById
+namespace WorkoutCatalog.Workouts.Features.Exercise.GetExerciseById
 {
     public class GetExerciseByIdEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/excercise/{id:guid}", async ([FromRoute] Guid id, ISender sender) =>
-            {
-                var response = await sender.Send(new GetExerciseByIdQuery(id));
-                return response is not null ? Results.Ok(response) : Results.NotFound();
-            })
+            app.MapGet("/exercise/{id:guid}", GetExerciseById)
                 .WithName("GetExerciseById")
                 .WithTags("Exercise")
                 .Produces<ViewExerciseDto>(StatusCodes.Status200OK)
@@ -20,6 +16,11 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById
                 .WithDescription("Retrieves an exercise by its unique identifier.")
                 .WithSummary("Get a specific exercise by ID.");
         }
-    }
 
+        private async Task<IResult> GetExerciseById([FromRoute] Guid id, ISender sender)
+        {
+            var response = await sender.Send(new GetExerciseByIdQuery(id));
+            return response is not null ? Results.Ok(response) : Results.NotFound();
+        }
+    }
 }

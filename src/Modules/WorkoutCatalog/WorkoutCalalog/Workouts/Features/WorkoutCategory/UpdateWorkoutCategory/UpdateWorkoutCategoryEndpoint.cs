@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.UpdateWorkoutCategory
 {
@@ -7,19 +6,24 @@ namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.UpdateWorkoutCategory
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPut("/workout/categories/{id:guid}", async (ISender sender, [FromRoute] Guid id, [FromBody] UpdateWorkoutCategoryDto dto) =>
-            {
-                dto.Id = id;
-                var response = await sender.Send(new UpdateWorkoutCategoryCommand(dto));
-                return response != Guid.Empty ? Results.Ok(response) : Results.InternalServerError();
-            })
-                 .WithTags("Workout Categories")
+            app.MapPut("/workout/categories/{id:guid}", UpdateWorkoutCategory)
+                .WithTags("Workout Categories")
                 .WithName("UpdateWorkoutCategory")
                 .WithSummary("Update a specific workout category using its unique identifier")
                 .WithDescription("Updates a workout category in the workout catalog.")
-                .Produces<Guid>()
-                .Produces<UpdateWorkoutCategoryDto>();
+                .Produces(StatusCodes.Status204NoContent)
+                .Produces(StatusCodes.Status404NotFound)
+                .ProducesValidationProblem(StatusCodes.Status400BadRequest);
+        }
+
+        private async Task<IResult> UpdateWorkoutCategory(
+            ISender sender,
+            [FromRoute] Guid id,
+            [FromBody] UpdateWorkoutCategoryDto dto)
+        {
+            dto.Id = id;
+            var response = await sender.Send(new UpdateWorkoutCategoryCommand(dto));
+            return response != Guid.Empty ? Results.NoContent() : Results.NotFound();
         }
     }
-
 }

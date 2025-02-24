@@ -45,3 +45,6 @@ app.UseWorkoutCatalogModule();
 
 app.Run();
 
+// Required for integration testing with WebApplicationFactory
+public partial class Program { }
+

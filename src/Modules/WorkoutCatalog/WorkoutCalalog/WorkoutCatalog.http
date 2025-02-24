@@ -1,0 +1,17 @@
+﻿@WorkoutCatalog_HostAddress = http://localhost:5000
+
+GET {{WorkoutCatalog_HostAddress}}/exercise
+
+###
+
+GET {{WorkoutCatalog_HostAddress}}/exercise/{id:guid}
+
+###
+
+GET {{WorkoutCatalog_HostAddress}}/exercise
+
+###
+
+GET {{WorkoutCatalog_HostAddress}}/exercise/{id:guid}
+
+###

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using WorkoutCatalog.Tests.Workouts.Fixtures;
-using WorkoutCatalog.Workouts.Features.Exercise.CreateExcercise;
+using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
 {
@@ -9,7 +9,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
     {
         private readonly ExerciseFixture _fixture;
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
-        private readonly CreateExcerciseCommandHandler _handler;
+        private readonly CreateExerciseCommandHandler _handler;
         private readonly IMapper _mapper;
 
         public CreateExerciseHandlerTest(ExerciseFixture fixture, AutoMapperFixture autoMapperFixture)
@@ -34,7 +34,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
             _dbContextMock.Setup(x => x.MuscleGroups).Returns(mockDbMuscles);
 
 
-            _handler = new CreateExcerciseCommandHandler(_dbContextMock.Object);
+            _handler = new CreateExerciseCommandHandler(_dbContextMock.Object);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
 
           
 
-            var command = new CreateExcerciseCommand(dto);
+            var command = new CreateExerciseCommand(dto);
 
 
             //act

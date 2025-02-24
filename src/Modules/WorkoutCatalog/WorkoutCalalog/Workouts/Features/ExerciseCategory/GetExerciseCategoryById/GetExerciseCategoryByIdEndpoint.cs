@@ -7,16 +7,18 @@ namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.GetExerciseCategoryB
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/exercise/categories/{id:guid}", async (ISender sender, [FromRoute] Guid id) =>
-            {
-                var response = await sender.Send(new GetExerciseCategoryByIdQuery(id));
-                return response is not null ? Results.Ok(response) : Results.NotFound();
-            })
+            app.MapGet("/exercise/categories/{id:guid}", GetExerciseCategoryById)
                 .WithDescription("Retrieves an exercise category by its unique identifier.")
                 .WithSummary("Get a specific exercise category by ID")
                 .WithName("GetExerciseCategoryById")
                 .Produces<Guid>().Produces<ViewExerciseDto>()
                 .WithTags("Exercise Categories");
+        }
+
+        private async Task<IResult> GetExerciseCategoryById(ISender sender, [FromRoute] Guid id)
+        {
+            var response = await sender.Send(new GetExerciseCategoryByIdQuery(id));
+            return response is not null ? Results.Ok(response) : Results.NotFound();
         }
     }
 

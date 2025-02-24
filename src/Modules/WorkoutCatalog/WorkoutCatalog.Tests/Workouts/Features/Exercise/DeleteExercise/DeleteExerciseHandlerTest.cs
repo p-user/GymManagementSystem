@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
 using Moq.EntityFrameworkCore;
-using WorkoutCatalog.Workouts.Features.Exercise.DeleteExcercise;
+using WorkoutCatalog.Workouts.Features.Exercise.DeleteExercise;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.DeleteExercise
 {

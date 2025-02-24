@@ -11,6 +11,7 @@ namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.GetWorkoutCategories
         {
             var entities = await context.WorkoutCategories.ToListAsync(cancellationToken);
             return mapper.Map<List<ViewWorkoutCategoryDto>>(entities);
+
         }
     }
 }

@@ -6,11 +6,7 @@ namespace WorkoutCatalog.Workouts.Features.MuscleGroups.DeleteMuscleGroup
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/exercise/muscle-groups/{id:guid}", async (ISender sender, [FromRoute] Guid id) =>
-            {
-                var response = await sender.Send(new DeleteMuscleGroupCommand(id));
-                return response ? Results.NoContent() : Results.NotFound();
-            })
+            app.MapDelete("/exercise/muscle-groups/{id:guid}", DeleteMuscleGroup)
                 .WithName("DeleteMuscleGroup")
                 .WithTags("Muscle Groups")
                 .Produces(StatusCodes.Status204NoContent)
@@ -19,6 +15,11 @@ namespace WorkoutCatalog.Workouts.Features.MuscleGroups.DeleteMuscleGroup
                 .WithDescription("Deletes a muscle group from the workout catalog using its unique identifier.")
                 .WithSummary("Delete a muscle group by its ID.");
         }
-    }
 
+        private async Task<IResult> DeleteMuscleGroup(ISender sender, [FromRoute] Guid id)
+        {
+            var response = await sender.Send(new DeleteMuscleGroupCommand(id));
+            return response ? Results.NoContent() : Results.NotFound();
+        }
+    }
 }
