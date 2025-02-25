@@ -1,5 +1,8 @@
 ﻿
 
+using FluentValidation;
+using FluentValidation.Results;
+using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 using WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.UpdateMuscleGroup
@@ -10,6 +13,8 @@ namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.UpdateMuscleGroup
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
         private readonly UpdateMuscleGroupCommandHandler _handler;
         private readonly MuscleGroupFixture _fixture;
+        private readonly Mock<IValidator<UpdateMuscleGroupCommand>> _validatorMock;
+
 
         public UpdateMuscleGroupHandlerTest(MuscleGroupFixture fixture)
         {
@@ -20,7 +25,11 @@ namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.UpdateMuscleGroup
 
             _dbContextMock.SetupGet(x => x.MuscleGroups).Returns(entities);
 
-            _handler = new UpdateMuscleGroupCommandHandler(_dbContextMock.Object);
+            _validatorMock = new Mock<IValidator<UpdateMuscleGroupCommand>>();
+            _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<UpdateMuscleGroupCommand>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _handler = new UpdateMuscleGroupCommandHandler(_dbContextMock.Object, _validatorMock.Object);
 
         }
 

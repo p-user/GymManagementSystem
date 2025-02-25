@@ -1,10 +1,15 @@
-﻿namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
+﻿using FluentValidation;
+
+namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
 {
     public record CreateExerciseCommand(CreateExerciseDto dto) : IRequest<Guid>;
-    public class CreateExerciseCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<CreateExerciseCommand, Guid>
+    public class CreateExerciseCommandHandler(WorkoutCatalogDbContext context, IValidator<CreateExerciseCommand> _validator) : IRequestHandler<CreateExerciseCommand, Guid>
     {
         public async Task<Guid> Handle(CreateExerciseCommand request, CancellationToken cancellationToken)
         {
+            //validate request
+            await _validator.ValidateAsync(request, cancellationToken);
+
             //validate FKs and retrive muscle groups
             var muscleIds = request.dto.MuscleGroups.Select(mg => mg.Id).ToList();  
             var muscleGroups = await context.MuscleGroups.Where(mg => muscleIds.Contains(mg.Id)).ToListAsync();

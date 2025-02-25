@@ -1,4 +1,7 @@
-﻿using WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
+using WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.UpdateExerciseCategory
 {
@@ -8,6 +11,8 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.UpdateExercise
         private readonly Mock<WorkoutCatalogDbContext> _context;
         private readonly ExerciseCategoryFixture _fixture;
         private readonly UpdateExerciseCategoryCommandHandler _handler;
+        private readonly Mock<IValidator<UpdateExerciseCategoryCommand>> _validatorMock;
+
 
         public UpdateExerciseCategoryHandlerTest(ExerciseCategoryFixture fixture)
         {
@@ -15,7 +20,11 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.UpdateExercise
             _context = new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
             var mockObj = _fixture.ExerciseCategories.CreateDbSetMock<Models.ExerciseCategory, Guid>();
             _context.Setup(db => db.ExerciseCategories).Returns(mockObj.Object);
-            _handler = new UpdateExerciseCategoryCommandHandler(_context.Object);
+
+            _validatorMock = new Mock<IValidator<UpdateExerciseCategoryCommand>>();
+            _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<UpdateExerciseCategoryCommand>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+            _handler = new UpdateExerciseCategoryCommandHandler(_context.Object, _validatorMock.Object);
         }
         [Fact]
         public async Task Update_Exercise_Category_When_Exists()

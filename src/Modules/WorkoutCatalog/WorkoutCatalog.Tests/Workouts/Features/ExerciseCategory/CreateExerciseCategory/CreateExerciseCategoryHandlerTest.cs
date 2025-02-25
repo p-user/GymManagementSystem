@@ -1,5 +1,8 @@
 ﻿
 
+using FluentValidation;
+using FluentValidation.Results;
+using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 using WorkoutCatalog.Workouts.Features.ExerciseCategory.CreateExerciseCategory;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.CreateExerciseCategory
@@ -9,6 +12,8 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.CreateExercise
 
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
         private readonly CreateExerciseCategoryCommandHandler _handler;
+        private readonly Mock<IValidator<CreateExerciseCategoryCommand>> _validatorMock;
+
 
         public CreateExerciseCategoryHandlerTest()
         {
@@ -17,7 +22,12 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.CreateExercise
             _dbContextMock.Setup(x => x.ExerciseCategories)
                 .ReturnsDbSet(new List<Models.ExerciseCategory>());
 
-            _handler = new CreateExerciseCategoryCommandHandler(_dbContextMock.Object);
+            _validatorMock = new Mock<IValidator<CreateExerciseCategoryCommand>>();
+
+            _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<CreateExerciseCategoryCommand>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _handler = new CreateExerciseCategoryCommandHandler(_dbContextMock.Object, _validatorMock.Object);
         }
 
         [Fact]

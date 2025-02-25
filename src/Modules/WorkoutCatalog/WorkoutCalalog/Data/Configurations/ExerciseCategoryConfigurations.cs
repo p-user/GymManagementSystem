@@ -8,7 +8,21 @@ namespace WorkoutCalalog.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ExerciseCategory> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(ec => ec.Id);
+
+            // Configure properties
+            builder.Property(ec => ec.Name)
+                .IsRequired() 
+                .HasMaxLength(100); 
+
+            builder.Property(ec => ec.Description)
+                .HasMaxLength(500); 
+
+            // Configure the relationship with Exercise
+            builder.HasMany(ec => ec.Exercises)
+                .WithOne() // Assuming one ExerciseCategory can have many Exercises
+                .HasForeignKey(e => e.ExerciseCategory)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

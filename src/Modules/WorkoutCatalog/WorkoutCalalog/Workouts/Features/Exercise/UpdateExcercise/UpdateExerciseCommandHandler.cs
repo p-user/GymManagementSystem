@@ -1,9 +1,11 @@
-﻿namespace WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise
+﻿using FluentValidation;
+
+namespace WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise
 {
     public record UpdateExerciseCommand(UpdateExerciseDto Dto, Guid Id) : IRequest<Guid>;
 
 
-    public class UpdateExerciseCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<UpdateExerciseCommand, Guid>
+    public class UpdateExerciseCommandHandler(WorkoutCatalogDbContext context, IValidator<UpdateExerciseCommand> validator) : IRequestHandler<UpdateExerciseCommand, Guid>
     {
         public async Task<Guid> Handle(UpdateExerciseCommand request, CancellationToken cancellationToken)
         {

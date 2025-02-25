@@ -1,7 +1,9 @@
 ﻿
 
 using AutoMapper;
+using FluentValidation;
 using Moq;
+using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 using WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.UpdateExercise
@@ -12,6 +14,8 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.UpdateExercise
         private readonly ExerciseFixture _fixture;
         private readonly UpdateExerciseCommandHandler _handler;
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
+        private readonly Mock<IValidator<UpdateExerciseCommand>> _validatorMock;
+
         public UpdateExerciseHandlerTest(ExerciseFixture exerciseFixture)
         {
             _fixture = exerciseFixture;
@@ -21,9 +25,14 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.UpdateExercise
             _dbContextMock.Setup(x => x.ExerciseCategories).ReturnsDbSet(_fixture.Categories.ExerciseCategories);
             _dbContextMock.Setup(x => x.MuscleGroups).ReturnsDbSet(_fixture.MuscleGroups.MuscleGroups);
 
-         
 
-            _handler = new UpdateExerciseCommandHandler(_dbContextMock.Object);
+            _validatorMock = new Mock<IValidator<UpdateExerciseCommand>>();
+            _validatorMock.Setup(v => v.ValidateAsync(It.IsAny<UpdateExerciseCommand>(), default))
+                     .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+
+
+            _handler = new UpdateExerciseCommandHandler(_dbContextMock.Object, _validatorMock.Object);
         }
         [Fact]
         public async Task Update_Exercise_When_Exists()

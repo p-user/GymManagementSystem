@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+using FluentValidation.Results;
 using WorkoutCatalog.Workouts.Features.WorkoutCategory.UpdateWorkoutCategory;
 
 
@@ -10,6 +12,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.UpdateWorkoutCa
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
         private readonly UpdateWorkoutCategoryCommandHandler _handler;
         private readonly Mock<DbSet<Models.WorkoutCategory>> _mockSet;
+        private readonly Mock<IValidator<UpdateWorkoutCategoryCommand>> _validatorMock;
 
         public UpdateWorkoutCategory(WorkoutCategoryFixture fixture)
         {
@@ -20,7 +23,12 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.UpdateWorkoutCa
       
 
             _dbContextMock.Setup(x => x.WorkoutCategories).Returns(_mockSet.Object);
-            _handler = new UpdateWorkoutCategoryCommandHandler(_dbContextMock.Object);
+
+            _validatorMock= new Mock<IValidator<UpdateWorkoutCategoryCommand>>();
+            _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<UpdateWorkoutCategoryCommand>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _handler = new UpdateWorkoutCategoryCommandHandler(_dbContextMock.Object, _validatorMock.Object);
         }
 
         [Fact]

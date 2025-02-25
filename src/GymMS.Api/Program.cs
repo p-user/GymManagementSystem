@@ -25,6 +25,9 @@ builder.Services.AddCarter(workoutCatalogModule);
 //mediatR
 builder.Services.AddMediatR(workoutCatalogModule);
 
+//validations
+
+
 
 
 var app = builder.Build();

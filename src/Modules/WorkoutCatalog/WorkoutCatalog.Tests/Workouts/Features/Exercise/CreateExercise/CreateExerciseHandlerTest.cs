@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using WorkoutCatalog.Tests.Workouts.Fixtures;
 using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
@@ -11,6 +12,8 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
         private readonly CreateExerciseCommandHandler _handler;
         private readonly IMapper _mapper;
+        private readonly Mock<IValidator<CreateExerciseCommand>> _validatorMock;
+
 
         public CreateExerciseHandlerTest(ExerciseFixture fixture, AutoMapperFixture autoMapperFixture)
         {
@@ -33,8 +36,13 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
             var mockDbMuscles = fixture.MuscleGroups.MuscleGroups.CreateDbSetMock<Models.MuscleGroup, Guid>().Object;
             _dbContextMock.Setup(x => x.MuscleGroups).Returns(mockDbMuscles);
 
+            _validatorMock = new Mock<IValidator<CreateExerciseCommand>>();
 
-            _handler = new CreateExerciseCommandHandler(_dbContextMock.Object);
+            _validatorMock.Setup(v => v.ValidateAsync(It.IsAny<CreateExerciseCommand>(), default))
+                     .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+
+            _handler = new CreateExerciseCommandHandler(_dbContextMock.Object, _validatorMock.Object);
         }
 
         [Fact]

@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+using FluentValidation.Results;
 using WorkoutCatalog.Workouts.Features.MuscleGroups.CreateMuscleGroup;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.CreateMuscleGroup
@@ -7,6 +9,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.CreateMuscleGroup
     {
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
         private readonly CreateMuscleGroupCommandHandler _handler;
+        private readonly Mock<IValidator<CreateMuscleGroupCommand>> _validatorMock;
 
         public CreateMuscleGroupHandlerTest()
         {
@@ -14,8 +17,11 @@ namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.CreateMuscleGroup
 
             _dbContextMock.Setup(x => x.MuscleGroups)
                 .ReturnsDbSet(new List<Models.MuscleGroup>());
+            _validatorMock = new Mock<IValidator<CreateMuscleGroupCommand>>();
+            _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<CreateMuscleGroupCommand>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
 
-            _handler = new CreateMuscleGroupCommandHandler(_dbContextMock.Object);
+            _handler = new CreateMuscleGroupCommandHandler(_dbContextMock.Object, _validatorMock.Object);
         }
 
         [Fact]

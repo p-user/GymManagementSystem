@@ -1,5 +1,6 @@
 ﻿
 
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -18,7 +19,8 @@ namespace WorkoutCalalog.Data
                 options.UseSqlServer(connectionString);
             });
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-           
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly()); //testing pursposes 
+
 
             return services;
         }

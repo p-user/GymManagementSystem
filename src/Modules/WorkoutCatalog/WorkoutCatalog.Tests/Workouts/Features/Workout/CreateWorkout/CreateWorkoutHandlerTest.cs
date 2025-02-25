@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+using FluentValidation.Results;
 using WorkoutCatalog.Workouts.Features.Workout.CreateWorkout;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Workout.CreateWorkout
@@ -9,6 +11,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Workout.CreateWorkout
         private readonly Mock<WorkoutCatalogDbContext> _context;
         private readonly WorkoutFixture _fixture;
         private readonly CreateWorkoutCommandHandler _handler;
+        private readonly Mock<IValidator<CreateWorkoutCommand>> _validatorMock;
         public CreateWorkoutHandlerTest(WorkoutFixture fixture)
         {
             _fixture = fixture;
@@ -21,7 +24,12 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Workout.CreateWorkout
 
             var categorySet = _fixture.WorkoutCategories.CreateDbSetMock<Models.WorkoutCategory, Guid>();
             _context.Setup(db => db.WorkoutCategories).Returns(categorySet.Object);
-            _handler = new CreateWorkoutCommandHandler(_context.Object);
+
+            _validatorMock = new Mock<IValidator<CreateWorkoutCommand>>();
+            _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<CreateWorkoutCommand>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _handler = new CreateWorkoutCommandHandler(_context.Object, _validatorMock.Object);
         }
 
 

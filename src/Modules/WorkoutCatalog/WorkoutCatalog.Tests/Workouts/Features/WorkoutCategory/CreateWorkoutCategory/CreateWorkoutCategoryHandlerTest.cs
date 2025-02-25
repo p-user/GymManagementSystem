@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+using FluentValidation.Results;
 using WorkoutCatalog.Workouts.Features.WorkoutCategory.CreateWorkoutCategory;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.CreateWorkoutCategory
@@ -8,6 +10,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.CreateWorkoutCa
 
         private readonly Mock<WorkoutCatalogDbContext> _dbContextMock;
         private readonly CreateWorkoutCategoryCommandHandler _handler;
+        private readonly Mock<IValidator<CreateWorkoutCategoryCommand>> _validatorMock;
         public CreateWorkoutCategoryHandlerTest()
         {
             _dbContextMock = new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
@@ -15,7 +18,11 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.CreateWorkoutCa
             _dbContextMock.Setup(x => x.WorkoutCategories)
                 .ReturnsDbSet(new List<Models.WorkoutCategory>());
 
-            _handler = new CreateWorkoutCategoryCommandHandler(_dbContextMock.Object);
+            _validatorMock = new Mock<IValidator<CreateWorkoutCategoryCommand>>();
+            _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<CreateWorkoutCategoryCommand>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _handler = new CreateWorkoutCategoryCommandHandler(_dbContextMock.Object, _validatorMock.Object);
 
         }
 

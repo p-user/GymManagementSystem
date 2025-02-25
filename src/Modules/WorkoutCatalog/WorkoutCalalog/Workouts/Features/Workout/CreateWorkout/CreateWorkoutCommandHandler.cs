@@ -1,12 +1,17 @@
-﻿namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
+﻿using FluentValidation;
+
+namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
 {
 
     public record CreateWorkoutCommand(CreateWorkoutDto dto) : IRequest<Guid>;
 
-    public class CreateWorkoutCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<CreateWorkoutCommand, Guid>
+    public class CreateWorkoutCommandHandler(WorkoutCatalogDbContext context, IValidator<CreateWorkoutCommand> validator) : IRequestHandler<CreateWorkoutCommand, Guid>
     {
         public async Task<Guid> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken)
         {
+
+            await validator.ValidateAndThrowAsync(request, cancellationToken);
+
             //validate name
             var isValid = await context.Workouts.AnyAsync(w => w.Name.ToLower() == request.dto.Name.ToLower(), cancellationToken);
             if (isValid)
