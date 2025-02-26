@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 
 namespace Membership.Data
 {
-    public static class DependencyInjection
+    public static class MembershipServiceExtensions
     {
 
         public static IServiceCollection AddMembershipData(this IServiceCollection services, IConfiguration configuration)

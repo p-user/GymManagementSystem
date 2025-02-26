@@ -19,7 +19,7 @@ namespace WorkoutCalalog.Data
                 options.UseSqlServer(connectionString);
             });
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly()); //testing pursposes 
+           
 
 
             return services;
