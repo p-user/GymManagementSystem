@@ -18,7 +18,6 @@ namespace WorkoutCalalog.Data
             {
                 options.UseSqlServer(connectionString);
             });
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
            
 
 
