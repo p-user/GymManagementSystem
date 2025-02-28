@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\modules\Authentication\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Modules\Membership\Membership\Membership\Membership.csproj" />
     <ProjectReference Include="..\Modules\Staff\StaffManagement\StaffManagement.csproj" />
     <ProjectReference Include="..\Modules\WorkoutCatalog\WorkoutCalalog\WorkoutCatalog.csproj" />

@@ -49,6 +49,7 @@ app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.MapCarter();
 
 
+
 //consider to change the middleware order --> which migrations should apply first 
 //remeber : a workout or exercise should be associated with a staff member 
 app.UseStaffModule();
