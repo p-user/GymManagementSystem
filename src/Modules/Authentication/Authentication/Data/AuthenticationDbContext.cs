@@ -5,11 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Authentication.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class AuthenticationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public AuthenticationDbContext(DbContextOptions<AuthenticationDbContext> dbContextOptions) : base(dbContextOptions)
         {
+            
         }
+
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles  { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -5,7 +5,7 @@ namespace Authentication.Models
     public class User : IdentityUser
     {
         
-        public static User Create(string email, string name, string surname) => new User
+        public static User Create(string email, string name, string surname, string phonenumber) => new User
         {
             AccessFailedCount = 0,
             Email = email,
@@ -15,7 +15,7 @@ namespace Authentication.Models
             NormalizedEmail = email.ToUpper(),
             NormalizedUserName = email.ToUpper(),
             PasswordHash = "",
-            PhoneNumber = "",
+            PhoneNumber = phonenumber,
             PhoneNumberConfirmed = false,
             TwoFactorEnabled = false,
             UserName = email,

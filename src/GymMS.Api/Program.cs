@@ -1,4 +1,8 @@
 
+using Authentication.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Shared.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddWorkoutCatalogData(builder.Configuration);
 builder.Services.AddMembershipData(builder.Configuration);
 builder.Services.AddStaffData(builder.Configuration);
+builder.Services.AddAuthenticationData(builder.Configuration);
+
+//builder.Services.AddSingleton<DatabaseSeeder>();
 
 
 
@@ -18,21 +25,22 @@ builder.Services.AddCors();
 var workoutCatalogModule = typeof(WorkoutCatalogServiceExtensions).Assembly;
 var membershipModule = typeof(MembershipServiceExtensions).Assembly;
 var staffModule = typeof(StaffServiceExtensions).Assembly;
+var authenticationModule = typeof(AuthenticationServiceExtensions).Assembly;
 
 
 
 //carter config
-builder.Services.AddCarter(workoutCatalogModule, membershipModule, staffModule);
+builder.Services.AddCarter(workoutCatalogModule, membershipModule, staffModule, authenticationModule);
 
 //mediatR
-builder.Services.AddMediatR(workoutCatalogModule, membershipModule, staffModule);
+builder.Services.AddMediatR(workoutCatalogModule, membershipModule, staffModule, authenticationModule);
 
 //validations
-builder.Services.AddValidatorsFromAssemblies([workoutCatalogModule, membershipModule, staffModule]);
+builder.Services.AddValidatorsFromAssemblies([workoutCatalogModule, membershipModule, staffModule, authenticationModule]);
 
 //automapper
 
-builder.Services.AddAutoMapper([workoutCatalogModule, membershipModule, staffModule]);
+builder.Services.AddAutoMapper([workoutCatalogModule, membershipModule, staffModule, authenticationModule]);
 
 
 
@@ -52,9 +60,19 @@ app.MapCarter();
 
 //consider to change the middleware order --> which migrations should apply first 
 //remeber : a workout or exercise should be associated with a staff member 
+app.UseAuthenticationModule();
 app.UseStaffModule();
 app.UseWorkoutCatalogModule();
 app.UseMembershipModule();
+
+//Todo : search for refactoring
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = new DatabaseSeeder(scope.ServiceProvider, scope.ServiceProvider.GetServices<ISeed>());
+    seeder.SeedAsync().Wait();
+}
+
+
 
 
 

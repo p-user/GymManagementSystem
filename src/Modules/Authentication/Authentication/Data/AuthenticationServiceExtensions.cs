@@ -1,14 +1,14 @@
 ﻿
+using Authentication.Data.Seed;
 using Authentication.Models;
 using Authentication.Services;
-using Duende.IdentityServer.EntityFramework.Entities;
-using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Data;
 
 namespace Authentication.Data
 {
@@ -16,14 +16,14 @@ namespace Authentication.Data
     {
         public static IServiceCollection AddAuthenticationData(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<AuthenticationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IDiscoveryService, DiscoveryService>();
 
             services.AddIdentity<Models.User, Models.Role>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddEntityFrameworkStores<AuthenticationDbContext>()
             .AddDefaultTokenProviders();
 
             services.AddIdentityServer(options =>
@@ -37,9 +37,12 @@ namespace Authentication.Data
             .AddProfileService<ProfileService>()  // Custom claims enrichment
             .AddInMemoryClients(Clients.GetClients())
             .AddInMemoryApiScopes(Clients.ApiScopes)
-            .AddInMemoryApiResources((IEnumerable<Duende.IdentityServer.Models.ApiResource>)Clients.GetIdentityResources())
+            .AddInMemoryIdentityResources(Clients.GetIdentityResources())
             .AddDeveloperSigningCredential();
 
+            services.AddAuthorization();
+
+            services.AddScoped<ISeed, AuthenticationSeed>();
 
 
 
@@ -49,10 +52,11 @@ namespace Authentication.Data
         public static IApplicationBuilder UseAuthenticationModule(this IApplicationBuilder app)
         {
             using var scope = app.ApplicationServices.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            var dbContext = scope.ServiceProvider.GetRequiredService<AuthenticationDbContext>();
             //dbContext.Database.Migrate();
-            app.UseAuthentication();
             app.UseIdentityServer();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             return app;

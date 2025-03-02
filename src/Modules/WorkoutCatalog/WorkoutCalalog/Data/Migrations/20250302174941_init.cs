@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WorkoutCatalog.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,24 @@ namespace WorkoutCatalog.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExerciseCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MuscleGroups",
+                schema: "workoutcatalog",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Muscle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MuscleGroups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +97,6 @@ namespace WorkoutCatalog.Data.Migrations
                     DescriptionLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExerciseCategory = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ExerciseCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    WorkoutId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -94,38 +111,94 @@ namespace WorkoutCatalog.Data.Migrations
                         principalSchema: "workoutcatalog",
                         principalTable: "ExerciseCategories",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Exercises_Workouts_WorkoutId",
-                        column: x => x.WorkoutId,
-                        principalSchema: "workoutcatalog",
-                        principalTable: "Workouts",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "MuscleGroups",
+                name: "WorkoutWorkoutCategory",
                 schema: "workoutcatalog",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Muscle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExerciseId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    WorkoutCategoriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WorkoutsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MuscleGroups", x => x.Id);
+                    table.PrimaryKey("PK_WorkoutWorkoutCategory", x => new { x.WorkoutCategoriesId, x.WorkoutsId });
                     table.ForeignKey(
-                        name: "FK_MuscleGroups_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
+                        name: "FK_WorkoutWorkoutCategory_WorkoutCategories_WorkoutCategoriesId",
+                        column: x => x.WorkoutCategoriesId,
+                        principalSchema: "workoutcatalog",
+                        principalTable: "WorkoutCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkoutWorkoutCategory_Workouts_WorkoutsId",
+                        column: x => x.WorkoutsId,
+                        principalSchema: "workoutcatalog",
+                        principalTable: "Workouts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExerciseMuscleGroup",
+                schema: "workoutcatalog",
+                columns: table => new
+                {
+                    ExercisesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MuscleGroupsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExerciseMuscleGroup", x => new { x.ExercisesId, x.MuscleGroupsId });
+                    table.ForeignKey(
+                        name: "FK_ExerciseMuscleGroup_Exercises_ExercisesId",
+                        column: x => x.ExercisesId,
                         principalSchema: "workoutcatalog",
                         principalTable: "Exercises",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ExerciseMuscleGroup_MuscleGroups_MuscleGroupsId",
+                        column: x => x.MuscleGroupsId,
+                        principalSchema: "workoutcatalog",
+                        principalTable: "MuscleGroups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ExerciseWorkout",
+                schema: "workoutcatalog",
+                columns: table => new
+                {
+                    ExercisesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WorkoutsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExerciseWorkout", x => new { x.ExercisesId, x.WorkoutsId });
+                    table.ForeignKey(
+                        name: "FK_ExerciseWorkout_Exercises_ExercisesId",
+                        column: x => x.ExercisesId,
+                        principalSchema: "workoutcatalog",
+                        principalTable: "Exercises",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ExerciseWorkout_Workouts_WorkoutsId",
+                        column: x => x.WorkoutsId,
+                        principalSchema: "workoutcatalog",
+                        principalTable: "Workouts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExerciseMuscleGroup_MuscleGroupsId",
+                schema: "workoutcatalog",
+                table: "ExerciseMuscleGroup",
+                column: "MuscleGroupsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Exercises_ExerciseCategoryId",
@@ -134,27 +207,35 @@ namespace WorkoutCatalog.Data.Migrations
                 column: "ExerciseCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exercises_WorkoutId",
+                name: "IX_ExerciseWorkout_WorkoutsId",
                 schema: "workoutcatalog",
-                table: "Exercises",
-                column: "WorkoutId");
+                table: "ExerciseWorkout",
+                column: "WorkoutsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MuscleGroups_ExerciseId",
+                name: "IX_WorkoutWorkoutCategory_WorkoutsId",
                 schema: "workoutcatalog",
-                table: "MuscleGroups",
-                column: "ExerciseId");
+                table: "WorkoutWorkoutCategory",
+                column: "WorkoutsId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MuscleGroups",
+                name: "ExerciseMuscleGroup",
                 schema: "workoutcatalog");
 
             migrationBuilder.DropTable(
-                name: "WorkoutCategories",
+                name: "ExerciseWorkout",
+                schema: "workoutcatalog");
+
+            migrationBuilder.DropTable(
+                name: "WorkoutWorkoutCategory",
+                schema: "workoutcatalog");
+
+            migrationBuilder.DropTable(
+                name: "MuscleGroups",
                 schema: "workoutcatalog");
 
             migrationBuilder.DropTable(
@@ -162,11 +243,15 @@ namespace WorkoutCatalog.Data.Migrations
                 schema: "workoutcatalog");
 
             migrationBuilder.DropTable(
-                name: "ExerciseCategories",
+                name: "WorkoutCategories",
                 schema: "workoutcatalog");
 
             migrationBuilder.DropTable(
                 name: "Workouts",
+                schema: "workoutcatalog");
+
+            migrationBuilder.DropTable(
+                name: "ExerciseCategories",
                 schema: "workoutcatalog");
         }
     }

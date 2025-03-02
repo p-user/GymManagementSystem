@@ -12,8 +12,8 @@ using WorkoutCalalog.Data;
 namespace WorkoutCatalog.Data.Migrations
 {
     [DbContext(typeof(WorkoutCatalogDbContext))]
-    [Migration("20250205131616_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20250302174941_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,10 +21,40 @@ namespace WorkoutCatalog.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("workoutcatalog")
-                .HasAnnotation("ProductVersion", "9.0.1")
+                .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ExerciseMuscleGroup", b =>
+                {
+                    b.Property<Guid>("ExercisesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MuscleGroupsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ExercisesId", "MuscleGroupsId");
+
+                    b.HasIndex("MuscleGroupsId");
+
+                    b.ToTable("ExerciseMuscleGroup", "workoutcatalog");
+                });
+
+            modelBuilder.Entity("ExerciseWorkout", b =>
+                {
+                    b.Property<Guid>("ExercisesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("WorkoutsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ExercisesId", "WorkoutsId");
+
+                    b.HasIndex("WorkoutsId");
+
+                    b.ToTable("ExerciseWorkout", "workoutcatalog");
+                });
 
             modelBuilder.Entity("WorkoutCatalog.Models.Exercise", b =>
                 {
@@ -59,14 +89,9 @@ namespace WorkoutCatalog.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("WorkoutId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ExerciseCategoryId");
-
-                    b.HasIndex("WorkoutId");
 
                     b.ToTable("Exercises", "workoutcatalog");
                 });
@@ -116,9 +141,6 @@ namespace WorkoutCatalog.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ExerciseId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
@@ -130,8 +152,6 @@ namespace WorkoutCatalog.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ExerciseId");
 
                     b.ToTable("MuscleGroups", "workoutcatalog");
                 });
@@ -196,35 +216,74 @@ namespace WorkoutCatalog.Data.Migrations
                     b.ToTable("WorkoutCategories", "workoutcatalog");
                 });
 
+            modelBuilder.Entity("WorkoutWorkoutCategory", b =>
+                {
+                    b.Property<Guid>("WorkoutCategoriesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("WorkoutsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("WorkoutCategoriesId", "WorkoutsId");
+
+                    b.HasIndex("WorkoutsId");
+
+                    b.ToTable("WorkoutWorkoutCategory", "workoutcatalog");
+                });
+
+            modelBuilder.Entity("ExerciseMuscleGroup", b =>
+                {
+                    b.HasOne("WorkoutCatalog.Models.Exercise", null)
+                        .WithMany()
+                        .HasForeignKey("ExercisesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkoutCatalog.Models.MuscleGroup", null)
+                        .WithMany()
+                        .HasForeignKey("MuscleGroupsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ExerciseWorkout", b =>
+                {
+                    b.HasOne("WorkoutCatalog.Models.Exercise", null)
+                        .WithMany()
+                        .HasForeignKey("ExercisesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkoutCatalog.Models.Workout", null)
+                        .WithMany()
+                        .HasForeignKey("WorkoutsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WorkoutCatalog.Models.Exercise", b =>
                 {
                     b.HasOne("WorkoutCatalog.Models.ExerciseCategory", null)
                         .WithMany("Exercises")
                         .HasForeignKey("ExerciseCategoryId");
+                });
+
+            modelBuilder.Entity("WorkoutWorkoutCategory", b =>
+                {
+                    b.HasOne("WorkoutCatalog.Models.WorkoutCategory", null)
+                        .WithMany()
+                        .HasForeignKey("WorkoutCategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("WorkoutCatalog.Models.Workout", null)
-                        .WithMany("Exercises")
-                        .HasForeignKey("WorkoutId");
-                });
-
-            modelBuilder.Entity("WorkoutCatalog.Models.MuscleGroup", b =>
-                {
-                    b.HasOne("WorkoutCatalog.Models.Exercise", null)
-                        .WithMany("MuscleGroups")
-                        .HasForeignKey("ExerciseId");
-                });
-
-            modelBuilder.Entity("WorkoutCatalog.Models.Exercise", b =>
-                {
-                    b.Navigation("MuscleGroups");
+                        .WithMany()
+                        .HasForeignKey("WorkoutsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WorkoutCatalog.Models.ExerciseCategory", b =>
-                {
-                    b.Navigation("Exercises");
-                });
-
-            modelBuilder.Entity("WorkoutCatalog.Models.Workout", b =>
                 {
                     b.Navigation("Exercises");
                 });
