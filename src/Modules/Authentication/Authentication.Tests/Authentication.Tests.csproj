@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared.Tests\Shared.Tests.csproj" />
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Authentication.Contracts\Authentication.Contracts.csproj" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
   </ItemGroup>
 

@@ -1,19 +1,19 @@
 ﻿
-using Authentication.Authentication.Dtos;
+using Authentication.Contracts.Authentication.Dtos;
+using Authentication.Contracts.Authentication.Features;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Authentication.Authentication.Features.RegisterUser
 {
 
-    public record class RegisterUserCommand(RegisterUserDto userDto, string role) : IRequest<RegisterUserCommandResponse>;
-    public record RegisterUserCommandResponse(string test);
 
     public class RegisterUserCommandHandler(UserManager<Models.User> _userManager, RoleManager<Models.Role> _roleManager, ISender sender) : IRequestHandler<RegisterUserCommand, RegisterUserCommandResponse>
     {
         public async Task<RegisterUserCommandResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var roleEntity = await _roleManager.FindByNameAsync(request.role);
+            var roleEntity = await _roleManager.FindByNameAsync(request.userDto.UserRole);
             if (roleEntity is null)
             {
                 throw new Exception("The role you provided is not valid!");
@@ -36,11 +36,12 @@ namespace Authentication.Authentication.Features.RegisterUser
             }
 
           
-            await _userManager.AddToRoleAsync(appUser, request.role);
+            await _userManager.AddToRoleAsync(appUser, request.userDto.UserRole);
 
-         //create activation linik and send via email
+         //Todo: create activation linik and send via email
 
-            return new RegisterUserCommandResponse("true");
+            var userId = new Guid(appUser.Id);
+            return new RegisterUserCommandResponse(userId,"User registration is almost complete. Please, check the email address for the activation link!");
 
         }
 

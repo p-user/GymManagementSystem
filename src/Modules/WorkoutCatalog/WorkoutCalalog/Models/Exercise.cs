@@ -20,7 +20,6 @@ namespace WorkoutCatalog.Models
         {
             ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));
             ArgumentException.ThrowIfNullOrEmpty(description, nameof(description));
-            //ArgumentException.ThrowIfNullOrEmpty(descriptionLink, nameof(descriptionLink));
             return new Exercise
             {
                 Id = Guid.NewGuid(),

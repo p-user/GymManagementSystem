@@ -1,7 +1,8 @@
-﻿
+﻿using Shared.Enums;
+using StaffManagement.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Authentication.Authentication.Dtos
+namespace Authentication.Contracts.Authentication.Dtos
 {
     public record RegisterUserDto
     {
@@ -23,7 +24,14 @@ namespace Authentication.Authentication.Dtos
         public string Telephone { get; init; }
 
         public string UserRole { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public EmploymentType EmploymentType { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
+        public DateTime HireDate { get; set; }
     }
 
-    
+
 }

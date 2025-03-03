@@ -53,7 +53,7 @@ namespace Authentication.Data
         {
             using var scope = app.ApplicationServices.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<AuthenticationDbContext>();
-            //dbContext.Database.Migrate();
+            dbContext.Database.Migrate();
             app.UseIdentityServer();
 
             app.UseAuthentication();

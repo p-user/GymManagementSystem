@@ -1,4 +1,7 @@
 ﻿
+using Authentication.Contracts.Authentication.Dtos;
+using Authentication.Contracts.Authentication.Features;
+
 namespace Authentication.Tests.Authentication.Features.RegisterUser
 {
     public class RegisterUserCommandHandlerTest : IClassFixture<RegisterUserCommandHandlerFixture>
@@ -20,7 +23,7 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
         {
             // Arrange
             var userDto = new RegisterUserDto { Email = "newuser@example.com", Name = "Test", Surname = "User", Telephone = "1234567890" };
-            var command = new RegisterUserCommand(userDto, "ValidRole");
+            var command = new RegisterUserCommand(userDto);
 
             _fixture.RoleManagerMock.Setup(r => r.FindByNameAsync("ValidRole")).ReturnsAsync(new Models.Role { Name = "ValidRole" });
             _fixture.UserManagerMock.Setup(u => u.FindByEmailAsync(userDto.Email)).ReturnsAsync((Models.User)null);
@@ -31,7 +34,7 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
             var result = await _handler.Handle(command, CancellationToken.None);
 
             // Assert
-            Assert.Equal("true", result.test);
+            Assert.Equal("true", result.message);
             _fixture.UserManagerMock.Verify(u => u.CreateAsync(It.IsAny<Models.User>()), Times.Once);
             _fixture.UserManagerMock.Verify(u => u.AddToRoleAsync(It.IsAny<Models.User>(), "ValidRole"), Times.Once);
         }
@@ -42,7 +45,7 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
         {
             // Arrange
             var userDto = new RegisterUserDto { Email = "existing@example.com", Name = "Test", Surname = "User", Telephone = "1234567890" };
-            var command = new RegisterUserCommand(userDto, "ValidRole");
+            var command = new RegisterUserCommand(userDto);
 
             _fixture.RoleManagerMock.Setup(r => r.FindByNameAsync("ValidRole")).ReturnsAsync(new Models.Role { Name = "ValidRole" });
             _fixture.UserManagerMock.Setup(u => u.FindByEmailAsync(userDto.Email)).ReturnsAsync(new Models.User { Email = userDto.Email });
@@ -57,7 +60,7 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
         {
             // Arrange
             var userDto = new RegisterUserDto { Email = "newuser@example.com", Name = "Test", Surname = "User", Telephone = "1234567890" };
-            var command = new RegisterUserCommand(userDto, "InvalidRole");
+            var command = new RegisterUserCommand(userDto);
 
             _fixture.RoleManagerMock.Setup(r => r.FindByNameAsync("InvalidRole")).ReturnsAsync((Models.Role)null);
 
