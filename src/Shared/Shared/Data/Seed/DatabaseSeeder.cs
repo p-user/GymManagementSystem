@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Shared.Data
+namespace Shared.Data.Seed
 {
     public class DatabaseSeeder
     {
@@ -27,4 +27,4 @@ namespace Shared.Data
             }
         }
     }
-} 
+}

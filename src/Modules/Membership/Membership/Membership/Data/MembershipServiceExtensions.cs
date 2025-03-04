@@ -1,5 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Shared.Data.Interceptors;
 
 namespace Membership.Data
 {
@@ -9,9 +11,12 @@ namespace Membership.Data
         public static IServiceCollection AddMembershipData(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<MembershipDbContext>(options =>
+            services.AddScoped<ISaveChangesInterceptor, SaveChangesInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
+            services.AddDbContext<MembershipDbContext>((sp,options) =>
             {
                 options.UseSqlServer(connectionString);
+                options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
             });
 
             return services;

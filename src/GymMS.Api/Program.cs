@@ -2,6 +2,7 @@
 using Authentication.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
+using Shared.Data.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 

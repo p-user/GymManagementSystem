@@ -1,8 +1,10 @@
 ﻿
 
 using FluentValidation;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Data.Interceptors;
 using System.Reflection;
 
 namespace WorkoutCalalog.Data
@@ -13,10 +15,12 @@ namespace WorkoutCalalog.Data
         public static IServiceCollection AddWorkoutCatalogData(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-            services.AddDbContext<WorkoutCatalogDbContext>(options =>
+            services.AddScoped<ISaveChangesInterceptor, SaveChangesInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
+            services.AddDbContext<WorkoutCatalogDbContext>((sp,options) =>
             {
                 options.UseSqlServer(connectionString);
+                options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
             });
            
 

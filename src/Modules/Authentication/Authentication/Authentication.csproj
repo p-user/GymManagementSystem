@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Authentication.Tests\**" />
+    <EmbeddedResource Remove="Authentication.Tests\**" />
+    <None Remove="Authentication.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Duende.IdentityServer" Version="7.1.0" />
     <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="7.1.0" />
   </ItemGroup>
@@ -14,10 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\Authentication.Contracts\Authentication.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Authentication\Dtos\" />
   </ItemGroup>
 
 </Project>

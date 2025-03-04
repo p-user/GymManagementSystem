@@ -1,9 +1,8 @@
 ﻿
-using Authentication.Contracts.Authentication.Dtos;
+using Authentication.Authentication.Features.ActivationLink;
 using Authentication.Contracts.Authentication.Features;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
 
 namespace Authentication.Authentication.Features.RegisterUser
 {
@@ -38,7 +37,9 @@ namespace Authentication.Authentication.Features.RegisterUser
           
             await _userManager.AddToRoleAsync(appUser, request.userDto.UserRole);
 
-         //Todo: create activation linik and send via email
+            //Todo: create activation linik and send via email
+            var activationLinkCommand = new ActivationLinkCommand(appUser);
+            await sender.Send(activationLinkCommand);
 
             var userId = new Guid(appUser.Id);
             return new RegisterUserCommandResponse(userId,"User registration is almost complete. Please, check the email address for the activation link!");

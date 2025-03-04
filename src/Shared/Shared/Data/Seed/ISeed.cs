@@ -1,4 +1,4 @@
-﻿namespace Shared.Data
+﻿namespace Shared.Data.Seed
 {
     public interface ISeed
     {

@@ -6,9 +6,11 @@ using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.Data;
+using Shared.Data.Interceptors;
+using Shared.Data.Seed;
 
 namespace Authentication.Data
 {
@@ -16,11 +18,20 @@ namespace Authentication.Data
     {
         public static IServiceCollection AddAuthenticationData(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AuthenticationDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ISaveChangesInterceptor, SaveChangesInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            services.AddDbContext<AuthenticationDbContext>((sp, options) =>
+            {
+                options.UseSqlServer(connectionString);
+                options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
+            });
 
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IDiscoveryService, DiscoveryService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddIdentity<Models.User, Models.Role>()
             .AddEntityFrameworkStores<AuthenticationDbContext>()
