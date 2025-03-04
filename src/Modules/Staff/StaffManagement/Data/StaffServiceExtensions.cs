@@ -1,6 +1,5 @@
 ﻿
 
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Shared.Data.Interceptors;
 
@@ -12,12 +11,13 @@ namespace StaffManagement.Data
         public static IServiceCollection AddStaffData(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddScoped<ISaveChangesInterceptor, SaveChangesInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptors>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
+
             services.AddDbContext<StaffDbContext>((sp,options) =>
             {
-                options.UseSqlServer(connectionString);
                 options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
+                options.UseSqlServer(connectionString);
             });
            
             return services;
@@ -28,7 +28,7 @@ namespace StaffManagement.Data
         {
             using var scope = app.ApplicationServices.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<StaffDbContext>();
-            //dbContext.Database.Migrate();
+            dbContext.Database.Migrate();
             return app;
         }
     }

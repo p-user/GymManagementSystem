@@ -1,6 +1,7 @@
 ﻿
 
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Behaviours;
 using System.Reflection;
 
 namespace Shared.Extensions
@@ -15,7 +16,8 @@ namespace Shared.Extensions
                 services.AddMediatR(s=>
                 {
                     s.RegisterServicesFromAssembly(assembly);
-                    
+                    s.AddOpenBehavior(typeof(Logging<,>));
+
                 });
             }
            

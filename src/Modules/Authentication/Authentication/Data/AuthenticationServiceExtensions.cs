@@ -18,15 +18,15 @@ namespace Authentication.Data
     {
         public static IServiceCollection AddAuthenticationData(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ISaveChangesInterceptor, SaveChangesInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptors>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AuthenticationDbContext>((sp, options) =>
             {
-                options.UseSqlServer(connectionString);
                 options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
+                options.UseSqlServer(connectionString);
             });
 
             services.AddScoped<IProfileService, ProfileService>();

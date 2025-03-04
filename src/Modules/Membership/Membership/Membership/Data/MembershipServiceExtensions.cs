@@ -11,12 +11,13 @@ namespace Membership.Data
         public static IServiceCollection AddMembershipData(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddScoped<ISaveChangesInterceptor, SaveChangesInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptors>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
+
             services.AddDbContext<MembershipDbContext>((sp,options) =>
             {
-                options.UseSqlServer(connectionString);
                 options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
+                options.UseSqlServer(connectionString);
             });
 
             return services;

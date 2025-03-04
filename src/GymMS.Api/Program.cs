@@ -3,6 +3,7 @@ using Authentication.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
 using Shared.Data.Seed;
+using Shared.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddMembershipData(builder.Configuration);
 builder.Services.AddStaffData(builder.Configuration);
 builder.Services.AddAuthenticationData(builder.Configuration);
 
-//builder.Services.AddSingleton<DatabaseSeeder>();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 
 
@@ -66,13 +67,14 @@ app.UseStaffModule();
 app.UseWorkoutCatalogModule();
 app.UseMembershipModule();
 
+app.UseExceptionHandler(opt => { });
+
 //Todo : search for refactoring
 using (var scope = app.Services.CreateScope())
 {
     var seeder = new DatabaseSeeder(scope.ServiceProvider, scope.ServiceProvider.GetServices<ISeed>());
     seeder.SeedAsync().Wait();
 }
-
 
 
 
