@@ -1,17 +1,4 @@
 ﻿
-using Authentication.Data.Seed;
-using Authentication.Models;
-using Authentication.Services;
-using Duende.IdentityServer.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Shared.Data.Interceptors;
-using Shared.Data.Seed;
-
 namespace Authentication.Data
 {
     public static class AuthenticationServiceExtensions
@@ -30,6 +17,7 @@ namespace Authentication.Data
             });
 
             services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
             services.AddScoped<IDiscoveryService, DiscoveryService>();
             services.AddScoped<IEmailService, EmailService>();
 
@@ -45,15 +33,31 @@ namespace Authentication.Data
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseSuccessEvents = true;
             })
+            .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
             .AddProfileService<ProfileService>()  // Custom claims enrichment
             .AddInMemoryClients(Clients.GetClients())
             .AddInMemoryApiScopes(Clients.ApiScopes)
             .AddInMemoryIdentityResources(Clients.GetIdentityResources())
             .AddDeveloperSigningCredential();
 
+      
+            services.AddScoped<ISeed, AuthenticationSeed>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = configuration.GetSection("IdentityServer").Value;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                };
+            });
             services.AddAuthorization();
 
-            services.AddScoped<ISeed, AuthenticationSeed>();
 
 
 
@@ -69,6 +73,7 @@ namespace Authentication.Data
 
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             return app;
         }

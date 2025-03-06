@@ -15,7 +15,7 @@ namespace Authentication.Data
                     ClientId = "gymapp",
                     AllowedGrantTypes = Duende.IdentityServer.Models.GrantTypes.ResourceOwnerPassword, // for username password authentication
                     AllowOfflineAccess = true, // Allows refresh tokens
-                    ClientSecrets = { new Duende.IdentityServer.Models.Secret("muhabet_kot".Sha256()) },
+                    ClientSecrets = { new Duende.IdentityServer.Models.Secret(ConfigurationConstants.ClientSecret.Sha256()) },
                     AllowedScopes = { "openid", "profile", "GYMApi", "offline_access" }
                 }
             };

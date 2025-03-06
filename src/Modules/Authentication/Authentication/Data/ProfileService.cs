@@ -4,8 +4,6 @@ using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Authentication.Data
@@ -28,8 +26,9 @@ namespace Authentication.Data
             {
                 
                 new Claim(JwtClaimTypes.Email, user.Email),
-                new Claim(JwtClaimTypes.Name, user.NormalizedUserName),//fix 
+                new Claim(JwtClaimTypes.Name, user.UserName),
                 new Claim(JwtClaimTypes.Id, user.Id),
+
             };
 
             var roles = await _userManager.GetRolesAsync(user);
