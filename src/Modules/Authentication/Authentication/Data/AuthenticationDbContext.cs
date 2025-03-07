@@ -18,6 +18,8 @@ namespace Authentication.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("users");
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuthenticationDbContext).Assembly); //ToDo apply configurations from assembly   
+
             base.OnModelCreating(modelBuilder);
         }
 

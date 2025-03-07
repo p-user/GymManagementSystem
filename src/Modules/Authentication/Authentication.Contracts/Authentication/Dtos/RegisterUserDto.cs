@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Authentication.Contracts.Authentication.Dtos
 {
-    public record RegisterUserDto
+    public abstract class RegisterUserDto
     {
         [Required(ErrorMessage = "Name is required.")]
         [MaxLength(50, ErrorMessage = "Name must be at most 50 characters long.")]
@@ -23,14 +23,10 @@ namespace Authentication.Contracts.Authentication.Dtos
         [MaxLength(15, ErrorMessage = "Telephone number must be at most 15 characters long.")]
         public string Telephone { get; init; }
 
-        public string UserRole { get; set; }
+        //enforce the child class to implement this property
+        public abstract  string UserRole { get; set; }
 
-        public Gender Gender { get; set; }
 
-        public EmploymentType EmploymentType { get; set; }
-
-        public DateTime? DateOfBirth { get; set; }
-        public DateTime HireDate { get; set; }
     }
 
 

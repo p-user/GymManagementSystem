@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\Membership\Membership.Contracts\Membership.Contracts.csproj" />
+    <ProjectReference Include="..\..\Staff\StaffManagement.Contracts\StaffManagement.Contracts.csproj" />
     <ProjectReference Include="..\Authentication.Contracts\Authentication.Contracts.csproj" />
   </ItemGroup>
 

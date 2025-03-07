@@ -5,7 +5,7 @@ using MediatR;
 namespace Authentication.Contracts.Authentication.Features
 {
     
-    public record class RegisterUserCommand(RegisterUserDto userDto) : IRequest<RegisterUserCommandResponse>;
+    public record RegisterUserCommand<T>(T userDto) : IRequest<RegisterUserCommandResponse> where T : RegisterUserDto;
 
     public record RegisterUserCommandResponse(Guid UserId, string message);
 

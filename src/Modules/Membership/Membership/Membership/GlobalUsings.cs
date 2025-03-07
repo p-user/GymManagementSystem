@@ -1,3 +1,9 @@
 ﻿global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using Authentication.Contracts.Authentication.Features;
+global using MediatR;
+global using Membership.Data;
+global using Membership.Contracts.Membership.Dtos;
+global using Shared.Enums;
+global using Membership.Models;

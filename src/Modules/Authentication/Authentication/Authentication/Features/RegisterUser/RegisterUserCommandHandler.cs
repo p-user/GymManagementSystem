@@ -1,16 +1,11 @@
 ﻿
-using Authentication.Authentication.Features.ActivationLink;
-using Authentication.Contracts.Authentication.Features;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-
 namespace Authentication.Authentication.Features.RegisterUser
 {
 
-
-    public class RegisterUserCommandHandler(UserManager<Models.User> _userManager, RoleManager<Models.Role> _roleManager, ISender sender) : IRequestHandler<RegisterUserCommand, RegisterUserCommandResponse>
+    public class RegisterUserCommandHandler<T>(UserManager<Models.User> _userManager, RoleManager<Models.Role> _roleManager, ISender sender) 
+        : IRequestHandler<RegisterUserCommand<T>, RegisterUserCommandResponse> where T : RegisterUserDto
     {
-        public async Task<RegisterUserCommandResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<RegisterUserCommandResponse> Handle(RegisterUserCommand<T> request, CancellationToken cancellationToken)
         {
             var roleEntity = await _roleManager.FindByNameAsync(request.userDto.UserRole);
             if (roleEntity is null)

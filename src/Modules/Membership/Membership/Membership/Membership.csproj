@@ -8,10 +8,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\..\Authentication\Authentication.Contracts\Authentication.Contracts.csproj" />
+    <ProjectReference Include="..\..\Membership.Contracts\Membership.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\Configurations\" />
+    <Folder Include="Membership\Dtos\" />
+    <Folder Include="Membership\Features\Member\GetMember\" />
+    <Folder Include="Membership\Features\Member\UpdateMember\" />
+    <Folder Include="Membership\Features\AdminOnly\" />
   </ItemGroup>
 
 </Project>

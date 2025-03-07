@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Authentication\Authentication.Contracts\Authentication.Contracts.csproj" />
+    <ProjectReference Include="..\StaffManagement.Contracts\StaffManagement.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

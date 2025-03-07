@@ -14,6 +14,7 @@ namespace Membership.Data
             services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptors>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
 
+
             services.AddDbContext<MembershipDbContext>((sp,options) =>
             {
                 options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());

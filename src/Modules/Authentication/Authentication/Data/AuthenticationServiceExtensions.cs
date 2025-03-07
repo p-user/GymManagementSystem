@@ -1,4 +1,5 @@
 ﻿
+
 namespace Authentication.Data
 {
     public static class AuthenticationServiceExtensions
@@ -20,6 +21,10 @@ namespace Authentication.Data
             services.AddScoped<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
             services.AddScoped<IDiscoveryService, DiscoveryService>();
             services.AddScoped<IEmailService, EmailService>();
+
+            services.AddScoped<IRequestHandler<RegisterUserCommand<CreateMemberDto>, RegisterUserCommandResponse>, RegisterUserCommandHandler<CreateMemberDto>>();
+            services.AddScoped<IRequestHandler<RegisterUserCommand<CreateStaffDto>, RegisterUserCommandResponse>, RegisterUserCommandHandler<CreateStaffDto>>();
+
 
             services.AddIdentity<Models.User, Models.Role>()
             .AddEntityFrameworkStores<AuthenticationDbContext>()

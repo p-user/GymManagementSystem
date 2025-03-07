@@ -19,7 +19,7 @@ namespace WorkoutCalalog.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("workoutcatalog");
-           // modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkoutCatalogDbContext).Assembly); //ToDo apply configurations from assembly   
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkoutCatalogDbContext).Assembly); //ToDo apply configurations from assembly   
 
             base.OnModelCreating(modelBuilder);
         }

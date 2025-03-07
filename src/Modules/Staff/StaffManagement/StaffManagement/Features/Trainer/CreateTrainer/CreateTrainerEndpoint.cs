@@ -1,4 +1,6 @@
 ﻿
+using StaffManagement.Contracts.StaffManagement.Dtos;
+
 namespace StaffManagement.StaffManagement.Features.Trainer.CreateTrainer
 {
     public class CreateTrainerEndpoint : ICarterModule
@@ -11,11 +13,11 @@ namespace StaffManagement.StaffManagement.Features.Trainer.CreateTrainer
                 .WithTags("Staff")
                 .Produces<string>(StatusCodes.Status200OK)
                 .ProducesValidationProblem(StatusCodes.Status400BadRequest)
-                .WithSummary("Create a new trainer"); ;
+                .WithSummary("Create a new trainer"); 
         }
 
 
-        private async Task<IResult> CreateTrainer(ISender sender , [FromBody] RegisterUserDto dto, CancellationToken ct)
+        private async Task<IResult> CreateTrainer(ISender sender , [FromBody] CreateStaffDto dto, CancellationToken ct)
         {
             var command = new CreateTrainerCommand(dto);
             var response = await sender.Send(command, ct);

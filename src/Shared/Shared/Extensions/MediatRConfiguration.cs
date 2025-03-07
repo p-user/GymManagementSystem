@@ -1,5 +1,6 @@
 ﻿
 
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Behaviours;
 using System.Reflection;
@@ -19,8 +20,11 @@ namespace Shared.Extensions
                     s.AddOpenBehavior(typeof(Logging<,>));
 
                 });
+
             }
            
+              
+
             return services;
         }
     }
