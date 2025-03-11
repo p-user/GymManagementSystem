@@ -1,5 +1,5 @@
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +22,7 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 
 
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi("v1", options => { options.AddDocumentTransformer<BearerSecuritySchemeTransformer>(); });
 builder.Services.AddCors();
 
 //gwet the assemblies of the modules
@@ -50,16 +50,23 @@ builder.Services.AddAutoMapper([workoutCatalogModule, membershipModule, staffMod
 
 
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
-app.MapOpenApi();
-app.MapScalarApiReference();
-
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference(options =>
+    {
+        options
+                .WithTitle("Gym Management System")
+                .WithTheme(ScalarTheme.Mars)
+                .WithDownloadButton(true)
+                .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+    });
+}
 app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.MapCarter();
 

@@ -21,6 +21,7 @@ namespace Authentication.Authentication.Features.ConnectToken
                 Scope = string.Join(" ", _discoveryService.GetClientCredentials().Scopes),
                 UserName = request.requestToken.Email,
                 Password = request.requestToken.Password,
+               
             };
 
             var token = await client.RequestPasswordTokenAsync(pswtokenRequest);

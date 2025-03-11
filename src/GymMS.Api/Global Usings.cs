@@ -10,3 +10,4 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Shared.Data.Seed;
 global using Shared.Exceptions;
 global using Serilog;
+global using GymMS.Api.Properties;

@@ -1,6 +1,5 @@
 ﻿
 using Shared.DDD;
-using Shared.Enums;
 
 namespace Membership.Models
 {

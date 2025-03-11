@@ -26,6 +26,8 @@ namespace Authentication.Data
             services.AddScoped<IRequestHandler<RegisterUserCommand<CreateStaffDto>, RegisterUserCommandResponse>, RegisterUserCommandHandler<CreateStaffDto>>();
 
 
+            services.AddScoped<ISeed, AuthenticationSeed>();
+
             services.AddIdentity<Models.User, Models.Role>()
             .AddEntityFrameworkStores<AuthenticationDbContext>()
             .AddDefaultTokenProviders();
@@ -42,11 +44,11 @@ namespace Authentication.Data
             .AddProfileService<ProfileService>()  // Custom claims enrichment
             .AddInMemoryClients(Clients.GetClients())
             .AddInMemoryApiScopes(Clients.ApiScopes)
+            .AddInMemoryApiResources(Clients.ApiResources)
             .AddInMemoryIdentityResources(Clients.GetIdentityResources())
             .AddDeveloperSigningCredential();
 
       
-            services.AddScoped<ISeed, AuthenticationSeed>();
 
             services.AddAuthentication(options =>
             {
@@ -56,15 +58,17 @@ namespace Authentication.Data
             .AddJwtBearer("Bearer", options =>
             {
                 options.Authority = configuration.GetSection("IdentityServer").Value;
+                options.Audience = configuration.GetSection("IdentityServer").Value;
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidateAudience = false,
+                    ValidateIssuer = true,
+                    ValidIssuer = configuration["IdentityServer"],
+                    ValidateAudience = true,
+                    ValidAudience = "GYMApi"
                 };
-            });
+               
+            }); 
             services.AddAuthorization();
-
-
-
 
             return services;
         }

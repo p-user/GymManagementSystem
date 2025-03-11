@@ -1,7 +1,4 @@
 ﻿
-using Authentication.Authentication.Dtos;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
 
 namespace Authentication.Authentication.Features.SetPassword
 {

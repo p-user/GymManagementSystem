@@ -16,7 +16,8 @@ namespace Authentication.Data
                     AllowedGrantTypes = Duende.IdentityServer.Models.GrantTypes.ResourceOwnerPassword, // for username password authentication
                     AllowOfflineAccess = true, // Allows refresh tokens
                     ClientSecrets = { new Duende.IdentityServer.Models.Secret(ConfigurationConstants.ClientSecret.Sha256()) },
-                    AllowedScopes = { "openid", "profile", "GYMApi", "offline_access" }
+                    AllowedScopes = { "openid", "profile", "GYMApi", "offline_access" },
+                    AccessTokenLifetime= 7200,
                 }
             };
         }
@@ -37,5 +38,14 @@ namespace Authentication.Data
                 new IdentityResources.Profile()
             };
         }
+
+        public static IEnumerable<Duende.IdentityServer.Models.ApiResource> ApiResources =>
+           new List<Duende.IdentityServer.Models.ApiResource>
+           {
+                new Duende.IdentityServer.Models.ApiResource("GYMApi", "Gym API")
+                {
+                    Scopes = { "GYMApi" }
+                }
+           };
     }
 }

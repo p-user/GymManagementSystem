@@ -2,8 +2,7 @@
 using Duende.IdentityModel;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
-using Duende.IdentityServer.Services;
-using Microsoft.AspNetCore.Identity;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Authentication.Data
@@ -12,13 +11,17 @@ namespace Authentication.Data
     {
 
         private readonly UserManager<Models.User> _userManager;
-        public ProfileService(UserManager<Models.User> userManager)
+        private readonly IConfiguration _configuration;
+        public ProfileService(UserManager<Models.User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
+            _configuration = configuration;
         }
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             var user = await _userManager.FindByIdAsync(context.Subject.GetSubjectId());
+
+            var issuer = _configuration.GetSection("IdentityServer").Value;
 
             if (user == null) return;
 
@@ -28,7 +31,6 @@ namespace Authentication.Data
                 new Claim(JwtClaimTypes.Email, user.Email),
                 new Claim(JwtClaimTypes.Name, user.UserName),
                 new Claim(JwtClaimTypes.Id, user.Id),
-
             };
 
             var roles = await _userManager.GetRolesAsync(user);
