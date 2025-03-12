@@ -62,7 +62,7 @@ if (app.Environment.IsDevelopment())
     {
         options
                 .WithTitle("Gym Management System")
-                .WithTheme(ScalarTheme.Mars)
+                .WithTheme(ScalarTheme.Purple)
                 .WithDownloadButton(true)
                 .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
