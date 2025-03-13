@@ -1,12 +1,4 @@
 ﻿
-using Carter;
-using MediatR;
-using Membership.Contracts.Membership.Dtos;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-
 namespace Membership.Membership.Features.Member.CreateMember
 {
     public class CreateMemberEndpoint : ICarterModule

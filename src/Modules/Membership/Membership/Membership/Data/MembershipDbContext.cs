@@ -11,11 +11,14 @@ namespace Membership.Data
             
         }
 
-        public virtual  DbSet<Models.GymMember> Members { get; set; }
+        public virtual DbSet<Models.Membership> Memberships { get; set; }
+        public virtual DbSet<Models.MembershipPlan> MembershipPlans { get; set; }
+        public virtual  DbSet<Models.Member> Members { get; set; }
+        public virtual  DbSet<Models.Discount> Discounts { get; set; }
         override protected void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("Membership");
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MembershipDbContext).Assembly); //ToDo apply configurations from assembly   
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MembershipDbContext).Assembly);    
 
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MembershipDbContext).Assembly);

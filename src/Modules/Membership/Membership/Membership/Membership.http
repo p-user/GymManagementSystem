@@ -1,0 +1,12 @@
+﻿@Membership_HostAddress = "https://localhost:7157" 
+
+POST {{Membership_HostAddress}}/membership/membership-plan
+Content-Type: application/json
+
+{
+  "Name": "Gold Membership",
+  "Price": 99.99,
+  "DurationInMonths": 12,
+  "MaxVisitsPerWeek": 5,
+  "Description": "Exclusive gold membership providing additional perks and benefits."
+}

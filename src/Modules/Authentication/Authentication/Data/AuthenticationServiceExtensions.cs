@@ -6,14 +6,17 @@ namespace Authentication.Data
     {
         public static IServiceCollection AddAuthenticationData(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptors>();
-            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
-
             var connectionString = configuration.GetConnectionString("DefaultConnection");
+            services.AddScoped<AuditableEntityInterceptors>();
+            services.AddScoped<DispatchDomainEventsInterceptors>();
+
 
             services.AddDbContext<AuthenticationDbContext>((sp, options) =>
             {
-                options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
+                var auditableInterceptor = sp.GetRequiredService<AuditableEntityInterceptors>();
+                var dispatchInterceptor = sp.GetRequiredService<DispatchDomainEventsInterceptors>();
+
+                options.AddInterceptors(auditableInterceptor, dispatchInterceptor);
                 options.UseSqlServer(connectionString);
             });
 

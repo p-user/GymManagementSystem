@@ -22,9 +22,9 @@ namespace Membership.Membership.Features.Member.CreateMember
             return new CreateMemberResponse("Member created successfully, check your email for activation link!");
         }
 
-        private GymMember CreateMember(CreateMemberDto dto, Guid userId)
+        private Models.Member CreateMember(CreateMemberDto dto, Guid userId)
         {
-            return GymMember.Create(
+            return Models.Member.Create(
                     userId,
                     dto.Name,
                     dto.Surname,

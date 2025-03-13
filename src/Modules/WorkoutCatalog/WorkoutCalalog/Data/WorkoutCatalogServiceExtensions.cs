@@ -15,15 +15,19 @@ namespace WorkoutCalalog.Data
         public static IServiceCollection AddWorkoutCatalogData(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptors>();
-            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptors>();
+            services.AddScoped<AuditableEntityInterceptors>();
+            services.AddScoped<DispatchDomainEventsInterceptors>();
 
-            services.AddDbContext<WorkoutCatalogDbContext>((sp,options) =>
+
+            services.AddDbContext<WorkoutCatalogDbContext>((sp, options) =>
             {
-                options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
+                var auditableInterceptor = sp.GetRequiredService<AuditableEntityInterceptors>();
+                var dispatchInterceptor = sp.GetRequiredService<DispatchDomainEventsInterceptors>();
+
+                options.AddInterceptors(auditableInterceptor, dispatchInterceptor);
                 options.UseSqlServer(connectionString);
             });
-           
+
 
 
             return services;

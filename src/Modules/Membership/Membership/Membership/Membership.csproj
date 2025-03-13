@@ -13,14 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Configurations\" />
-    <Folder Include="Discounts\Dtos\" />
-    <Folder Include="Discounts\Features\GetAvailableDiscounts\" />
-    <Folder Include="Discounts\Features\CreateDiscount\" />
-    <Folder Include="Discounts\Features\DeleteDiscount\" />
-    <Folder Include="Discounts\Features\ApplyDiscount\" />
-    <Folder Include="Membership\Features\Member\UpdateMember\" />
-    <Folder Include="Membership\Features\AdminOnly\" />
+    <Folder Include="Membership\Features\Discount\UpdateDiscount\" />
   </ItemGroup>
 
 </Project>
