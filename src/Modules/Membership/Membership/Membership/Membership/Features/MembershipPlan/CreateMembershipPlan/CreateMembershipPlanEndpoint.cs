@@ -1,5 +1,7 @@
 ﻿
 
+
+
 namespace Membership.Membership.Features.MembershipPlan.CreateMembershipPlan
 {
     public class CreateMembershipPlanEndpoint : ICarterModule
@@ -18,8 +20,8 @@ namespace Membership.Membership.Features.MembershipPlan.CreateMembershipPlan
         private async Task<IResult> CreateMembership(ISender sender, [FromBody] CreateMembershipPlanDto dto)
         {
             var command = new CreateMembershipPlanCommand(dto);
-            var response = await sender.Send(command);
-            return Results.Created($"/membership/membership-plan/{response.Id}", response);
+            Results<Guid>  response = await sender.Send(command);
+            return response.Match(Microsoft.AspNetCore.Http.Results.Ok, ApiResults.Problem);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Http.HttpResults;
+
 namespace Membership.Membership.Features.Member.CreateMember
 {
     public class CreateMemberEndpoint : ICarterModule
@@ -16,9 +18,10 @@ namespace Membership.Membership.Features.Member.CreateMember
 
         private async Task<IResult> CreateMember(ISender sender, [FromBody] CreateMemberDto dto)
         {
-            var response = await sender.Send(new CreateMemberCommand(dto));
-            return Results.Created($"/membership/members/", response);
-           
+            Results<string> response = await sender.Send(new CreateMemberCommand(dto));
+            return response.Match(Microsoft.AspNetCore.Http.Results.Ok, ApiResults.Problem);
+
+
         }
     }
 }

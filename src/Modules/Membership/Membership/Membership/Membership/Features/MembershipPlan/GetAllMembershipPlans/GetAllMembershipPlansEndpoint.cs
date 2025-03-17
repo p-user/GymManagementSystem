@@ -1,4 +1,5 @@
 ﻿using Membership.Membership.Features.MembershipPlan.GetMembershipPlan;
+using Shared.Results;
 
 namespace Membership.Membership.Features.MembershipPlan.GetAllMembershipPlans
 {
@@ -6,8 +7,8 @@ namespace Membership.Membership.Features.MembershipPlan.GetAllMembershipPlans
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/api/membership-plans", GetAllMembershipPlans)
-                .Produces<List<GetMembershipPlanByIdResponse>>(200)
+            app.MapGet("/membership-plans", GetAllMembershipPlans)
+                .Produces<List<Results<ViewMembershipPlanDto>>>(200)
                 .WithDescription("Get all available membership plans")
                 .WithSummary("Get all available membership plans")
                 .WithTags("Membership");
@@ -16,8 +17,8 @@ namespace Membership.Membership.Features.MembershipPlan.GetAllMembershipPlans
 
         private async Task<IResult> GetAllMembershipPlans(ISender sender)
         {
-            var plans = await sender.Send(new GetAllMembershipPlansQuery());
-            return Results.Ok(plans);
+            Results<List<ViewMembershipPlanDto>> plans = await sender.Send(new GetAllMembershipPlansQuery());
+            return plans.Match(Microsoft.AspNetCore.Http.Results.Ok, ApiResults.Problem);
         }
     }
 }

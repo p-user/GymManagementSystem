@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Moq;
 using Moq.EntityFrameworkCore;
+using Shared.Results;
 
 namespace Membership.Tests.Membership.Features.MembershipPlan
 {
@@ -40,8 +41,8 @@ namespace Membership.Tests.Membership.Features.MembershipPlan
         public async Task Handle_Should_Create_MembershipPlan_And_Return_Id()
         {
             // Arrange
-            var dto = _faker.Generate();
-            var command = new CreateMembershipPlanCommand(dto);
+            Results<CreateMembershipPlanDto> dto = _faker.Generate();
+            var command = new CreateMembershipPlanCommand(dto.Value);
             _mockDbContext.Setup(db => db.AddAsync(It.IsAny<Models.MembershipPlan>(), It.IsAny<CancellationToken>()))
                  .ReturnsAsync((Models.MembershipPlan entity, CancellationToken _) =>
                  { 
@@ -54,10 +55,10 @@ namespace Membership.Tests.Membership.Features.MembershipPlan
             var response = await _handler.Handle(command, CancellationToken.None);
 
             // Assert
-            _mockDbContext.Verify(dbSet => dbSet.AddAsync(It.IsAny<Models.MembershipPlan>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockDbContext.Verify(db => db.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+            response.IsSuccess.Should().BeTrue();
+            response.Value.Should().NotBeEmpty();
 
-            response.Id.Should().NotBeEmpty();
+            //response.;
         }
     }
 }

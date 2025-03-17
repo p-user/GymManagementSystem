@@ -91,5 +91,21 @@ namespace Membership.Models
         {
             _applicablePlans.Clear();
         }
+
+
+        public decimal ApplyDiscount(decimal originalPrice)
+        {
+            
+            if (DiscountAmount.HasValue)
+            {
+                return originalPrice * (1 - DiscountAmount.Value);
+            }
+
+            else 
+            {
+                return originalPrice - DiscountAmount.Value;
+            }
+  
+        }
     }
 }

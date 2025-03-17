@@ -7,8 +7,7 @@ namespace Membership.Membership.Features.Member.GetMember
         public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapGet("/membership/GymMembers/{id}", GetMemberById)
-                .Produces<GetMemberByIdResponse>(200)
-                .Produces<GetMemberByIdResponse>(404)
+                .Produces<Results<MemberDto>>(200)
                 .WithSummary("Get a member by id")
                 .WithTags("Membership")
                 .WithDescription("Get a member by id");
@@ -17,8 +16,8 @@ namespace Membership.Membership.Features.Member.GetMember
         private async Task<IResult> GetMemberById(ISender sender,[FromRoute] Guid id)
         {
             var query = new GetMemberByIdQuery(id);
-            var response = await sender.Send(query);
-            return response is not null ? Results.Ok(response) : Results.NotFound();
+            Results<MemberDto> response = await sender.Send(query);
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

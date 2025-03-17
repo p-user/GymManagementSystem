@@ -14,6 +14,8 @@ namespace Membership.Models
 
         public IReadOnlyList<Membership> Memberships  => _memberships.AsReadOnly();
 
+        // Discounts applicable to this membership plan
+
         private readonly List<Discount> _discountsApplicable = new List<Discount>();
         public IReadOnlyList<Discount> DiscountsApplicable => _discountsApplicable.AsReadOnly();
 

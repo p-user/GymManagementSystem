@@ -1,22 +1,24 @@
-﻿namespace Membership.Membership.Features.Member.UpdateMember
+﻿using Membership.Membership.ModuleErrors;
+using Results = Shared.Results.Results;
+
+namespace Membership.Membership.Features.Member.UpdateMember
 {
-    public record UpdateMemberCommand(Guid Id, UpdateMemberDto dto) : IRequest<UpdateMemberResponse>;
-    public record UpdateMemberResponse(Guid id);
-    public class UpdateMemberCommandHandler(MembershipDbContext _context) : IRequestHandler<UpdateMemberCommand, UpdateMemberResponse>
+    public record UpdateMemberCommand(Guid Id, UpdateMemberDto dto) : IRequest<Results>;
+    public class UpdateMemberCommandHandler(MembershipDbContext _context) : IRequestHandler<UpdateMemberCommand, Results>
     {
-        public async Task<UpdateMemberResponse> Handle(UpdateMemberCommand request, CancellationToken cancellationToken)
+        public async Task<Results> Handle(UpdateMemberCommand request, CancellationToken cancellationToken)
         {
             var member = await _context.Members.FindAsync(request.Id);
             if (member == null)
             {
-                throw new Exception("Member was not found!");
+                return Results.Failure(MembershipPlanErrors.NotFound(request.Id));
             }
 
             UpdateMember(member, request.dto);
             _context.Members.Update(member);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return new UpdateMemberResponse(member.Id);
+            return Results.Success();
         }
 
         private void UpdateMember(Models.Member member, UpdateMemberDto dto)

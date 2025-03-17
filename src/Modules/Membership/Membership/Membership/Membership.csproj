@@ -12,8 +12,4 @@
     <ProjectReference Include="..\..\Membership.Contracts\Membership.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Membership\Features\Discount\UpdateDiscount\" />
-  </ItemGroup>
-
 </Project>

@@ -16,8 +16,8 @@ namespace Membership.Membership.Features.MembershipPlan.DeleteMembershipPlan
         private async Task<IResult> DeleteMembershipPlan([FromRoute]Guid id, ISender sender)
         {
             var command = new DeleteMembershipPlanCommand(id);
-            var response = await sender.Send(command);
-            return Results.NoContent();
+            Shared.Results.Results response = await sender.Send(command);
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

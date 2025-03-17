@@ -1,13 +1,12 @@
 ﻿
 namespace Membership.Membership.Features.Member.CreateMember
 {
-    public record  CreateMemberCommand(CreateMemberDto dto) : IRequest<CreateMemberResponse>;
-    public record CreateMemberResponse(string Message);
+    public record  CreateMemberCommand(CreateMemberDto dto) : IRequest<Results<string>>;
 
     public class CreateMemberCommandHandler(ISender _sender, MembershipDbContext _context) 
-        : IRequestHandler<CreateMemberCommand, CreateMemberResponse>
+        : IRequestHandler<CreateMemberCommand, Results<string>>
     {
-        public async Task<CreateMemberResponse> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
+        public async Task<Results<string>> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
         {
             //Todo : validate dto
 
@@ -19,7 +18,7 @@ namespace Membership.Membership.Features.Member.CreateMember
             var added = await _context.Members.AddAsync(member);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return new CreateMemberResponse("Member created successfully, check your email for activation link!");
+            return ("Member created successfully, check your email for activation link!");
         }
 
         private Models.Member CreateMember(CreateMemberDto dto, Guid userId)

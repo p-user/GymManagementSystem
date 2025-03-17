@@ -1,29 +1,34 @@
 ﻿
-
-using System.ComponentModel.DataAnnotations;
+using Results= Shared.Results.Results;
+using Membership.Membership.ModuleErrors;
+using Shared.Exceptions;
 
 namespace Membership.Membership.Features.Discount.UpdateDiscount
 {
-    public record UpdateDiscountCommand(Guid Id, UpdateDiscountDto dto) : IRequest<UpdateDiscountResponse>;
-    public record UpdateDiscountResponse(Guid Id);
-    public class UpdateDiscountCommandHandler(MembershipDbContext _context, UpdateDiscountCommandValidator _validator) : IRequestHandler<UpdateDiscountCommand, UpdateDiscountResponse>
+    public record UpdateDiscountCommand(Guid Id, UpdateDiscountDto dto) : IRequest<Results>;
+    public class UpdateDiscountCommandHandler(MembershipDbContext _context, UpdateDiscountCommandValidator _validator) : IRequestHandler<UpdateDiscountCommand,Results>
     {
-        public async Task<UpdateDiscountResponse> Handle(UpdateDiscountCommand request, CancellationToken cancellationToken)
+        public async Task<Results> Handle(UpdateDiscountCommand request, CancellationToken cancellationToken)
         {
             var discount = await _context.Discounts.FindAsync(request.Id);
             if (discount == null)
             {
-                throw new Exception("Discount was not found!");
+                return Results.Failure(DicountErrors.NotFound(request.Id.ToString()));
             }
             var validationResult = _validator.Validate(request);
             if (!validationResult.IsValid)
             {
-                throw new ValidationException(validationResult.ToString());
+                var errors = validationResult.Errors
+               .Select(e => new Error("Validation.Failed", e.ErrorMessage, ErrorType.Validation))
+               .ToArray();
+
+                return Results.Failure(new ValidationError(errors));
+
             }
             UpdateDiscount(discount, request.dto);
             _context.Discounts.Update(discount);
             await _context.SaveChangesAsync(cancellationToken);
-            return new UpdateDiscountResponse(discount.Id);
+            return Results.Success();
         }
         private void UpdateDiscount(Models.Discount discount, UpdateDiscountDto dto)
         {

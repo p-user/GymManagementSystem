@@ -6,7 +6,7 @@ namespace Membership.Membership.Features.Discount.CreateDiscount
         public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPost("/membership/Discounts", CreateDiscount)
-                .Produces<CreateDiscountResponse>(201)
+                .Produces<Results<Guid>>(201)
                 .Produces(400)
                 .WithSummary("Create a discount")
                 .WithTags("Membership")
@@ -15,8 +15,8 @@ namespace Membership.Membership.Features.Discount.CreateDiscount
         private async Task<IResult> CreateDiscount([FromBody]CreateDiscountDto request, ISender sender)
         {
             var command = new CreateDiscountCommand(request);
-            var response = await sender.Send(command);
-            return Results.Created($"/membership/Discounts/{response.Id}", response);
+            Results<Guid> response = await sender.Send(command);
+            return response.Match(Microsoft.AspNetCore.Http.Results.Ok, ApiResults.Problem);
         }
     }
     

@@ -1,15 +1,17 @@
-﻿namespace Membership.Membership.Features.MembershipPlan.CreateMembershipPlan
+﻿
+
+namespace Membership.Membership.Features.MembershipPlan.CreateMembershipPlan
 {
-    public record CreateMembershipPlanCommand(CreateMembershipPlanDto dto) : IRequest<CreateMembershipPlanResponse>;
+    public record CreateMembershipPlanCommand(CreateMembershipPlanDto dto) : IRequest<Results<Guid>>;
     public record CreateMembershipPlanResponse(Guid Id);
-    public class CreateMembershipPlanCommandHandler(MembershipDbContext membershipDbContext) : IRequestHandler<CreateMembershipPlanCommand, CreateMembershipPlanResponse>
+    public class CreateMembershipPlanCommandHandler(MembershipDbContext membershipDbContext) : IRequestHandler<CreateMembershipPlanCommand, Results<Guid>>
     {
-        public async  Task<CreateMembershipPlanResponse> Handle(CreateMembershipPlanCommand request, CancellationToken cancellationToken)
+        public async  Task<Results<Guid>> Handle(CreateMembershipPlanCommand request, CancellationToken cancellationToken)
         {
             var membershipPlan = CreateMembershipPlan(request.dto);
             var entity =await membershipDbContext.MembershipPlans.AddAsync(membershipPlan);
             await membershipDbContext.SaveChangesAsync(cancellationToken);
-            return new CreateMembershipPlanResponse(entity.Entity.Id);
+            return membershipPlan.Id;
         }
 
         private Models.MembershipPlan CreateMembershipPlan(CreateMembershipPlanDto dto)

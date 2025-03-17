@@ -1,17 +1,21 @@
 ﻿
+using Membership.Membership.ModuleErrors;
+using Shared.Results;
+
 namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
 {
-    public record UpdateMembershipPlanCommand(CreateMembershipPlanDto dto , Guid Id) : IRequest<UpdateMembershipPlanResponse>;
+    public record UpdateMembershipPlanCommand(CreateMembershipPlanDto dto , Guid Id) : IRequest<Shared.Results.Results>;
     public record UpdateMembershipPlanResponse(Guid Id);
 
-    public class UpdateMembershipPlanCommandHandler(MembershipDbContext _context) : IRequestHandler<UpdateMembershipPlanCommand, UpdateMembershipPlanResponse>
+    public class UpdateMembershipPlanCommandHandler(MembershipDbContext _context) : IRequestHandler<UpdateMembershipPlanCommand, Shared.Results.Results>
     {
-        public async Task<UpdateMembershipPlanResponse> Handle(UpdateMembershipPlanCommand request, CancellationToken cancellationToken)
+        public async Task<Shared.Results.Results> Handle(UpdateMembershipPlanCommand request, CancellationToken cancellationToken)
         {
             var membershipPlan = await _context.MembershipPlans.FindAsync(request.Id);
             if (membershipPlan == null)
             {
-                throw new Exception("Membership plan was not found!");
+                return Shared.Results.Results.Failure(MembershipPlanErrors.NotFound(request.Id));
+               
             }
 
             membershipPlan.Update(
@@ -22,7 +26,7 @@ namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
                 );
 
             await _context.SaveChangesAsync(cancellationToken);
-            return new UpdateMembershipPlanResponse(membershipPlan.Id);
+            return Shared.Results.Results.Success();
         }
     }
 }

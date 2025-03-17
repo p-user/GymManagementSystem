@@ -1,5 +1,7 @@
 ﻿
 
+using Results = Shared.Results;
+
 namespace Membership.Membership.Features.Discount.UpdateDiscount
 {
     public class UpdateDiscountEndpoint : ICarterModule
@@ -7,7 +9,7 @@ namespace Membership.Membership.Features.Discount.UpdateDiscount
         public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPut("/membership/discount/{id:guid}", UpdateDiscount)
-                .Produces<UpdateDiscountResponse>(200)
+                .Produces<Results.Results>(200)
                 .Produces(404)
                 .Produces(400)
                 .WithSummary("Update a discount")
@@ -17,8 +19,8 @@ namespace Membership.Membership.Features.Discount.UpdateDiscount
         private async Task<IResult> UpdateDiscount(ISender sender, [FromRoute] Guid id, [FromBody] UpdateDiscountDto dto)
         {
             var command = new UpdateDiscountCommand(id, dto);
-            var response = await sender.Send(command);
-            return Results.Ok(response);
+            Results.Results response = await sender.Send(command);
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
     

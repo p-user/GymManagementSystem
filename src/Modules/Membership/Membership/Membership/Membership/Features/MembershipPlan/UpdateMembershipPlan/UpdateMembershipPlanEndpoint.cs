@@ -1,4 +1,6 @@
 ﻿
+using Shared.Results;
+
 namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
 {
     public class UpdateMembershipPlanEndpoint : ICarterModule
@@ -6,7 +8,7 @@ namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
         public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPut("membership/membership-plan/{id}", UpdateMembershipPlan)
-            .Produces<Guid>(201)
+            .Produces<Shared.Results.Results>(201)
             .Produces<NotFoundResult>(400)
             .WithSummary("Update a new membership plan")
             .WithTags("Membership")
@@ -18,8 +20,8 @@ namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
         private async Task<IResult> UpdateMembershipPlan(ISender sender, [FromRoute] Guid id, [FromBody] CreateMembershipPlanDto dto)
         {
            var command = new UpdateMembershipPlanCommand(dto, id);
-           var response = await sender.Send(command);
-           return Results.Ok(response);
+           Shared.Results.Results response = await sender.Send(command);
+           return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

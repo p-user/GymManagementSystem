@@ -12,7 +12,7 @@ namespace Membership.Models
         public DateTime? MembershipEndDate { get; private set; }
         public int VisitsRemaining { get; private set; }
 
-        //keep treck of promotion code or onsale
+        //keep track of promotion code or onsale
         public decimal TotalPricePayed { get; private set; }
         public MembershipStatus Status { get; private set; }
         public Guid? DiscountId { get; private set; } // Added discount id

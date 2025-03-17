@@ -2,12 +2,11 @@
 
 namespace Membership.Membership.Features.Discount.CreateDiscount
 {
-    public record CreateDiscountCommand(CreateDiscountDto dto) : IRequest<CreateDiscountResponse>;
-    public record CreateDiscountResponse(Guid Id);  
+    public record CreateDiscountCommand(CreateDiscountDto dto) : IRequest<Results<Guid>>;
 
-    public class CreateDiscountCommandHandler(MembershipDbContext _context, CreateDiscountCommandValidator _validator) : IRequestHandler<CreateDiscountCommand, CreateDiscountResponse>
+    public class CreateDiscountCommandHandler(MembershipDbContext _context, CreateDiscountCommandValidator _validator) : IRequestHandler<CreateDiscountCommand, Results<Guid>>
     {
-        public async  Task<CreateDiscountResponse> Handle(CreateDiscountCommand request, CancellationToken cancellationToken)
+        public async  Task<Results<Guid>> Handle(CreateDiscountCommand request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
@@ -18,7 +17,7 @@ namespace Membership.Membership.Features.Discount.CreateDiscount
             var entity = await _context.Discounts.AddAsync(discount);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return new CreateDiscountResponse(entity.Entity.Id);
+            return entity.Entity.Id;
 
 
         }
