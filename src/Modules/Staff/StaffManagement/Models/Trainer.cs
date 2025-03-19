@@ -32,6 +32,14 @@ namespace StaffManagement.Models
 
         public IReadOnlyCollection<Review> Reviews => _reviews.AsReadOnly();
 
+        private readonly List<PrivateSession> _sessions = new();
+
+        public IReadOnlyCollection<PrivateSession> Sessions => _sessions.AsReadOnly();
+
+
+
+
+
 
         public static Trainer Create(Guid authenticationId,
                                         FullName name,
@@ -74,5 +82,15 @@ namespace StaffManagement.Models
 
             return trainer;
         }
+
+
+        public PrivateSession ScheduleSession(Guid memberId, DateTime scheduledAt)
+        {
+            var session = PrivateSession.Create(Id, memberId, scheduledAt);
+            _sessions.Add(session);
+            return session;
+        }
+
+
     }
 }

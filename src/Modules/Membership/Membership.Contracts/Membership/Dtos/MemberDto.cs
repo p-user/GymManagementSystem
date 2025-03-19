@@ -1,6 +1,8 @@
 ﻿
 
-namespace Membership.Membership.Dtos
+using Shared.Enums;
+
+namespace Membership.Contracts.Membership.Dtos
 {
     public record MemberDto
     {
@@ -14,4 +16,6 @@ namespace Membership.Membership.Dtos
         public string PhoneNumber { get; init; }
         public Gender Gender { get; init; }
     }
+
+
 }

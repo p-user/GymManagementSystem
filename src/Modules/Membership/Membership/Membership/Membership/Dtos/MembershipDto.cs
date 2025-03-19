@@ -7,7 +7,7 @@ namespace Membership.Membership.Dtos
         public Guid GymMemberId { get; init; }
         public DateTime MembershipStartDate { get; init; }
         public DateTime? MembershipEndDate { get; init; }
-        public int? VisitsRemaining { get; init; }
+        public int? VisitsRemaining { get; set; }
         public decimal? TotalPricePaid { get; set; }
         public string Status { get; init; } = string.Empty;
         public string? DiscountCode { get; init; }

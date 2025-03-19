@@ -12,6 +12,7 @@ namespace StaffManagement.Data
 
         public virtual DbSet<Models.Trainer> Trainers { get; set; }
         public virtual DbSet<Models.Review> Reviews { get; set; }
+        public virtual DbSet<Models.PrivateSession> Sessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

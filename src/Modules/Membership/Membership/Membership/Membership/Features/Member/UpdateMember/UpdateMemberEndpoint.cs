@@ -8,7 +8,7 @@ namespace Membership.Membership.Features.Member.UpdateMember
             app.MapPut("membership/GymMembers/{id}", UpdateMember)
                 .Produces<Shared.Results.Results>(200)
                 .WithSummary("Update a member by id")
-                .WithTags("Membership")
+                .WithTags("Member")
                 .WithDescription("Update a member by id");
         }
 

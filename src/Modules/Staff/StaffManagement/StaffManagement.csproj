@@ -9,11 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Authentication\Authentication.Contracts\Authentication.Contracts.csproj" />
+    <ProjectReference Include="..\..\Membership\Membership.Contracts\Membership.Contracts.csproj" />
     <ProjectReference Include="..\StaffManagement.Contracts\StaffManagement.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="StaffManagement\Dtos\" />
   </ItemGroup>
 
 </Project>

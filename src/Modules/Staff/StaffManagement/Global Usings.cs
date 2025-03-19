@@ -11,3 +11,7 @@ global using Microsoft.AspNetCore.Routing;
 global using Authentication.Contracts.Authentication.Features;
 global using Shared.Constants;
 global using StaffManagement.Data;
+global using Membership.Contracts.Membership.Features.Member;
+global using Shared.Results;
+global using StaffManagement.Models;
+global using StaffManagement.StaffManagement.Dtos;

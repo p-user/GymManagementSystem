@@ -1,5 +1,5 @@
 ﻿
-using Membership.Membership.ModuleErrors;
+
 using Results = Shared.Results.Results;
 
 namespace Membership.Membership.Features.Discount.DeactivateDiscount
@@ -12,7 +12,7 @@ namespace Membership.Membership.Features.Discount.DeactivateDiscount
            var entity = await membershipDbContext.Discounts.FindAsync(request.Id);
             if (entity == null)
             {
-                return Results.Failure(DicountErrors.NotFound(request.Id.ToString()));
+                return Results.Failure(MembershipModuleErrors.DicountErrors.NotFound(request.Id.ToString()));
             }
 
             entity.Deactivate();

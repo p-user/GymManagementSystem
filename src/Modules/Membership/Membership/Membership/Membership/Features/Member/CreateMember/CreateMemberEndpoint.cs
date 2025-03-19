@@ -7,7 +7,7 @@ namespace Membership.Membership.Features.Member.CreateMember
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-                app.MapPost("/membership/members", CreateMember)
+                app.MapPost("/membership/GymMembers", CreateMember)
                 .WithDescription("Creates a new member for the system")
                 .WithName("CreateMember")
                 .WithTags("Member")

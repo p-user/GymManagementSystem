@@ -66,9 +66,9 @@ namespace Membership.Models
             UsageCount++;
         }
 
-        public bool IsApplicableToPlan(MembershipPlan plan)
+        public bool IsApplicableToPlan(Guid plan)
         {
-            return AppliesToAllPlans || ApplicablePlans.Contains(plan);
+            return AppliesToAllPlans || ApplicablePlans.Any(p => p.Id == plan); 
         }
         public void AddApplicablePlan(MembershipPlan plan)
         {

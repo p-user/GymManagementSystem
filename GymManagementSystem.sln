@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Contracts", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaffManagement.Contracts", "src\Modules\Staff\StaffManagement.Contracts\StaffManagement.Contracts.csproj", "{FB535F24-42F1-4A8D-BFAA-DE88195F253C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Messaging", "src\Shared\Shared.Messaging\Shared.Messaging.csproj", "{B3AD1B7A-0C24-49BD-9850-E55834DF081F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{FB535F24-42F1-4A8D-BFAA-DE88195F253C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB535F24-42F1-4A8D-BFAA-DE88195F253C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB535F24-42F1-4A8D-BFAA-DE88195F253C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3AD1B7A-0C24-49BD-9850-E55834DF081F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3AD1B7A-0C24-49BD-9850-E55834DF081F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3AD1B7A-0C24-49BD-9850-E55834DF081F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3AD1B7A-0C24-49BD-9850-E55834DF081F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +154,7 @@ Global
 		{CA6A8E96-B297-4014-AFAC-F576F34E4E0F} = {BCE65416-6101-4E0F-AF31-EC7F3EF13EE9}
 		{5BB77853-CC05-4733-84CE-9FEB389D05D1} = {BCE65416-6101-4E0F-AF31-EC7F3EF13EE9}
 		{FB535F24-42F1-4A8D-BFAA-DE88195F253C} = {5200F86E-B359-4502-A1A6-49858EC3FA0C}
+		{B3AD1B7A-0C24-49BD-9850-E55834DF081F} = {7462F912-AD4F-4BDF-B3E2-F0AD87E35261}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C85BEB4B-04FF-48AD-A0B0-52C81FF32A9A}

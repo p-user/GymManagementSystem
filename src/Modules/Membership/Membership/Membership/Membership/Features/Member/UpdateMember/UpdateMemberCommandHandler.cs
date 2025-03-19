@@ -1,5 +1,4 @@
-﻿using Membership.Membership.ModuleErrors;
-using Results = Shared.Results.Results;
+﻿using Results = Shared.Results.Results;
 
 namespace Membership.Membership.Features.Member.UpdateMember
 {
@@ -11,7 +10,7 @@ namespace Membership.Membership.Features.Member.UpdateMember
             var member = await _context.Members.FindAsync(request.Id);
             if (member == null)
             {
-                return Results.Failure(MembershipPlanErrors.NotFound(request.Id));
+                return Results.Failure(MembershipModuleErrors.MembershipPlanErrors.NotFound(request.Id));
             }
 
             UpdateMember(member, request.dto);

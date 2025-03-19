@@ -1,7 +1,5 @@
 ﻿
 using Results= Shared.Results.Results;
-using Membership.Membership.ModuleErrors;
-using Shared.Exceptions;
 
 namespace Membership.Membership.Features.Discount.UpdateDiscount
 {
@@ -13,7 +11,7 @@ namespace Membership.Membership.Features.Discount.UpdateDiscount
             var discount = await _context.Discounts.FindAsync(request.Id);
             if (discount == null)
             {
-                return Results.Failure(DicountErrors.NotFound(request.Id.ToString()));
+                return Results.Failure(MembershipModuleErrors.DicountErrors.NotFound(request.Id.ToString()));
             }
             var validationResult = _validator.Validate(request);
             if (!validationResult.IsValid)

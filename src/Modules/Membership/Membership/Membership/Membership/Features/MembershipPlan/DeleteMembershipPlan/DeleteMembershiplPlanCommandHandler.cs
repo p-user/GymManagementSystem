@@ -1,5 +1,4 @@
 ﻿
-using Membership.Membership.ModuleErrors;
 using Results = Shared.Results.Results;
 
 namespace Membership.Membership.Features.MembershipPlan.DeleteMembershipPlan
@@ -12,12 +11,12 @@ namespace Membership.Membership.Features.MembershipPlan.DeleteMembershipPlan
             var entity = await _context.MembershipPlans.FindAsync(request.Id);
             if (entity == null)
             {
-                return Results.Failure(MembershipPlanErrors.NotFound(request.Id));
+                return Results.Failure(MembershipModuleErrors.MembershipPlanErrors.NotFound(request.Id));
             }
             if(entity.Memberships.Any())
             {
                 var members = entity.Memberships.Select(s => s.GymMemberId).ToList();
-                return Results.Failure(MembershipPlanErrors.DeleteProblem(members));
+                return Results.Failure(MembershipModuleErrors.MembershipPlanErrors.DeleteProblem(members));
             }
 
             _context.MembershipPlans.Remove(entity);

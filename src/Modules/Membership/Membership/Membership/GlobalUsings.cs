@@ -16,3 +16,6 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Routing;
 global using Shared.Results;
 global using Shared.Exceptions;
+global using AutoMapper;
+global using Membership.Contracts.Membership.Features.Member;
+global using MembershipModuleErrors = Membership.Contracts.Membership.ModuleErrors;

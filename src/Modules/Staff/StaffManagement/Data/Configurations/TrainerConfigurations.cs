@@ -107,6 +107,14 @@ namespace StaffManagement.Data.Configurations
             builder.Property(t => t.IsActive).IsRequired();
             builder.Property(t => t.HireDate).IsRequired();
 
+
+            builder.HasMany<PrivateSession>()
+           .WithOne()
+           .HasForeignKey(s => s.TrainerId)
+           .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Ignore(t => t.Events);
+
         }
     }
 }

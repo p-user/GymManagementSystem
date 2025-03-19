@@ -4,12 +4,11 @@ using StaffManagement.Contracts.StaffManagement.Dtos;
 namespace StaffManagement.StaffManagement.Features.Trainer.CreateTrainer
 {
    
-    public record class CreateTrainerCommand(CreateStaffDto dto) : IRequest<CreateTrainerCommandResponse>;
-    public record CreateTrainerCommandResponse(string message);
+    public record class CreateTrainerCommand(CreateStaffDto dto) : IRequest<Results<string>>;
 
-    public class CreateTrainerCommandHandler(StaffDbContext staffDbContext, ISender _sender): IRequestHandler<CreateTrainerCommand, CreateTrainerCommandResponse>
+    public class CreateTrainerCommandHandler(StaffDbContext staffDbContext, ISender _sender): IRequestHandler<CreateTrainerCommand, Results<string>>
     {
-        public async Task<CreateTrainerCommandResponse> Handle(CreateTrainerCommand request, CancellationToken cancellationToken)
+        public async Task<Results<string>> Handle(CreateTrainerCommand request, CancellationToken cancellationToken)
         {
             //set to make sure that the user is a trainer
             request.dto.UserRole = DefaultRoles.TrainerRole;
@@ -22,7 +21,7 @@ namespace StaffManagement.StaffManagement.Features.Trainer.CreateTrainer
             var added = await staffDbContext.Trainers.AddAsync(trainer);
             await staffDbContext.SaveChangesAsync(cancellationToken);
 
-            return new CreateTrainerCommandResponse(response.message);
+            return response.message;
         }
 
         private Models.Trainer CreateTrainer(CreateStaffDto dto, Guid userId)

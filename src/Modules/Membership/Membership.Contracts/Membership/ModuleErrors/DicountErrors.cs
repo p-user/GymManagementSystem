@@ -1,7 +1,7 @@
 ﻿
 using Shared.Exceptions;
 
-namespace Membership.Membership.ModuleErrors
+namespace Membership.Contracts.Membership.ModuleErrors
 {
     public static class DicountErrors
     {

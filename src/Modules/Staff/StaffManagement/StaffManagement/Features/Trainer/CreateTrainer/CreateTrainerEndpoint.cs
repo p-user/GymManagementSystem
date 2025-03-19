@@ -20,8 +20,8 @@ namespace StaffManagement.StaffManagement.Features.Trainer.CreateTrainer
         private async Task<IResult> CreateTrainer(ISender sender , [FromBody] CreateStaffDto dto, CancellationToken ct)
         {
             var command = new CreateTrainerCommand(dto);
-            var response = await sender.Send(command, ct);
-            return Results.Created($"/staff/trainer", response);
+            Shared.Results.Results response = await sender.Send(command, ct);
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

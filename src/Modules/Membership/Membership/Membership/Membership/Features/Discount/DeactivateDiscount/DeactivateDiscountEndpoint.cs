@@ -9,7 +9,7 @@ namespace Membership.Membership.Features.Discount.DeactivateDiscount
            app.MapPut("membership/discount/{id}", DeactivateDiscount)
                .Produces<Shared.Results.Results>(200)
                .WithSummary("Deactivate a discount by id")
-               .WithTags("Membership")
+               .WithTags("Discount")
                .WithDescription("Deactivate a discount by id");
         }
 

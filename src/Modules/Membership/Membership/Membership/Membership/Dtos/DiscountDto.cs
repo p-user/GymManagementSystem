@@ -21,4 +21,13 @@ namespace Membership.Membership.Dtos
     public record UpdateDiscountDto : DiscountDto
     {
     }
+
+    public record ApplyDiscountDto
+    {
+        public Guid DiscountId { get; set; }
+        public decimal Price { get; set; }
+    }
+
+
+
 }

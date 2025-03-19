@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StaffManagement.Data;
 
@@ -11,9 +12,11 @@ using StaffManagement.Data;
 namespace StaffManagement.Data.Migrations
 {
     [DbContext(typeof(StaffDbContext))]
-    partial class StaffDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250319132202_Update-trainers")]
+    partial class Updatetrainers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

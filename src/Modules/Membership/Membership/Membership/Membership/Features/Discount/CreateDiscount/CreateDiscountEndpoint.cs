@@ -9,7 +9,7 @@ namespace Membership.Membership.Features.Discount.CreateDiscount
                 .Produces<Results<Guid>>(201)
                 .Produces(400)
                 .WithSummary("Create a discount")
-                .WithTags("Membership")
+                .WithTags("Discount")
                 .WithDescription("Create a discount");
         }
         private async Task<IResult> CreateDiscount([FromBody]CreateDiscountDto request, ISender sender)

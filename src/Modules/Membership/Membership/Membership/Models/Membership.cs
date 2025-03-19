@@ -6,7 +6,7 @@ namespace Membership.Models
     {
         public MembershipPlan MembershipPlan { get; private set; }
         public Guid MembershipPlanId { get; private set; }
-        public  Member GymMember { get; private set; }
+        public Member GymMember { get; private set; }
         public Guid GymMemberId { get; private set; }
         public DateTime MembershipStartDate { get; private set; }
         public DateTime? MembershipEndDate { get; private set; }
@@ -36,7 +36,7 @@ namespace Membership.Models
                 GymMember = member,
                 MembershipStartDate = startDate,
                 MembershipEndDate = startDate.AddMonths((int)membershipPlan.DurationInMonths),
-                VisitsRemaining = (int)membershipPlan.MaxVisitsPerWeek,
+                VisitsRemaining = CalculateInitialVisitsRemaining(startDate, startDate.AddMonths((int)membershipPlan.DurationInMonths), (int)membershipPlan.MaxVisitsPerWeek),
                 TotalPricePayed = totalPricePayed is null or 0 ? membershipPlan.Price : (decimal)totalPricePayed,
                 Status = MembershipStatus.Active
             };
@@ -64,6 +64,12 @@ namespace Membership.Models
         public void Activate()
         {
             Status = MembershipStatus.Active;
+        }
+
+        public static int CalculateInitialVisitsRemaining(DateTime startdate, DateTime enddate, int maxVisitsPerWeek)
+        {
+            var months = (enddate.Year - startdate.Year) * 12 + enddate.Month - startdate.Month;
+            return months * maxVisitsPerWeek;
         }
     }
 }

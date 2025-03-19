@@ -1,6 +1,8 @@
 
 
 
+using Shared.Messaging.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -46,6 +48,10 @@ builder.Services.AddValidatorsFromAssemblies([workoutCatalogModule, membershipMo
 //automapper
 
 builder.Services.AddAutoMapper([workoutCatalogModule, membershipModule, staffModule, authenticationModule]);
+
+//mass transit
+
+builder.Services.AddMassTransitWithAssemblies([workoutCatalogModule, membershipModule, staffModule, authenticationModule]);
 
 
 

@@ -9,7 +9,7 @@ namespace Membership.Membership.Features.Member.GetMember
             app.MapGet("/membership/GymMembers/{id}", GetMemberById)
                 .Produces<Results<MemberDto>>(200)
                 .WithSummary("Get a member by id")
-                .WithTags("Membership")
+                .WithTags("Member")
                 .WithDescription("Get a member by id");
         }
 
