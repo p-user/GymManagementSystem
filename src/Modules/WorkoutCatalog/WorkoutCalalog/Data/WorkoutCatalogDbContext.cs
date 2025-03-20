@@ -1,4 +1,5 @@
-﻿using WorkoutCatalog.Models;
+﻿using Shared.Constants;
+using WorkoutCatalog.Models;
 
 namespace WorkoutCalalog.Data
 {
@@ -18,7 +19,7 @@ namespace WorkoutCalalog.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("workoutcatalog");
+            modelBuilder.HasDefaultSchema(DefaultSchemas.WorkoutSchema);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkoutCatalogDbContext).Assembly); //ToDo apply configurations from assembly   
 
             base.OnModelCreating(modelBuilder);

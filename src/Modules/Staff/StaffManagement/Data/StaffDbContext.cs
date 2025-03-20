@@ -16,7 +16,7 @@ namespace StaffManagement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Staff");
+            modelBuilder.HasDefaultSchema(DefaultSchemas.StaffSchema);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StaffDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }

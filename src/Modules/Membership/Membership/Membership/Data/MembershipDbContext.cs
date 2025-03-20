@@ -1,6 +1,6 @@
 ﻿
 
-using Microsoft.EntityFrameworkCore;
+using Shared.Constants;
 
 namespace Membership.Data
 {
@@ -15,13 +15,15 @@ namespace Membership.Data
         public virtual DbSet<Models.MembershipPlan> MembershipPlans { get; set; }
         public virtual  DbSet<Models.Member> Members { get; set; }
         public virtual  DbSet<Models.Discount> Discounts { get; set; }
+      
         override protected void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Membership");
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MembershipDbContext).Assembly);    
-
-
+            modelBuilder.HasDefaultSchema(DefaultSchemas.MembershipSchema);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MembershipDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+
+
+
         }
     }
 }

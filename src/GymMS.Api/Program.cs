@@ -1,7 +1,6 @@
 
 
 
-using Shared.Messaging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +16,7 @@ builder.Services.AddWorkoutCatalogData(builder.Configuration);
 builder.Services.AddMembershipData(builder.Configuration);
 builder.Services.AddStaffData(builder.Configuration);
 builder.Services.AddAuthenticationData(builder.Configuration);
+builder.Services.AddAttendanceData(builder.Configuration);
 builder.Services.AddHttpClient();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
@@ -33,25 +33,26 @@ var workoutCatalogModule = typeof(WorkoutCatalogServiceExtensions).Assembly;
 var membershipModule = typeof(MembershipServiceExtensions).Assembly;
 var staffModule = typeof(StaffServiceExtensions).Assembly;
 var authenticationModule = typeof(AuthenticationServiceExtensions).Assembly;
+var attendanceModule = typeof(AttendanceServiceExtensions).Assembly;    
 
 
 
 //carter config
-builder.Services.AddCarter(workoutCatalogModule, membershipModule, staffModule, authenticationModule);
+builder.Services.AddCarter(workoutCatalogModule, membershipModule, staffModule, authenticationModule, attendanceModule);
 
 //mediatR
-builder.Services.AddMediatR(workoutCatalogModule, membershipModule, staffModule, authenticationModule);
+builder.Services.AddMediatR(workoutCatalogModule, membershipModule, staffModule, authenticationModule, attendanceModule);
 
 //validations
-builder.Services.AddValidatorsFromAssemblies([workoutCatalogModule, membershipModule, staffModule, authenticationModule]);
+builder.Services.AddValidatorsFromAssemblies([workoutCatalogModule, membershipModule, staffModule, authenticationModule, attendanceModule]);
 
 //automapper
 
-builder.Services.AddAutoMapper([workoutCatalogModule, membershipModule, staffModule, authenticationModule]);
+builder.Services.AddAutoMapper([workoutCatalogModule, membershipModule, staffModule, authenticationModule, attendanceModule]);
 
 //mass transit
 
-builder.Services.AddMassTransitWithAssemblies([workoutCatalogModule, membershipModule, staffModule, authenticationModule]);
+builder.Services.AddMassTransitWithAssemblies([workoutCatalogModule, membershipModule, staffModule, authenticationModule, attendanceModule]);
 
 
 
@@ -85,6 +86,7 @@ app.UseAuthenticationModule();
 app.UseStaffModule();
 app.UseWorkoutCatalogModule();
 app.UseMembershipModule();
+app.UseAttendanceModule();
 
 
 

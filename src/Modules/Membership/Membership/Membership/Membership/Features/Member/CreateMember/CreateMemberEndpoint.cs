@@ -19,7 +19,7 @@ namespace Membership.Membership.Features.Member.CreateMember
         private async Task<IResult> CreateMember(ISender sender, [FromBody] CreateMemberDto dto)
         {
             Results<string> response = await sender.Send(new CreateMemberCommand(dto));
-            return response.Match(Microsoft.AspNetCore.Http.Results.Ok, ApiResults.Problem);
+            return response.Match(()=>Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
 
 
         }

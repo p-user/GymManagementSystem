@@ -2,6 +2,7 @@
 using Authentication.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Shared.Constants;
 
 namespace Authentication.Data
 {
@@ -17,7 +18,7 @@ namespace Authentication.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("users");
+            modelBuilder.HasDefaultSchema(DefaultSchemas.AuthenticationSchema);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuthenticationDbContext).Assembly); //ToDo apply configurations from assembly   
 
             base.OnModelCreating(modelBuilder);
