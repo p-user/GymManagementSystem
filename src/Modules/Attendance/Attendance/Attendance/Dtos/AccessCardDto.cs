@@ -5,13 +5,14 @@ namespace Attendance.Attendance.Dtos
 {
     public record AccessCardDto
     {
-        public string CardNumber { get; init; }
-        public Guid UserId { get; init; } 
-        
+        public Guid OwnerId { get; init; }
+        public AccessCardOwnerType OwnerType { get;init; }
+
     }
 
     public record ViewAccessCardDto : AccessCardDto
     {
+        public string CardNumber { get; init; }
         public Guid Id { get; init; }
         public AccessCardStatus Status { get; init; }
         public DateTime IssuedAt { get; init; }

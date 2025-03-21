@@ -36,7 +36,7 @@ namespace Membership.Models
                 GymMember = member,
                 MembershipStartDate = startDate,
                 MembershipEndDate = startDate.AddMonths((int)membershipPlan.DurationInMonths),
-                VisitsRemaining = CalculateInitialVisitsRemaining(startDate, startDate.AddMonths((int)membershipPlan.DurationInMonths), (int)membershipPlan.MaxVisitsPerWeek),
+                VisitsRemaining = (int)membershipPlan.MaxVisitsPerWeek,
                 TotalPricePayed = totalPricePayed is null or 0 ? membershipPlan.Price : (decimal)totalPricePayed,
                 Status = MembershipStatus.Active
             };
@@ -66,10 +66,17 @@ namespace Membership.Models
             Status = MembershipStatus.Active;
         }
 
-        public static int CalculateInitialVisitsRemaining(DateTime startdate, DateTime enddate, int maxVisitsPerWeek)
+        public static void UpdateVisitsRemaining(Membership membership)
         {
-            var months = (enddate.Year - startdate.Year) * 12 + enddate.Month - startdate.Month;
-            return months * maxVisitsPerWeek;
+            membership.VisitsRemaining--;
+
+        }
+
+        //TODO: implement background job to reset visits remaining for the upcomming week
+        public static void ResetVisitsRemaining(Membership membership, MembershipPlan membershipPlan) 
+        {
+            membership.VisitsRemaining = (int)membershipPlan.MaxVisitsPerWeek;
+
         }
     }
 }

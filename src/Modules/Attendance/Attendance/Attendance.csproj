@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Configurations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Membership\Membership.Contracts\Membership.Contracts.csproj" />
     <ProjectReference Include="..\Attendance.Contracts\Attendance.Contracts.csproj" />

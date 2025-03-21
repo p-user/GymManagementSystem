@@ -19,3 +19,7 @@ global using Shared.Exceptions;
 global using AutoMapper;
 global using Membership.Contracts.Membership.Features.Member;
 global using MembershipModuleErrors = Membership.Contracts.Membership.ModuleErrors;
+global using Shared.Messaging.IntegrationEvents;
+global using MassTransit;
+global using Shared.Messaging;
+global using Membership.Contracts.Membership.ModuleErrors;

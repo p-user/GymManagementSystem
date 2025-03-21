@@ -5,20 +5,22 @@ namespace Attendance.Models
     public class AccessCard : Entity<Guid>
     {
         public string CardNumber { get; set; }
-        public Guid UserId { get; private set; } //Todo : decide memberid and staffid or authenticationid
+        public Guid OwnerId { get; private set; } //Todo : decide memberid and staffid or authenticationid
+        public AccessCardOwnerType OwnerType { get; private set; }
         public AccessCardStatus Status { get; private set; }
         public DateTime IssuedAt { get; private set; }
 
         private AccessCard() { }
 
-        public static AccessCard Create(Guid userId, string cardNumber)
+        public static AccessCard Create(Guid userId,AccessCardOwnerType ownerType)
         {
             return new AccessCard
             {
 
                 Id = Guid.NewGuid(),
-                UserId = userId,
-                CardNumber = cardNumber,
+                OwnerId = userId,
+                OwnerType = ownerType,
+                CardNumber = GenerateCardNumber(),
                 Status = AccessCardStatus.Active,
                 IssuedAt = DateTime.UtcNow,
             };
@@ -29,7 +31,17 @@ namespace Attendance.Models
             Active,
             Inactive,
             Lost,
-            Expired
+        }
+
+        public enum AccessCardOwnerType
+        {
+            Member,
+            Staff
+        }
+
+        private static string GenerateCardNumber()
+        {
+            return Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
         }
 
 

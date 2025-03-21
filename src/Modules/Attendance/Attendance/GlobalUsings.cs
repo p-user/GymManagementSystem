@@ -11,3 +11,8 @@ global using Attendance.Data;
 global using MediatR;
 global using Shared.Results;
 global using Membership.Contracts.Membership.Features.Member;
+global using MassTransit;
+global using Microsoft.Extensions.Logging;
+global using Shared.Messaging.IntegrationEvents;
+global using Attendance.Attendance.Events.EventTypes;
+global using Attendance.Contracts.Attendance.ModuleErrors;

@@ -7,9 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared\Shared.Messaging\Shared.Messaging.csproj" />
     <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\..\Authentication\Authentication.Contracts\Authentication.Contracts.csproj" />
     <ProjectReference Include="..\..\Membership.Contracts\Membership.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Membership\Events\EventsTypes\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using Attendance.Contracts.Attendance.ModuleErrors;
-using Membership.Contracts.Membership.ModuleErrors;
+﻿using Membership.Contracts.Membership.ModuleErrors;
 
 namespace Attendance.Attendance.Features.Logs.LogEntry
 {
@@ -27,7 +26,7 @@ namespace Attendance.Attendance.Features.Logs.LogEntry
             #endregion
 
 
-            var attendanceLog = AttendanceLog.CreateEntry(request.dto.UserId, request.dto.AccessCardId);
+            var attendanceLog = AttendanceLog.CreateEntry(request.dto.UserId, accessCard);
             await _context.AddAsync(attendanceLog);
             await _context.SaveChangesAsync(cancellationToken);
 

@@ -21,14 +21,25 @@ namespace Attendance.Models
             BreakOut
         }
 
-        public static AttendanceLog CreateEntry(Guid userId, Guid accessCardId)
-       => new AttendanceLog
-       {
-           Id = Guid.NewGuid(),
-           UserId = userId,
-           AccessCardId = accessCardId,
-           Type = AttendanceType.Entry,
-       };
+        public static AttendanceLog CreateEntry(Guid userId, AccessCard accessCard)
+        {
+            var entry = new AttendanceLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                AccessCardId = accessCard.Id,
+                Type = AttendanceType.Entry,
+
+            };
+
+            if (accessCard.OwnerType == AccessCard.AccessCardOwnerType.Member)
+            {
+               
+                entry.AddDomainEvent(new AttendanceLogCreatedEvent() { UserId = userId});
+            }
+
+            return entry;
+        }
 
         public static AttendanceLog CreateExit(Guid userId, Guid accessCardId)
             => new AttendanceLog
