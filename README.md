@@ -2,6 +2,8 @@ Gym Management System API
 
 ## 📌 Project Description
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3e8983cad68b42e38a89469ed5cdcdc8)](https://app.codacy.com/gh/p-user/GymManagementSystem?utm_source=github.com&utm_medium=referral&utm_content=p-user/GymManagementSystem&utm_campaign=Badge_Grade)
+
 This repository contains the source code for a Gym Management System API, built using .NET, following Modular Monolith and Vertical Slice architectural patterns. The API provides a set of endpoints to manage various gym operations, including:
 
 - Workout categories and exercise routines
