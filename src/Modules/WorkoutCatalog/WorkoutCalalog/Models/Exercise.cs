@@ -39,7 +39,7 @@ namespace WorkoutCatalog.Models
             Name = name;
             Description = description;
             DescriptionLink = descriptionLink;
-            muscleGroups = muscleGroups;
+            this.muscleGroups = muscleGroups;
             ExerciseCategory = exerciseCategory;
         }
 

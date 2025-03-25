@@ -38,7 +38,10 @@ namespace StaffManagement.Models
         public void Cancel()
         {
             if (Status == SessionStatus.Completed)
+            {
+
                 throw new InvalidOperationException("Completed sessions cannot be canceled.");
+            }
 
             Status = SessionStatus.Canceled;
         }
@@ -48,7 +51,10 @@ namespace StaffManagement.Models
         public void Complete()
         {
             if (Status != SessionStatus.Scheduled)
+            {
+
                 throw new InvalidOperationException("Only scheduled sessions can be marked as completed.");
+            }
 
             Status = SessionStatus.Completed;
         }

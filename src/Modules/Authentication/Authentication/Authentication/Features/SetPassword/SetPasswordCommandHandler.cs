@@ -10,7 +10,10 @@ namespace Authentication.Authentication.Features.SetPassword
         {
             var user = await _userManager.FindByIdAsync(request.dto.UserId.ToString());
             if (user == null)
+            {
                 throw new Exception("Invalid user");
+
+            }
 
             // Verify the token
             var decodedToken = WebUtility.UrlDecode(request.dto.Token);

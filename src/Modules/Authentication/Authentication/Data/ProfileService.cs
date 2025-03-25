@@ -21,7 +21,7 @@ namespace Authentication.Data
 
             var issuer = _configuration.GetSection("IdentityServer").Value;
 
-            if (user == null) return;
+            if (user == null) { return; }
 
             var claims = new List<Claim>
             {

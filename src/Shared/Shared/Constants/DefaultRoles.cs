@@ -3,9 +3,9 @@ namespace Shared.Constants
 {
     public static class DefaultRoles
     {
-        public static string AdminRole = "Admin";
-        public static string MemberRole = "Member";
-        public static string RecepsionistRole = "Recepsionist";
-        public static string TrainerRole = "Trainer";
+        public static readonly string AdminRole = "Admin";
+        public static readonly string MemberRole = "Member";
+        public static readonly string RecepsionistRole = "Recepsionist";
+        public static readonly string TrainerRole = "Trainer";
     }
 }

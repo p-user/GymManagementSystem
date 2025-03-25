@@ -23,7 +23,7 @@ namespace Shared.Data.Interceptors
 
         private void UpdateEntities(DbContext? context)
         {
-            if (context is null) return;
+            if (context is null) { return; }
 
             var entities = context.ChangeTracker.Entries<IEntity>().ToList();
 

@@ -17,7 +17,6 @@ namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
 
         private async Task<IResult> UpdateWorkout(
             ISender sender,
-            [FromRoute] Guid id,
             [FromBody] UpdateWorkoutDto dto)
         {
             var response = await sender.Send(new UpdateWorkoutCommand(dto));

@@ -46,7 +46,10 @@ namespace Authentication.Services
         {
             var identityClient = Clients.GetClients().FirstOrDefault();
             if (identityClient == null)
+            {
+
                 throw new InvalidOperationException("Invalid client configuration.");
+            }
 
             return (identityClient.ClientId, ConfigurationConstants.ClientSecret, identityClient.AllowedScopes.ToArray());
         }
