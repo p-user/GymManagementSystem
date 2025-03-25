@@ -1,6 +1,4 @@
-﻿using Attendance.Attendance.Events.EventTypes;
-
-namespace Attendance.Attendance.Events.Handlers
+﻿namespace Attendance.Attendance.Events.Handlers
 {
     public class AttendanceLogCreatedEventHandler(ILogger<AttendanceLogCreatedEventHandler> _logger, IBus _bus) : INotificationHandler<AttendanceLogCreatedEvent>
     {

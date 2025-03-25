@@ -1,7 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Shared.Data.Interceptors;
+﻿using Shared.Data.Interceptors;
 
 namespace Membership.Data
 {
@@ -15,7 +12,7 @@ namespace Membership.Data
             services.AddScoped<DispatchDomainEventsInterceptors>();
 
 
-            services.AddDbContext<MembershipDbContext>((sp,options) =>
+            services.AddDbContext<MembershipDbContext>((sp, options) =>
             {
                 var auditableInterceptor = sp.GetRequiredService<AuditableEntityInterceptors>();
                 var dispatchInterceptor = sp.GetRequiredService<DispatchDomainEventsInterceptors>();

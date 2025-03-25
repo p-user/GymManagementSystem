@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup
+﻿namespace WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup
 {
     public class UpdateMuscleGroupEndpoint : ICarterModule
     {
@@ -22,7 +20,7 @@ namespace WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup
             [FromBody] UpdateMuscleGroupDto dto)
         {
             var response = await sender.Send(new UpdateMuscleGroupCommand(id, dto));
-            return response != Guid.Empty ? Results.NoContent() : Results.NotFound();
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

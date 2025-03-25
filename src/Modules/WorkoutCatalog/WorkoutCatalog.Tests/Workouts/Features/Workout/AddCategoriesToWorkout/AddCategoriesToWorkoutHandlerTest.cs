@@ -28,7 +28,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Workout.UpdateWorkoutCategories
         {
             // Arrange
             var workout = _fixture.Workouts.First();
-            var categories = _fixture.WorkoutCategories.Where(s=>s.Name.Equals("Strength Training")).ToList();
+            var categories = _fixture.WorkoutCategories.Where(s => s.Name.Equals("Strength Training")).ToList();
             var categoryIds = categories.Select(x => x.Id).ToList();
             var command = new AddCategoriesToWorkoutCommand(workout.Id, categoryIds);
             // Act

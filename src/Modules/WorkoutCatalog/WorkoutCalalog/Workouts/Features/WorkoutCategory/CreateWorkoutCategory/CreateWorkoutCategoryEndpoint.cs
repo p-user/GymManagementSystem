@@ -20,7 +20,8 @@
         {
             var command = new CreateWorkoutCategoryCommand(dto);
             var result = await sender.Send(command, ct);
-            return Results.Created($"/workout/categories/{result}", result);
+            return result.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

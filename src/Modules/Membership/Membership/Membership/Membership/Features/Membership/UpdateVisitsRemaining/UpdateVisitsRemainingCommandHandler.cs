@@ -1,6 +1,4 @@
-﻿
-
-using Results = Shared.Results.Results;
+﻿using Results = Shared.Results.Results;
 
 namespace Membership.Membership.Features.Membership.UpdateVisitsRemaining
 {
@@ -21,7 +19,7 @@ namespace Membership.Membership.Features.Membership.UpdateVisitsRemaining
                 return Results.Failure(MembershipErrors.NotActiveMembershipProblem(request.UserId.ToString()));
             }
 
-            if(membership.VisitsRemaining == 0)
+            if (membership.VisitsRemaining == 0)
             {
                 return Results.Failure(MembershipErrors.NoVisitsRemainingProblem(request.UserId.ToString()));
             }

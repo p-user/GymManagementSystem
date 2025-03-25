@@ -1,12 +1,9 @@
-﻿
-using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
+﻿namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
 {
-    public record UpdateWorkoutCommand(UpdateWorkoutDto dto) : IRequest<Guid>;
-    public class UpdateworkoutCommandHandler(WorkoutCatalogDbContext workoutCatalogDbContext, IValidator<UpdateWorkoutCommand> _validator) : IRequestHandler<UpdateWorkoutCommand, Guid>
+    public record UpdateWorkoutCommand(UpdateWorkoutDto dto) : IRequest<Results<Guid>>;
+    public class UpdateworkoutCommandHandler(WorkoutCatalogDbContext workoutCatalogDbContext, IValidator<UpdateWorkoutCommand> _validator) : IRequestHandler<UpdateWorkoutCommand, Results<Guid>>
     {
-        public async Task<Guid> Handle(UpdateWorkoutCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(UpdateWorkoutCommand request, CancellationToken cancellationToken)
         {
             var entity = await workoutCatalogDbContext.Workouts.FindAsync(request.dto.Id, cancellationToken);
             if (entity == null)
@@ -21,7 +18,7 @@ namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
 
         }
 
-       
+
     }
-    
+
 }

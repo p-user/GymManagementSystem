@@ -1,13 +1,10 @@
-﻿
-using AutoMapper;
-
-namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
 {
-    public record  AddMuscleGroupToExerciseCommand (Guid exerciseId, Guid muscleGroup) : IRequest <ViewExerciseDto>;
+    public record AddMuscleGroupToExerciseCommand(Guid exerciseId, Guid muscleGroup) : IRequest<Results<ViewExerciseDto>>;
 
-    public class AddMuscleGroupToExerciseCommandHandler(WorkoutCatalogDbContext context, IMapper mapper) : IRequestHandler<AddMuscleGroupToExerciseCommand, ViewExerciseDto>
+    public class AddMuscleGroupToExerciseCommandHandler(WorkoutCatalogDbContext context, IMapper mapper) : IRequestHandler<AddMuscleGroupToExerciseCommand, Results<ViewExerciseDto>>
     {
-        public async Task<ViewExerciseDto> Handle(AddMuscleGroupToExerciseCommand request, CancellationToken cancellationToken)
+        public async Task<Results<ViewExerciseDto>> Handle(AddMuscleGroupToExerciseCommand request, CancellationToken cancellationToken)
         {
             var exercise = await context.Exercises.Include(e => e.MuscleGroups).FirstOrDefaultAsync(e => e.Id == request.exerciseId, cancellationToken);
             if (exercise is null)
@@ -28,7 +25,7 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
             try
             {
 
-            var test =  mapper.Map<ViewExerciseDto>(exercise);
+                var test = mapper.Map<ViewExerciseDto>(exercise);
             }
             catch (Exception ex)
             {

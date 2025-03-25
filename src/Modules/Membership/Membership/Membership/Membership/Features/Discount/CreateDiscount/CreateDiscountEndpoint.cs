@@ -12,12 +12,12 @@ namespace Membership.Membership.Features.Discount.CreateDiscount
                 .WithTags("Discount")
                 .WithDescription("Create a discount");
         }
-        private async Task<IResult> CreateDiscount([FromBody]CreateDiscountDto request, ISender sender)
+        private async Task<IResult> CreateDiscount([FromBody] CreateDiscountDto request, ISender sender)
         {
             var command = new CreateDiscountCommand(request);
             Results<Guid> response = await sender.Send(command);
-            return response.Match(Microsoft.AspNetCore.Http.Results.Ok, ApiResults.Problem);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
-    
+
 }

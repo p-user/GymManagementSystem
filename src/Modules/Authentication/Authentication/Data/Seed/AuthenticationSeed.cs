@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Shared.Constants;
-using Shared.Data.Seed;
+﻿using Shared.Constants;
 
 namespace Authentication.Data.Seed
 {

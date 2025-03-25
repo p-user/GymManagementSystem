@@ -1,9 +1,4 @@
-﻿
-using System.Net.Http.Json;
-using System.Net;
-using WorkoutCatalog.Workouts.Dtos;
-
-namespace IntegrationTests.WorkoutCatalogModule
+﻿namespace IntegrationTests.WorkoutCatalogModule
 {
     public class WorkoutCatalogModuleEndpointsTests : BaseTest
     {

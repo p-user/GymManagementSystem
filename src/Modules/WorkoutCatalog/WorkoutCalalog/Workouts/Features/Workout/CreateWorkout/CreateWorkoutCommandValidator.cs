@@ -1,7 +1,4 @@
-﻿
-using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
+﻿namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
 {
     public class CreateWorkoutCommandValidator : AbstractValidator<CreateWorkoutCommand>
     {
@@ -11,7 +8,7 @@ namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
             .NotEmpty().WithMessage("Workout name is required.")
             .MaximumLength(100).WithMessage("Workout name cannot exceed 100 characters.");
 
-          
+
             RuleFor(x => x.dto.Description)
                 .MaximumLength(500).WithMessage("Description cannot exceed 500 characters.");
 
@@ -21,7 +18,7 @@ namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
             RuleForEach(x => x.dto.Exercises)
                 .Must(id => id != Guid.Empty).WithMessage("Each exercise must have a valid ID.");
 
-          
+
             RuleForEach(x => x.dto.Categories)
                 .Must(id => id != Guid.Empty).WithMessage("Each category must have a valid ID.");
         }

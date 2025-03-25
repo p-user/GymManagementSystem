@@ -19,5 +19,5 @@ namespace Membership.Membership.Features.Discount.ActivateDiscount
             return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
-    
+
 }

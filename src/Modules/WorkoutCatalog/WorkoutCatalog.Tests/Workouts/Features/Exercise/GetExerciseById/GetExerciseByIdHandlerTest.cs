@@ -1,7 +1,6 @@
 ﻿
 
 using AutoMapper;
-using System.Xml.Schema;
 using WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.GetExerciseById

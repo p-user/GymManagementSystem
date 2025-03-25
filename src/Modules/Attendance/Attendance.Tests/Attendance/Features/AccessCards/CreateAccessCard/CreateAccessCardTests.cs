@@ -40,8 +40,8 @@ namespace Attendance.Tests.Attendance.Features.AccessCards.CreateAccessCard
                 .Callback<AccessCard, CancellationToken>((ac, _) => capturedAccessCard = ac)
                  .ReturnsAsync((AccessCard ac, CancellationToken _) =>
                  {
-                     var entry = new Mock<Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<AccessCard>>(null); 
-                     entry.Setup(e => e.Entity).Returns(ac); 
+                     var entry = new Mock<Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<AccessCard>>(null);
+                     entry.Setup(e => e.Entity).Returns(ac);
                      return entry.Object;
                  });
 
@@ -53,7 +53,7 @@ namespace Attendance.Tests.Attendance.Features.AccessCards.CreateAccessCard
             Assert.NotNull(capturedAccessCard);
             Assert.Equal(validAccessCard.OwnerId, capturedAccessCard.OwnerId);
             Assert.Equal(validAccessCard.OwnerType, capturedAccessCard.OwnerType);
-          
+
             Assert.NotNull(capturedAccessCard.CardNumber);
 
             mockDbSet.Verify(s => s.AddAsync(It.IsAny<AccessCard>(), It.IsAny<CancellationToken>()), Times.Once);

@@ -20,11 +20,11 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.UpdateWorkoutCa
             _mockSet = _fixture.WorkoutCategories.CreateDbSetMock<Models.WorkoutCategory, Guid>();
 
             _dbContextMock = new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
-      
+
 
             _dbContextMock.Setup(x => x.WorkoutCategories).Returns(_mockSet.Object);
 
-            _validatorMock= new Mock<IValidator<UpdateWorkoutCategoryCommand>>();
+            _validatorMock = new Mock<IValidator<UpdateWorkoutCategoryCommand>>();
             _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<UpdateWorkoutCategoryCommand>>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new ValidationResult());
 
@@ -40,7 +40,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.UpdateWorkoutCa
             // Arrange
 
             var existingEntity = _fixture.WorkoutCategories.First();
-        var id = existingEntity.Id;
+            var id = existingEntity.Id;
 
             var sampleDto = new UpdateWorkoutCategoryDto
             {

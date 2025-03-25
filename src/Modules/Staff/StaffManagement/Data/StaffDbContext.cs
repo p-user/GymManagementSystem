@@ -1,8 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
-
-namespace StaffManagement.Data
+﻿namespace StaffManagement.Data
 {
     public class StaffDbContext : DbContext
     {
@@ -22,5 +18,5 @@ namespace StaffManagement.Data
         }
 
     }
-    
+
 }

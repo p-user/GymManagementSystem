@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
 {
     public class AddMuscleGroupToExerciseEndpoint : ICarterModule
     {
@@ -24,7 +22,8 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise
         {
             var command = new AddMuscleGroupToExerciseCommand(exerciseId, muscleGroupId);
             var result = await sender.Send(command, cancellationToken);
-            return result is not null ? Results.Ok(result) : Results.NotFound();
+            return result.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

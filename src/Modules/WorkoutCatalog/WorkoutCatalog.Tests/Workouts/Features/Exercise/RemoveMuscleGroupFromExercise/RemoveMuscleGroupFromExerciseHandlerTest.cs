@@ -26,7 +26,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.RemoveMuscleGroupFromE
             // Arrange
             var exercise = _fixture.Exercises.First();
             var muscleGroup = exercise.MuscleGroups.First();
-    
+
             // Act
             var result = await _handler.Handle(new RemoveMuscleGroupFromExerciseCommand(exercise.Id, muscleGroup.Id), CancellationToken.None);
             // Assert

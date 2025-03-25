@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WorkoutCatalog.Models;
 
 namespace WorkoutCalalog.Data.Configurations
 {
@@ -8,33 +7,33 @@ namespace WorkoutCalalog.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Exercise> builder)
         {
-            builder.HasKey(e => e.Id); 
+            builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Name)
-                .IsRequired() 
-                .HasMaxLength(100); 
+                .IsRequired()
+                .HasMaxLength(100);
 
             builder.Property(e => e.Description)
-                .HasMaxLength(500); 
+                .HasMaxLength(500);
 
             builder.Property(e => e.DescriptionLink)
-                .HasMaxLength(200); 
+                .HasMaxLength(200);
 
-            builder.HasOne<ExerciseCategory>() 
+            builder.HasOne<ExerciseCategory>()
                 .WithMany() // Assuming one ExerciseCategory can have many Exercises
                 .HasForeignKey(e => e.ExerciseCategory)
-                .OnDelete(DeleteBehavior.Cascade); 
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Configure the relationship with MuscleGroup
             builder.HasMany(e => e.MuscleGroups)
-                .WithMany(m=>m.Exercises) // Assuming many-to-many relationship
+                .WithMany(m => m.Exercises) // Assuming many-to-many relationship
                 .UsingEntity(j => j.ToTable("ExerciseMuscleGroups"));
 
 
 
             // Configure the relationship with Workout
             builder.HasMany(e => e.Workouts)
-                .WithMany(s=>s.Exercises)
+                .WithMany(s => s.Exercises)
                 .UsingEntity(j => j.ToTable("ExerciseWorkouts"));
 
 

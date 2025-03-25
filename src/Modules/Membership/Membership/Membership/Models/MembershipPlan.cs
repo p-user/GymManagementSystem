@@ -12,7 +12,7 @@ namespace Membership.Models
 
         private List<Membership> _memberships = new List<Membership>();
 
-        public IReadOnlyList<Membership> Memberships  => _memberships.AsReadOnly();
+        public IReadOnlyList<Membership> Memberships => _memberships.AsReadOnly();
 
         // Discounts applicable to this membership plan
 
@@ -57,7 +57,7 @@ namespace Membership.Models
         }
 
 
-        public void Update(string name,  MembershipDuration duration, WeeklyAllowance maxVisitsPerWeek, string description)
+        public void Update(string name, MembershipDuration duration, WeeklyAllowance maxVisitsPerWeek, string description)
         {
             ArgumentNullException.ThrowIfNull(name, nameof(name));
             ArgumentNullException.ThrowIfNull(description, nameof(description));
@@ -66,7 +66,7 @@ namespace Membership.Models
             DurationInMonths = duration;
             MaxVisitsPerWeek = maxVisitsPerWeek;
             Description = description;
-          
+
         }
 
 
@@ -77,7 +77,7 @@ namespace Membership.Models
 
         public void AddDiscount(Discount discount)
         {
-            
+
             if (!_discountsApplicable.Contains(discount))
                 _discountsApplicable.Add(discount);
         }

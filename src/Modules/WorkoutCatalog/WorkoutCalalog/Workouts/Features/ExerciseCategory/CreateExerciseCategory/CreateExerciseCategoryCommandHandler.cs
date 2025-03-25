@@ -1,11 +1,9 @@
-﻿using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.CreateExerciseCategory
+﻿namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.CreateExerciseCategory
 {
-    public record CreateExerciseCategoryCommand(CreateExerciseCategoryDto dto) : IRequest<Guid>;
-    public class CreateExerciseCategoryCommandHandler(WorkoutCatalogDbContext context, IValidator<CreateExerciseCategoryCommand> _validator) : IRequestHandler<CreateExerciseCategoryCommand, Guid>
+    public record CreateExerciseCategoryCommand(CreateExerciseCategoryDto dto) : IRequest<Results<Guid>>;
+    public class CreateExerciseCategoryCommandHandler(WorkoutCatalogDbContext context, IValidator<CreateExerciseCategoryCommand> _validator) : IRequestHandler<CreateExerciseCategoryCommand, Results<Guid>>
     {
-        public async Task<Guid> Handle(CreateExerciseCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(CreateExerciseCategoryCommand request, CancellationToken cancellationToken)
         {
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
             var entity = CreateExerciseCategory(request.dto);

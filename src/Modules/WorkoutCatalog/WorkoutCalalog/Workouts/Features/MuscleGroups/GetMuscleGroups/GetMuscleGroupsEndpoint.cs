@@ -1,4 +1,5 @@
-﻿namespace WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroups
+﻿
+namespace WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroups
 {
     public class GetMuscleGroupsEndpoint : ICarterModule
     {
@@ -16,7 +17,8 @@
         private async Task<IResult> GetMuscleGroups(ISender sender)
         {
             var response = await sender.Send(new GetMuscleGroupsQuery());
-            return Results.Ok(response);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

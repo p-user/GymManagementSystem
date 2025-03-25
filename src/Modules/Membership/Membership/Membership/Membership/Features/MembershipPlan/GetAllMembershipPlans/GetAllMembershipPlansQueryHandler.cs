@@ -1,9 +1,4 @@
-﻿
-
-using AutoMapper;
-
-
-namespace Membership.Membership.Features.MembershipPlan.GetAllMembershipPlans
+﻿namespace Membership.Membership.Features.MembershipPlan.GetAllMembershipPlans
 {
 
     public record GetAllMembershipPlansQuery : IRequest<Results<List<ViewMembershipPlanDto>>>;

@@ -1,6 +1,5 @@
 ﻿
 using AutoMapper;
-using Moq.EntityFrameworkCore;
 using WorkoutCatalog.Workouts.Features.Exercise.DeleteExercise;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.DeleteExercise
@@ -15,7 +14,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.DeleteExercise
 
         public DeleteExerciseHandlerTest(ExerciseFixture exerciseFixture, AutoMapperFixture autoMapperFixture)
         {
-            _dbContextMock= new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
+            _dbContextMock = new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
             _fixture = exerciseFixture;
 
             var mockSet = _fixture.Exercises.CreateDbSetMock<Models.Exercise, Guid>();

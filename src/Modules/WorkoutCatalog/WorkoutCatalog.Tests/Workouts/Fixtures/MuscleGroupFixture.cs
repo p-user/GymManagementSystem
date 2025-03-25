@@ -1,7 +1,7 @@
 ﻿
 namespace WorkoutCatalog.Tests.Workouts.Fixtures
 {
-    public class MuscleGroupFixture 
+    public class MuscleGroupFixture
     {
         public List<Models.MuscleGroup> MuscleGroups { get; set; }
         public MuscleGroupFixture()

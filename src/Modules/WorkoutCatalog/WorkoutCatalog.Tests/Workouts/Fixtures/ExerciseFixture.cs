@@ -67,7 +67,7 @@ namespace WorkoutCatalog.Tests.Workouts.Fixtures
                 })
 
             };
-          
+
 
         }
     }

@@ -1,10 +1,4 @@
-﻿
-
-using Microsoft.Extensions.Configuration;
-using System.Net.Mail;
-using System.Net;
-
-namespace Authentication.Services
+﻿namespace Authentication.Services
 {
     public class EmailService : IEmailService
     {

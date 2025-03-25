@@ -1,11 +1,10 @@
-﻿
-namespace Authentication.Authentication.Features.RegisterUser
+﻿namespace Authentication.Authentication.Features.RegisterUser
 {
 
-    public class RegisterUserCommandHandler<T>(UserManager<Models.User> _userManager, RoleManager<Models.Role> _roleManager, ISender sender) 
-        : IRequestHandler<RegisterUserCommand<T>, RegisterUserCommandResponse> where T : RegisterUserDto
+    public class RegisterUserCommandHandler<T>(UserManager<Models.User> _userManager, RoleManager<Models.Role> _roleManager, ISender sender)
+        : IRequestHandler<RegisterUserCommand<T>, Results<RegisterUserCommandResponseDto>> where T : RegisterUserDto
     {
-        public async Task<RegisterUserCommandResponse> Handle(RegisterUserCommand<T> request, CancellationToken cancellationToken)
+        public async Task<Results<RegisterUserCommandResponseDto>> Handle(RegisterUserCommand<T> request, CancellationToken cancellationToken)
         {
             var roleEntity = await _roleManager.FindByNameAsync(request.userDto.UserRole);
             if (roleEntity is null)
@@ -29,15 +28,14 @@ namespace Authentication.Authentication.Features.RegisterUser
                 throw new Exception(result.Errors.FirstOrDefault().Description);
             }
 
-          
+
             await _userManager.AddToRoleAsync(appUser, request.userDto.UserRole);
 
-            //Todo: create activation linik and send via email
             var activationLinkCommand = new ActivationLinkCommand(appUser);
             await sender.Send(activationLinkCommand);
 
             var userId = new Guid(appUser.Id);
-            return new RegisterUserCommandResponse(userId,"User registration is almost complete. Please, check the email address for the activation link!");
+            return new RegisterUserCommandResponseDto(userId, "User registration is almost complete. Please, check the email address for the activation link!");
 
         }
 
@@ -46,6 +44,6 @@ namespace Authentication.Authentication.Features.RegisterUser
             return Models.User.Create(email, name, surname, phonenumber);
         }
     }
-       
-    
+
+
 }

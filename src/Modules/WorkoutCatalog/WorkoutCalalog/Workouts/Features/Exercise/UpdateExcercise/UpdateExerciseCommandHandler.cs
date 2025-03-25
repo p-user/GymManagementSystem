@@ -1,15 +1,13 @@
-﻿using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise
 {
-    public record UpdateExerciseCommand(UpdateExerciseDto Dto, Guid Id) : IRequest<Guid>;
+    public record UpdateExerciseCommand(UpdateExerciseDto Dto, Guid Id) : IRequest<Results<Guid>>;
 
 
-    public class UpdateExerciseCommandHandler(WorkoutCatalogDbContext context, IValidator<UpdateExerciseCommand> validator) : IRequestHandler<UpdateExerciseCommand, Guid>
+    public class UpdateExerciseCommandHandler(WorkoutCatalogDbContext context, IValidator<UpdateExerciseCommand> validator) : IRequestHandler<UpdateExerciseCommand, Results<Guid>>
     {
-        public async Task<Guid> Handle(UpdateExerciseCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(UpdateExerciseCommand request, CancellationToken cancellationToken)
         {
-            var entity = await context.Exercises.FirstOrDefaultAsync(s=>s.Id==request.Id, cancellationToken);
+            var entity = await context.Exercises.FirstOrDefaultAsync(s => s.Id == request.Id, cancellationToken);
             if (entity == null)
             {
                 throw new Exception("Exercise not found");

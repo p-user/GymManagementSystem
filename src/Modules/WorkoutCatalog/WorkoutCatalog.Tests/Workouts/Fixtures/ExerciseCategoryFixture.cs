@@ -1,5 +1,4 @@
-﻿using System;
-using WorkoutCatalog.Models;
+﻿using WorkoutCatalog.Models;
 
 namespace WorkoutCatalog.Tests.Workouts.Fixtures
 {
@@ -17,6 +16,6 @@ namespace WorkoutCatalog.Tests.Workouts.Fixtures
             };
         }
 
-      
+
     }
 }

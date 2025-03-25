@@ -12,7 +12,7 @@ namespace Attendance.Attendance.Features.Logs.LogEntry
             #region verify user and access card
 
             var hasValidMembership = await _sender.Send(new CheckForValidMembershipQuery(request.dto.UserId), cancellationToken);
-            if(hasValidMembership.Value is false)
+            if (hasValidMembership.Value is false)
             {
                 return Results.Failure(MembershipPlanErrors.NoValidMembershipForUser(request.dto.UserId));
             }

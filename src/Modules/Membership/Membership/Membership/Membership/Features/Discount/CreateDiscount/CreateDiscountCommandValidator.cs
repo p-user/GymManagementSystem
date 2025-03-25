@@ -2,7 +2,7 @@
 
 namespace Membership.Membership.Features.Discount.CreateDiscount
 {
-    public class CreateDiscountCommandValidator: AbstractValidator<CreateDiscountCommand>
+    public class CreateDiscountCommandValidator : AbstractValidator<CreateDiscountCommand>
     {
         public CreateDiscountCommandValidator()
         {

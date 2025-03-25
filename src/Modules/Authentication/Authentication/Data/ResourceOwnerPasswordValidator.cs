@@ -1,8 +1,4 @@
-﻿
-using Authentication.Models;
-using Duende.IdentityServer.Models;
-using Duende.IdentityServer.Validation;
-using Microsoft.AspNetCore.Identity;
+﻿using Duende.IdentityServer.Models;
 
 
 namespace Authentication.Data

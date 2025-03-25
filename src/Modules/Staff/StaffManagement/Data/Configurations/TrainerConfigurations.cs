@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using StaffManagement.Models;
 
 namespace StaffManagement.Data.Configurations
 {
@@ -54,20 +53,20 @@ namespace StaffManagement.Data.Configurations
 
 
             // Store Certifications as a separate table
-           builder.OwnsMany(t => t.Certifications, certification =>
-           {
-               certification.ToTable("TrainerCertifications"); // Separate table
+            builder.OwnsMany(t => t.Certifications, certification =>
+            {
+                certification.ToTable("TrainerCertifications"); // Separate table
 
 
-               certification.Property(c => c.Name)
-                      .HasColumnName("CertificationName")
-                      .HasMaxLength(100)
-                      .IsRequired();
+                certification.Property(c => c.Name)
+                       .HasColumnName("CertificationName")
+                       .HasMaxLength(100)
+                       .IsRequired();
 
-               certification.Property(c => c.DateEarned)
-                      .HasColumnName("DateEarned")
-                      .IsRequired();
-           });
+                certification.Property(c => c.DateEarned)
+                       .HasColumnName("DateEarned")
+                       .IsRequired();
+            });
 
 
             builder.Navigation(t => t.Certifications).UsePropertyAccessMode(PropertyAccessMode.Field);
@@ -75,7 +74,7 @@ namespace StaffManagement.Data.Configurations
 
             // Store Current Clients as a separate table
 
-            builder.OwnsMany(s=>s.CurrentClients, client =>
+            builder.OwnsMany(s => s.CurrentClients, client =>
             {
                 client.ToTable("TrainerClients"); // Separate table
                 client.Property(c => c.Id)

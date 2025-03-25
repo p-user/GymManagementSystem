@@ -20,7 +20,7 @@
         {
             var command = new CreateWorkoutCommand(dto);
             var response = await sender.Send(command, ct);
-            return Results.Created($"/workouts/{response}", response);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

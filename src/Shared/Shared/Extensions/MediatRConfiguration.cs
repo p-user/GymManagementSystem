@@ -1,7 +1,4 @@
-﻿
-
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Shared.Behaviours;
 using System.Reflection;
 
@@ -14,7 +11,7 @@ namespace Shared.Extensions
 
             foreach (var assembly in assemblies)
             {
-                services.AddMediatR(s=>
+                services.AddMediatR(s =>
                 {
                     s.RegisterServicesFromAssembly(assembly);
                     s.AddOpenBehavior(typeof(Logging<,>));
@@ -22,8 +19,8 @@ namespace Shared.Extensions
                 });
 
             }
-           
-              
+
+
 
             return services;
         }

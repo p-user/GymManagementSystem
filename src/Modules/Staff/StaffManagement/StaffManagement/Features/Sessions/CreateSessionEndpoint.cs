@@ -23,4 +23,4 @@ namespace StaffManagement.StaffManagement.Features.Sessions
             return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
- }
+}

@@ -1,12 +1,11 @@
-﻿using FluentValidation;
-
+﻿
 namespace WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup
 {
 
-    public record UpdateMuscleGroupCommand(Guid Id, CreateMuscleGroupDto CreateMuscleGroupDto) : IRequest<Guid>;
-    public class UpdateMuscleGroupCommandHandler(WorkoutCatalogDbContext context, IValidator<UpdateMuscleGroupCommand> _validator) : IRequestHandler<UpdateMuscleGroupCommand, Guid>
+    public record UpdateMuscleGroupCommand(Guid Id, CreateMuscleGroupDto CreateMuscleGroupDto) : IRequest<Results<Guid>>;
+    public class UpdateMuscleGroupCommandHandler(WorkoutCatalogDbContext context, IValidator<UpdateMuscleGroupCommand> _validator) : IRequestHandler<UpdateMuscleGroupCommand, Results<Guid>>
     {
-        public async Task<Guid> Handle(UpdateMuscleGroupCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(UpdateMuscleGroupCommand request, CancellationToken cancellationToken)
         {
             var entity = await context.MuscleGroups.FindAsync(request.Id, cancellationToken);
             if (entity is null)

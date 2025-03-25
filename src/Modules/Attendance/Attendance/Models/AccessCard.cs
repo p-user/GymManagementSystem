@@ -12,7 +12,7 @@ namespace Attendance.Models
 
         private AccessCard() { }
 
-        public static AccessCard Create(Guid userId,AccessCardOwnerType ownerType)
+        public static AccessCard Create(Guid userId, AccessCardOwnerType ownerType)
         {
             return new AccessCard
             {
@@ -24,7 +24,7 @@ namespace Attendance.Models
                 Status = AccessCardStatus.Active,
                 IssuedAt = DateTime.UtcNow,
             };
-         }
+        }
 
         public enum AccessCardStatus
         {
@@ -49,6 +49,6 @@ namespace Attendance.Models
 
         public void MarkAsLost() => Status = AccessCardStatus.Lost;
 
-        
+
     }
 }

@@ -27,7 +27,7 @@ namespace Shared.Results
         public static Results Success() => new(true, Error.None);
         public static Results Failure(Error error) => new(false, error);
 
-        public static Results<TValue> Success<TValue>(TValue value) =>  new(value, true, Error.None);
+        public static Results<TValue> Success<TValue>(TValue value) => new(value, true, Error.None);
         public static Results<TValue> Failure<TValue>(Error error) => new(default, false, error);
 
 
@@ -47,9 +47,9 @@ namespace Shared.Results
             ? _value!
             : throw new InvalidOperationException("The value of a failure result can't be accessed.");
 
-        public static implicit operator Results<TValue>(TValue? value) =>   value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
+        public static implicit operator Results<TValue>(TValue? value) => value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
 
-        public static Results<TValue> ValidationFailure(Error error) =>   new(default, false, error);
+        public static Results<TValue> ValidationFailure(Error error) => new(default, false, error);
     }
 
 }

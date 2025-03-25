@@ -2,7 +2,7 @@
 
 namespace WorkoutCatalog.Workouts.Dtos
 {
-   public record  CreateWorkoutCategoryDto
+    public record CreateWorkoutCategoryDto
     {
         public string Name { get; set; }
         public string? Description { get; set; }
@@ -20,5 +20,5 @@ namespace WorkoutCatalog.Workouts.Dtos
     public record UpdateWorkoutCategoryDto : CreateWorkoutCategoryDto
     {
         public Guid Id { get; set; }
-    }   
+    }
 }

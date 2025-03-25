@@ -1,7 +1,6 @@
 ﻿
 using Shared.DDD;
 using Shared.Enums;
-using System.Net;
 
 namespace StaffManagement.Models
 {

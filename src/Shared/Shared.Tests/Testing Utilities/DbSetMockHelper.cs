@@ -4,15 +4,13 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MockQueryable.Moq;
 using Moq;
 using Shared.DDD;
-using System.Collections.ObjectModel;
-using System.Threading;
 
 namespace IntegrationTesting.Testing_Utilities
 {
-    public static  class DbSetMockHelper
+    public static class DbSetMockHelper
     {
 
-        public static Mock<DbSet<T>> CreateDbSetMock<T, TKey>(this IList<T> data) 
+        public static Mock<DbSet<T>> CreateDbSetMock<T, TKey>(this IList<T> data)
             where T : Entity<TKey>
         {
 
@@ -32,7 +30,7 @@ namespace IntegrationTesting.Testing_Utilities
             var mockSet = data.AsQueryable().BuildMockDbSet(); // Create a new mock DbSet
 
 
-         
+
             mockSet.Setup(x => x.FindAsync(It.IsAny<object[]>()))
                .ReturnsAsync((object[] keyValues) =>
                {

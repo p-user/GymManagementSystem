@@ -1,6 +1,4 @@
-﻿
-using Membership.Models;
-using Results = Shared.Results.Results;
+﻿using Results = Shared.Results.Results;
 
 namespace Membership.Membership.Features.Discount.ApplyDiscount
 {
@@ -9,7 +7,7 @@ namespace Membership.Membership.Features.Discount.ApplyDiscount
     {
         public async Task<Results> Handle(ApplyDiscountCommand request, CancellationToken cancellationToken)
         {
-            var discount = await _context.Discounts.Include(s=>s.ApplicablePlans).FirstOrDefaultAsync(s=>s.Id==request.DiscountId, cancellationToken);
+            var discount = await _context.Discounts.Include(s => s.ApplicablePlans).FirstOrDefaultAsync(s => s.Id == request.DiscountId, cancellationToken);
             if (discount == null)
             {
                 return Results.Failure(MembershipModuleErrors.DicountErrors.NotFound(request.DiscountId.ToString()));

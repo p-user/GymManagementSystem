@@ -5,8 +5,8 @@
         public string Name { get; private set; }
         public string? Description { get; private set; }
 
-        private List<Workout> _workouts = new ();
-        public IReadOnlyList <Workout> Workouts  => _workouts.AsReadOnly();
+        private List<Workout> _workouts = new();
+        public IReadOnlyList<Workout> Workouts => _workouts.AsReadOnly();
 
         public static WorkoutCategory Create(string name, string? description)
         {

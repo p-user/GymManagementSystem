@@ -1,13 +1,8 @@
-﻿
-
-using AutoMapper;
-
-
-namespace WorkoutCalalog.Data
+﻿namespace WorkoutCalalog.Data
 {
     public class AutoMapperProfile : Profile
     {
-        public  AutoMapperProfile() 
+        public AutoMapperProfile()
         {
 
             CreateMap<Exercise, CreateExerciseDto>()
@@ -19,7 +14,7 @@ namespace WorkoutCalalog.Data
                 .ReverseMap();
 
             CreateMap<Exercise, UpdateExerciseDto>()
-                
+
                .ReverseMap();
 
             CreateMap<WorkoutCategory, ViewWorkoutCategoryDto>()
@@ -31,7 +26,7 @@ namespace WorkoutCalalog.Data
              .ReverseMap();
 
             CreateMap<MuscleGroup, ViewMuscleGroupDto>()
-              // .ForMember(dest => dest.Exercises, opt => opt.MapFrom(src => src.Exercises))
+             // .ForMember(dest => dest.Exercises, opt => opt.MapFrom(src => src.Exercises))
              .ReverseMap();
 
         }

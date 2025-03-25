@@ -1,7 +1,7 @@
 ﻿
 namespace Shared.Constants
 {
-    public static  class DefaultRoles
+    public static class DefaultRoles
     {
         public static string AdminRole = "Admin";
         public static string MemberRole = "Member";

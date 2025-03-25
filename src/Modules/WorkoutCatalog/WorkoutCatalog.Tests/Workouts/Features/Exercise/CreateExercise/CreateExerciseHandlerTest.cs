@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using WorkoutCatalog.Tests.Workouts.Fixtures;
 using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
@@ -24,14 +22,14 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
             _mapper = autoMapperFixture.Mapper;
 
             var mockDb = _fixture.Exercises.CreateDbSetMock<Models.Exercise, Guid>();
-          
-           
+
+
             _dbContextMock.Setup(x => x.Exercises).Returns(mockDb.Object);
-          
+
 
             var mockDbCategories = fixture.Categories.ExerciseCategories.CreateDbSetMock<Models.ExerciseCategory, Guid>().Object;
             _dbContextMock.Setup(x => x.ExerciseCategories).Returns(mockDbCategories);
-         
+
 
             var mockDbMuscles = fixture.MuscleGroups.MuscleGroups.CreateDbSetMock<Models.MuscleGroup, Guid>().Object;
             _dbContextMock.Setup(x => x.MuscleGroups).Returns(mockDbMuscles);
@@ -51,9 +49,9 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
             //arrange
             var entity = _fixture.Exercises.First();
 
-            var dto = _mapper.Map<CreateExerciseDto>(entity);   
+            var dto = _mapper.Map<CreateExerciseDto>(entity);
 
-          
+
 
             var command = new CreateExerciseCommand(dto);
 
@@ -61,17 +59,17 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.CreateExercise
             //act
             var result = await _handler.Handle(command, CancellationToken.None);
 
-            
+
             _dbContextMock.Verify(x => x.Exercises.AddAsync(It.IsAny<Models.Exercise>(), It.IsAny<CancellationToken>()), Times.Once);
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
 
-           var dbEntity = await  _dbContextMock.Object.Exercises.FindAsync(entity.Id);
+            var dbEntity = await _dbContextMock.Object.Exercises.FindAsync(entity.Id);
 
 
             //assert
             Assert.NotNull(dbEntity);
-           dbEntity.Name.Should().Be(entity.Name);
-           dbEntity.Description.Should().Be(entity.Description);
+            dbEntity.Name.Should().Be(entity.Name);
+            dbEntity.Description.Should().Be(entity.Description);
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using AutoMapper;
-
-namespace WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById
 {
 
-    public record GetExerciseByIdQuery(Guid Id) : IRequest<ViewExerciseDto>;
-    public class GetExerciseByIdQueryHandler(WorkoutCatalogDbContext context, IMapper mapper) : IRequestHandler<GetExerciseByIdQuery, ViewExerciseDto>
+    public record GetExerciseByIdQuery(Guid Id) : IRequest<Results<ViewExerciseDto>>;
+    public class GetExerciseByIdQueryHandler(WorkoutCatalogDbContext context, IMapper mapper) : IRequestHandler<GetExerciseByIdQuery, Results<ViewExerciseDto>>
     {
-        public async Task<ViewExerciseDto> Handle(GetExerciseByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Results<ViewExerciseDto>> Handle(GetExerciseByIdQuery request, CancellationToken cancellationToken)
         {
             var entity = await context.Exercises
                 .Include(e => e.MuscleGroups)

@@ -1,10 +1,4 @@
-﻿
-using Carter;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-
-namespace Authentication.Authentication.Features.LogOut
+﻿namespace Authentication.Authentication.Features.LogOut
 {
     public class LogOutEndpoint : ICarterModule
     {
@@ -14,13 +8,13 @@ namespace Authentication.Authentication.Features.LogOut
                  .WithDescription("LogOut endpoint")
                  .WithName("LogOut")
                  .WithTags("Authentication")
-                 .Produces<bool>();
+                 .Produces<Shared.Results.Results>();
         }
 
         private async Task<IResult> LogOut(ISender sender, [FromBody] string token)
         {
-            var response = await sender.Send(new LogOutCommand(token));
-            return Results.Ok(response);
+            Shared.Results.Results response = await sender.Send(new LogOutCommand(token));
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

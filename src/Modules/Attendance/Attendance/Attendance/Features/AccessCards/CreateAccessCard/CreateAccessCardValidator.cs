@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Attendance.Attendance.Features.AccessCards.CreateAccessCard
 {
-    public class CreateAccessCardValidator: AbstractValidator<CreateAccessCardCommand>
+    public class CreateAccessCardValidator : AbstractValidator<CreateAccessCardCommand>
     {
         public CreateAccessCardValidator()
         {

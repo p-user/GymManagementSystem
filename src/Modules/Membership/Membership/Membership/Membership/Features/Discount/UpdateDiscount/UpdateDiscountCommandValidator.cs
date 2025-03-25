@@ -30,5 +30,5 @@ namespace Membership.Membership.Features.Discount.UpdateDiscount
                .WithMessage("StartDate must be before or equal to EndDate.");
         }
     }
-   
+
 }

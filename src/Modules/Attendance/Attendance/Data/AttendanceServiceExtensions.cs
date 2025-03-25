@@ -2,7 +2,7 @@
 
 namespace Attendance.Data
 {
-    public static  class AttendanceServiceExtensions
+    public static class AttendanceServiceExtensions
     {
         public static IServiceCollection AddAttendanceData(this IServiceCollection services, IConfiguration configuration)
         {

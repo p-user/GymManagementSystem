@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WorkoutCatalog.Workouts.Features.MuscleGroups.DeleteMuscleGroup
+﻿namespace WorkoutCatalog.Workouts.Features.MuscleGroups.DeleteMuscleGroup
 {
     public class DeleteMuscleGroupEndpoint : ICarterModule
     {
@@ -19,7 +17,7 @@ namespace WorkoutCatalog.Workouts.Features.MuscleGroups.DeleteMuscleGroup
         private async Task<IResult> DeleteMuscleGroup(ISender sender, [FromRoute] Guid id)
         {
             var response = await sender.Send(new DeleteMuscleGroupCommand(id));
-            return response ? Results.NoContent() : Results.NotFound();
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

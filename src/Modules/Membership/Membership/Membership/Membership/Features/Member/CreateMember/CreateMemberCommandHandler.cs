@@ -1,9 +1,9 @@
 ﻿
 namespace Membership.Membership.Features.Member.CreateMember
 {
-    public record  CreateMemberCommand(CreateMemberDto dto) : IRequest<Results<string>>;
+    public record CreateMemberCommand(CreateMemberDto dto) : IRequest<Results<string>>;
 
-    public class CreateMemberCommandHandler(ISender _sender, MembershipDbContext _context) 
+    public class CreateMemberCommandHandler(ISender _sender, MembershipDbContext _context)
         : IRequestHandler<CreateMemberCommand, Results<string>>
     {
         public async Task<Results<string>> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
@@ -11,10 +11,10 @@ namespace Membership.Membership.Features.Member.CreateMember
             //Todo : validate dto
 
             var response = await _sender.Send(new RegisterUserCommand<CreateMemberDto>(request.dto));
-            if (response.UserId == Guid.Empty) { throw new Exception("AuthenticationId was not provided! Something went wrong"); }
+            if (response.Value.UserId == Guid.Empty) { throw new Exception("AuthenticationId was not provided! Something went wrong"); }
 
             //register the user as a valid gym memeber
-            var member = CreateMember(request.dto, response.UserId);
+            var member = CreateMember(request.dto, response.Value.UserId);
             var added = await _context.Members.AddAsync(member);
             await _context.SaveChangesAsync(cancellationToken);
 
@@ -33,5 +33,5 @@ namespace Membership.Membership.Features.Member.CreateMember
                 );
         }
     }
-    
+
 }

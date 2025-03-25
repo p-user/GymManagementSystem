@@ -1,11 +1,8 @@
-﻿
-
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Shared.Data.Interceptors;
+﻿using Shared.Data.Interceptors;
 
 namespace StaffManagement.Data
 {
-    public static  class StaffServiceExtensions
+    public static class StaffServiceExtensions
     {
 
         public static IServiceCollection AddStaffData(this IServiceCollection services, IConfiguration configuration)

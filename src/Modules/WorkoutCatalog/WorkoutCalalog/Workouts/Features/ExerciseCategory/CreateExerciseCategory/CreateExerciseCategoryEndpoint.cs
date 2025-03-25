@@ -1,4 +1,5 @@
-﻿namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.CreateExerciseCategory
+﻿
+namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.CreateExerciseCategory
 {
     public class CreateExerciseCategoryEndpoint : ICarterModule
     {
@@ -7,7 +8,7 @@
             app.MapPost("/exercise/categories", CreateExerciseCategory)
                 .WithName("CreateExerciseCategory")
                 .WithTags("Exercise Categories")
-                .Produces<Guid>(StatusCodes.Status201Created)
+                .Produces<Results<Guid>>(StatusCodes.Status201Created)
                 .ProducesValidationProblem(StatusCodes.Status400BadRequest)
                 .WithDescription("Creates a new exercise category for the workout catalog.")
                 .WithSummary("Create a new exercise category.");
@@ -20,7 +21,8 @@
         {
             var command = new CreateExerciseCategoryCommand(request);
             var response = await sender.Send(command, cancel);
-            return Results.Created($"/exercise/exercise-categories/{response}", response);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

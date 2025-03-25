@@ -1,14 +1,9 @@
-﻿using Duende.IdentityServer;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
-using System.Net.Http;
-
-namespace Authentication.Authentication.Features.LogOut
+﻿namespace Authentication.Authentication.Features.LogOut
 {
-    public record LogOutCommand(string Token) : IRequest<bool>;
-    public class LogOutCommandHandler(IHttpContextAccessor _httpContextAccessor, IHttpClientFactory _httpClient, IDiscoveryService _discoveryService) : IRequestHandler<LogOutCommand, bool>
+    public record LogOutCommand(string Token) : IRequest<Shared.Results.Results>;
+    public class LogOutCommandHandler(IHttpContextAccessor _httpContextAccessor, IHttpClientFactory _httpClient, IDiscoveryService _discoveryService) : IRequestHandler<LogOutCommand, Shared.Results.Results>
     {
-        public async Task<bool> Handle(LogOutCommand request, CancellationToken cancellationToken)
+        public async Task<Shared.Results.Results> Handle(LogOutCommand request, CancellationToken cancellationToken)
         {
             var context = _httpContextAccessor.HttpContext;
             await context.SignOutAsync(IdentityServerConstants.DefaultCookieAuthenticationScheme);
@@ -19,7 +14,9 @@ namespace Authentication.Authentication.Features.LogOut
 
                 if (doc.IsError)
                 {
-                    throw new Exception("Failed to retrieve IdentityServer discovery document.");
+                    var error = new Error("141", doc.Error, ErrorType.Failure);
+                    return Shared.Results.Results.Failure(error);
+
                 }
                 var pswtokenRevokeRequest = new TokenRevocationRequest
                 {
@@ -33,11 +30,13 @@ namespace Authentication.Authentication.Features.LogOut
 
                 if (tokenRevokeResponse.IsError)
                 {
-                    throw new Exception("Failed to revoke refresh token: " + tokenRevokeResponse.Error);
+                    var error = new Error(tokenRevokeResponse.HttpStatusCode.ToString(), tokenRevokeResponse.Error, ErrorType.Failure);
+                    return Shared.Results.Results.Failure(error);
+
                 }
             }
 
-            return true;
+            return Shared.Results.Results.Success();
         }
     }
 }

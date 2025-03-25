@@ -1,8 +1,4 @@
-﻿
-
-using AutoMapper;
-
-namespace Membership.Membership.Features.MembershipPlan.GetMembershipPlan
+﻿namespace Membership.Membership.Features.MembershipPlan.GetMembershipPlan
 {
     public record GetMembershipPlanByIdQuery(Guid Id) : IRequest<Results<ViewMembershipPlanDto>>;
     public class GetMembershipPlanByIdQueryHandler(MembershipDbContext _membershipDbContext, IMapper _mapper) : IRequestHandler<GetMembershipPlanByIdQuery, Results<ViewMembershipPlanDto>>
@@ -18,5 +14,5 @@ namespace Membership.Membership.Features.MembershipPlan.GetMembershipPlan
             return response;
         }
     }
-    
+
 }

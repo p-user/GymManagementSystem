@@ -1,6 +1,4 @@
-﻿
-
-namespace Authentication.Data
+﻿namespace Authentication.Data
 {
     public static class AuthenticationServiceExtensions
     {
@@ -25,8 +23,8 @@ namespace Authentication.Data
             services.AddScoped<IDiscoveryService, DiscoveryService>();
             services.AddScoped<IEmailService, EmailService>();
 
-            services.AddScoped<IRequestHandler<RegisterUserCommand<CreateMemberDto>, RegisterUserCommandResponse>, RegisterUserCommandHandler<CreateMemberDto>>();
-            services.AddScoped<IRequestHandler<RegisterUserCommand<CreateStaffDto>, RegisterUserCommandResponse>, RegisterUserCommandHandler<CreateStaffDto>>();
+            services.AddScoped<IRequestHandler<RegisterUserCommand<CreateMemberDto>, Results<RegisterUserCommandResponseDto>>, RegisterUserCommandHandler<CreateMemberDto>>();
+            services.AddScoped<IRequestHandler<RegisterUserCommand<CreateStaffDto>, Results<RegisterUserCommandResponseDto>>, RegisterUserCommandHandler<CreateStaffDto>>();
 
 
             services.AddScoped<ISeed, AuthenticationSeed>();
@@ -51,7 +49,7 @@ namespace Authentication.Data
             .AddInMemoryIdentityResources(Clients.GetIdentityResources())
             .AddDeveloperSigningCredential();
 
-      
+
 
             services.AddAuthentication(options =>
             {
@@ -69,8 +67,8 @@ namespace Authentication.Data
                     ValidateAudience = true,
                     ValidAudience = "GYMApi"
                 };
-               
-            }); 
+
+            });
             services.AddAuthorization();
 
             return services;

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
-
-namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
 {
     public class CreateExerciseEndpoint : ICarterModule
     {
@@ -16,11 +13,13 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
                 .WithSummary("Create a new exercise for the workout catalog");
         }
 
-        private async Task<IResult> CreateExercise(ISender sender,[FromBody]CreateExerciseDto dto, CancellationToken ct)
+        private async Task<IResult> CreateExercise(ISender sender, [FromBody] CreateExerciseDto dto, CancellationToken ct)
         {
             var command = new CreateExerciseCommand(dto);
             var response = await sender.Send(command, ct);
-            return Results.Created($"/exercise/{response}", response);
+
+
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

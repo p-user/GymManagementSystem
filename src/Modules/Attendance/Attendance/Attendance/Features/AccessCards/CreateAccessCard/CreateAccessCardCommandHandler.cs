@@ -7,7 +7,7 @@ namespace Attendance.Attendance.Features.AccessCards.CreateAccessCard
 
     public class CreateAccessCardCommandHandler(AttendanceDbContext _context, IValidator<CreateAccessCardCommand> _validator) : IRequestHandler<CreateAccessCardCommand, Results>
     {
-        public async  Task<Results> Handle(CreateAccessCardCommand request, CancellationToken cancellationToken)
+        public async Task<Results> Handle(CreateAccessCardCommand request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)

@@ -1,7 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Identity;
-
-namespace Authentication.Models
+﻿namespace Authentication.Models
 {
     public class Role : IdentityRole
     {

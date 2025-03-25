@@ -1,14 +1,4 @@
-﻿
-
-using Authentication.Authentication.Dtos;
-using Carter;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-
-namespace Authentication.Authentication.Features.ConnectToken
+﻿namespace Authentication.Authentication.Features.ConnectToken
 {
     public class ConnectTokenEndpoint : ICarterModule
     {
@@ -18,13 +8,13 @@ namespace Authentication.Authentication.Features.ConnectToken
                 .WithDescription("Get Token endpoint")
                 .WithName("GetToken")
                 .WithTags("Authentication")
-                .Produces<ConnectTokenResponse>();
+                .Produces<Results<RequestTokenResponseDto>>();
         }
 
-        private async Task<IResult> ConnectToken(ISender sender,[FromBody] RequestTokenDto requestTokenDto)
+        private async Task<IResult> ConnectToken(ISender sender, [FromBody] RequestTokenDto requestTokenDto)
         {
-            var response = await sender.Send(new ConnectTokenRequest(requestTokenDto));
-            return Results.Ok(response);
+            Shared.Results.Results<RequestTokenResponseDto> response = await sender.Send(new ConnectTokenRequest(requestTokenDto));
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

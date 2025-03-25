@@ -1,7 +1,7 @@
 ﻿
 namespace Shared.Constants
 {
-    public static  class DefaultSchemas
+    public static class DefaultSchemas
     {
         public static string StaffSchema = "Staff";
         public static string AttendanceSchema = "Attendance";

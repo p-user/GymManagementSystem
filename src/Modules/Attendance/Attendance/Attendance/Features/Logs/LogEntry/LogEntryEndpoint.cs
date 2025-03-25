@@ -21,7 +21,7 @@ namespace Attendance.Attendance.Features.Logs.LogEntry
         private async Task<IResult> LogEntry([FromBody] LogDto dto, ISender sender)
         {
             Shared.Results.Results response = await sender.Send(new LogEntryCommand(dto));
-            return response.Match(()=> Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

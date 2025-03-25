@@ -1,8 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
-
-namespace Attendance.Attendance.Features.Logs.LogBreakOut
+﻿namespace Attendance.Attendance.Features.Logs.LogBreakOut
 {
     public record LogBreakOutCommand(Guid AccessCardId) : IRequest<Results>;
     public class LogBreakOutCommandHandler(AttendanceDbContext _context) : IRequestHandler<LogBreakOutCommand, Results>

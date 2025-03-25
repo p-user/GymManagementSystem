@@ -36,7 +36,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.GetExerciseCat
 
             // Arrange
             var query = new GetExerciseCategoriesQuery();
-           
+
             // Act
             var result = await _handler.Handle(query, CancellationToken.None);
             // Assert

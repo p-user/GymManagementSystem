@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace Authentication.Models
+﻿namespace Authentication.Models
 {
     public class User : IdentityUser
     {
-        
+
         public static User Create(string email, string name, string surname, string phonenumber) => new User
         {
             AccessFailedCount = 0,
@@ -19,13 +17,13 @@ namespace Authentication.Models
             PhoneNumberConfirmed = false,
             TwoFactorEnabled = false,
             UserName = email,
-          
+
 
 
         };
 
-       
+
     }
 
-   
+
 }

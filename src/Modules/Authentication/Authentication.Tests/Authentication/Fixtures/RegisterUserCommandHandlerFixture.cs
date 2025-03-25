@@ -32,4 +32,4 @@ namespace Authentication.Tests.Fixtures
                 .ReturnsAsync((string roleName) => roleName == "ValidRole" ? new Models.Role { Name = roleName } : null);
         }
     }
-} 
+}

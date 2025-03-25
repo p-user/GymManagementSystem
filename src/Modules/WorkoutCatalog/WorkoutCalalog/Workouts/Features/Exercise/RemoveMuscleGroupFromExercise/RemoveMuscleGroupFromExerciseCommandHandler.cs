@@ -1,14 +1,13 @@
 ﻿
-
-using AutoMapper;
+using Results = Shared.Results.Results;
 
 namespace WorkoutCatalog.Workouts.Features.Exercise.RemoceMuscleGroupFromExercise
 {
 
-    public record RemoveMuscleGroupFromExerciseCommand(Guid exerciseId, Guid muscleGroupId) : IRequest<bool>;
-    public class RemoveMuscleGroupFromExerciseCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<RemoveMuscleGroupFromExerciseCommand, bool>
+    public record RemoveMuscleGroupFromExerciseCommand(Guid exerciseId, Guid muscleGroupId) : IRequest<Results>;
+    public class RemoveMuscleGroupFromExerciseCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<RemoveMuscleGroupFromExerciseCommand, Results>
     {
-        public async  Task<bool> Handle(RemoveMuscleGroupFromExerciseCommand request, CancellationToken cancellationToken)
+        public async Task<Results> Handle(RemoveMuscleGroupFromExerciseCommand request, CancellationToken cancellationToken)
         {
             var entity = await context.Exercises.Include(e => e.MuscleGroups).FirstOrDefaultAsync(e => e.Id == request.exerciseId, cancellationToken);
 
@@ -17,10 +16,10 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.RemoceMuscleGroupFromExercis
                 throw new Exception("Exercise was not found!");
             }
 
-           entity.RemoveMuscleGroup(request.muscleGroupId);
+            entity.RemoveMuscleGroup(request.muscleGroupId);
 
             await context.SaveChangesAsync(cancellationToken);
-            return true;
+            return Results.Success();
         }
     }
 }

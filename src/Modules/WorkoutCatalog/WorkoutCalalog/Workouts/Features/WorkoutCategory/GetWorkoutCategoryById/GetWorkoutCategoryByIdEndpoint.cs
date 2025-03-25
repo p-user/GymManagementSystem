@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.GetWorkoutCategoryById
+﻿namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.GetWorkoutCategoryById
 {
     public class GetWorkoutCategoryByIdEndpoint : ICarterModule
     {
@@ -19,7 +17,7 @@ namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.GetWorkoutCategoryByI
         private async Task<IResult> GetWorkoutCategoryById(ISender sender, [FromRoute] Guid id)
         {
             var response = await sender.Send(new GetWorkoutCategoryByIdQuery(id));
-            return response is not null ? Results.Ok(response) : Results.NotFound();
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Membership.Tests.Membership.Features.MembershipPlan
 {
     public class CreateMembershipPlanCommandHandlerTests
     {
-        private readonly Mock<MembershipDbContext>_mockDbContext;
+        private readonly Mock<MembershipDbContext> _mockDbContext;
         private readonly CreateMembershipPlanCommandHandler _handler;
         private readonly Faker<CreateMembershipPlanDto> _faker;
 
@@ -28,7 +28,7 @@ namespace Membership.Tests.Membership.Features.MembershipPlan
           .RuleFor(d => d.MaxVisitsPerWeek, f => f.PickRandom<CreateMembershipPlanDto.WeeklyAllowance>())
           .RuleFor(d => d.Description, f => f.Lorem.Sentence());
 
-          
+
 
             _mockDbContext = new Mock<MembershipDbContext>(new DbContextOptions<MembershipDbContext>());
 
@@ -45,7 +45,7 @@ namespace Membership.Tests.Membership.Features.MembershipPlan
             var command = new CreateMembershipPlanCommand(dto.Value);
             _mockDbContext.Setup(db => db.AddAsync(It.IsAny<Models.MembershipPlan>(), It.IsAny<CancellationToken>()))
                  .ReturnsAsync((Models.MembershipPlan entity, CancellationToken _) =>
-                 { 
+                 {
                      var entityEntryMock = new Mock<EntityEntry<Models.MembershipPlan>>();
                      entityEntryMock.Setup(e => e.Entity).Returns(entity);
                      return entityEntryMock.Object;

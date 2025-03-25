@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WorkoutCatalog.Models;
 
 namespace WorkoutCalalog.Data.Configurations
 {
@@ -12,11 +11,11 @@ namespace WorkoutCalalog.Data.Configurations
 
             // Configure properties
             builder.Property(ec => ec.Name)
-                .IsRequired() 
-                .HasMaxLength(100); 
+                .IsRequired()
+                .HasMaxLength(100);
 
             builder.Property(ec => ec.Description)
-                .HasMaxLength(500); 
+                .HasMaxLength(500);
 
             // Configure the relationship with Exercise
             builder.HasMany(ec => ec.Exercises)

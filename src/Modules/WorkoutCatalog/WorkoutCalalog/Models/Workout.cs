@@ -47,12 +47,12 @@
 
             Name = name;
             Description = description;
-               
+
         }
 
         public void AddWorkoutCategories(List<WorkoutCategory> categories)
         {
-            if(categories == null)
+            if (categories == null)
             {
                 throw new ArgumentNullException(nameof(categories));
             }
@@ -73,16 +73,16 @@
 
         public void RemoveWorkoutCategory(WorkoutCategory category)
         {
-           
-                if (_workoutCategories.Contains(category))
-                {
-                    _workoutCategories.Remove(category);
-                }
-                else
-                {
-                    throw new InvalidOperationException("This category has not been set to this workout");
-                }
-            
+
+            if (_workoutCategories.Contains(category))
+            {
+                _workoutCategories.Remove(category);
+            }
+            else
+            {
+                throw new InvalidOperationException("This category has not been set to this workout");
+            }
+
         }
     }
 }

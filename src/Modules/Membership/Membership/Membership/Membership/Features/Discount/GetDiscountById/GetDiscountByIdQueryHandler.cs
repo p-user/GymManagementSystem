@@ -14,7 +14,7 @@ namespace Membership.Membership.Features.Discount.GetDiscountById
                 return Results.Failure<DiscountDto>(MembershipModuleErrors.DicountErrors.NotFound(request.id.ToString()));
             }
 
-            var result = _mapper.Map<DiscountDto>(discount);    
+            var result = _mapper.Map<DiscountDto>(discount);
             return result;
 
 

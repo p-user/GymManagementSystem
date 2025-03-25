@@ -1,6 +1,4 @@
-﻿using Shared.Enums;
-using StaffManagement.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Authentication.Contracts.Authentication.Dtos
 {
@@ -24,7 +22,7 @@ namespace Authentication.Contracts.Authentication.Dtos
         public string Telephone { get; init; }
 
         //enforce the child class to implement this property
-        public abstract  string UserRole { get; set; }
+        public abstract string UserRole { get; set; }
 
 
     }

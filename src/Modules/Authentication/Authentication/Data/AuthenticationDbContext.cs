@@ -1,7 +1,4 @@
-﻿
-using Authentication.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Shared.Constants;
 
 namespace Authentication.Data
@@ -10,11 +7,11 @@ namespace Authentication.Data
     {
         public AuthenticationDbContext(DbContextOptions<AuthenticationDbContext> dbContextOptions) : base(dbContextOptions)
         {
-            
+
         }
 
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Role> Roles  { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

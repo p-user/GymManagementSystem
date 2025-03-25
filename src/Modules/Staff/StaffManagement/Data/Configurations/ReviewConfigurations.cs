@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using StaffManagement.Models;
 
 namespace StaffManagement.Data.Configurations
 {
@@ -20,13 +19,13 @@ namespace StaffManagement.Data.Configurations
             builder.Property(r => r.ReviewDate)
                    .IsRequired();
 
-          builder.Property(r => r.MemberId)
-          .HasConversion(
-               id => id.Id,   
-               value => new ClientId(value) 
-           )
-          .HasColumnName("MemberId")
-          .IsRequired();
+            builder.Property(r => r.MemberId)
+            .HasConversion(
+                 id => id.Id,
+                 value => new ClientId(value)
+             )
+            .HasColumnName("MemberId")
+            .IsRequired();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Membership.Models
             EndDate = endDate;
             UsageLimit = usageLimit;
             AppliesToAllPlans = appliesToAllPlans;
-           
+
         }
 
 
@@ -68,7 +68,7 @@ namespace Membership.Models
 
         public bool IsApplicableToPlan(Guid plan)
         {
-            return AppliesToAllPlans || ApplicablePlans.Any(p => p.Id == plan); 
+            return AppliesToAllPlans || ApplicablePlans.Any(p => p.Id == plan);
         }
         public void AddApplicablePlan(MembershipPlan plan)
         {
@@ -77,7 +77,7 @@ namespace Membership.Models
                 throw new ArgumentNullException(nameof(plan), "Membership plan cannot be null.");
             }
 
-            if (!_applicablePlans.Contains(plan))  
+            if (!_applicablePlans.Contains(plan))
             {
                 _applicablePlans.Add(plan);
             }
@@ -95,17 +95,17 @@ namespace Membership.Models
 
         public decimal ApplyDiscount(decimal originalPrice)
         {
-            
+
             if (DiscountAmount.HasValue)
             {
                 return originalPrice * (1 - DiscountAmount.Value);
             }
 
-            else 
+            else
             {
                 return originalPrice - DiscountAmount.Value;
             }
-  
+
         }
     }
 }

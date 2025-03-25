@@ -7,7 +7,7 @@ namespace Shared.DDD
         IReadOnlyList<IDomainEvent> ClearEvents();
     }
 
-    public interface IAggregation<T> : IAggregation,IEntity<T>
+    public interface IAggregation<T> : IAggregation, IEntity<T>
     {
     }
 }

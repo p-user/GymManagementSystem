@@ -6,7 +6,7 @@ namespace Shared.DDD
     {
 
         public DateTime? CreatedAt { get; set; }
-        public string? CreatedBy { get; set; }   
+        public string? CreatedBy { get; set; }
         public string? LastModifiedBy { get; set; }
         public DateTime? LastModifiedAt { get; set; }
     }
@@ -14,5 +14,5 @@ namespace Shared.DDD
     {
         public T Id { get; set; }
     }
-    
+
 }

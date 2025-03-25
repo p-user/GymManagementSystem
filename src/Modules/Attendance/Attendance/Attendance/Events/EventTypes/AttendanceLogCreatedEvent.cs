@@ -2,7 +2,7 @@
 {
     public class AttendanceLogCreatedEvent : IDomainEvent
     {
-        public Guid UserId { get; set; } =default!;
+        public Guid UserId { get; set; } = default!;
     }
-       
+
 }

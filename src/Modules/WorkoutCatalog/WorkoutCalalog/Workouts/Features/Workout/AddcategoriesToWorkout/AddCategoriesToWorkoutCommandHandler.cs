@@ -1,14 +1,13 @@
 ﻿
-
 namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkoutCategories
 {
 
-    public record AddCategoriesToWorkoutCommand(Guid WorkoutId, List<Guid> CategoryIds) : IRequest<Guid>;
-    public class AddCategoriesToWorkoutCommandHandler(WorkoutCatalogDbContext workoutCatalogDbContext) : IRequestHandler<AddCategoriesToWorkoutCommand, Guid>
+    public record AddCategoriesToWorkoutCommand(Guid WorkoutId, List<Guid> CategoryIds) : IRequest<Results<Guid>>;
+    public class AddCategoriesToWorkoutCommandHandler(WorkoutCatalogDbContext workoutCatalogDbContext) : IRequestHandler<AddCategoriesToWorkoutCommand, Results<Guid>>
     {
-        public async Task<Guid> Handle(AddCategoriesToWorkoutCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(AddCategoriesToWorkoutCommand request, CancellationToken cancellationToken)
         {
-            var workout = await workoutCatalogDbContext.Workouts.Include(s=>s.WorkoutCategories).FirstOrDefaultAsync(s=>s.Id==request.WorkoutId, cancellationToken);
+            var workout = await workoutCatalogDbContext.Workouts.Include(s => s.WorkoutCategories).FirstOrDefaultAsync(s => s.Id == request.WorkoutId, cancellationToken);
             if (workout == null)
             {
                 throw new Exception("Workout not found");
@@ -26,5 +25,5 @@ namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkoutCategories
             return workout.Id;
         }
     }
-    
+
 }

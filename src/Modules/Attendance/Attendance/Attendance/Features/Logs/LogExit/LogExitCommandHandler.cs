@@ -1,5 +1,4 @@
-﻿using Attendance.Contracts.Attendance.ModuleErrors;
-using Membership.Contracts.Membership.ModuleErrors;
+﻿using Membership.Contracts.Membership.ModuleErrors;
 
 namespace Attendance.Attendance.Features.Logs.LogExit
 {
@@ -34,5 +33,5 @@ namespace Attendance.Attendance.Features.Logs.LogExit
 
         }
     }
-    
+
 }

@@ -42,5 +42,5 @@ namespace Shared.Data.Interceptors
             }
         }
     }
-    
+
 }

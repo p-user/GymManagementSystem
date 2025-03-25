@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutCatalog.Workouts.Dtos;
-using WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise;
+﻿using WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise;
 
 namespace WorkoutCatalog.Workouts.Features.Exercise.UpdateExercise
 {
@@ -23,8 +21,8 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.UpdateExercise
             [FromRoute] Guid id,
             [FromBody] UpdateExerciseDto dto)
         {
-            var response = await sender.Send(new UpdateExerciseCommand(dto, id));
-            return response != Guid.Empty ? Results.NoContent() : Results.NotFound();
+            Results<Guid> response = await sender.Send(new UpdateExerciseCommand(dto, id));
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

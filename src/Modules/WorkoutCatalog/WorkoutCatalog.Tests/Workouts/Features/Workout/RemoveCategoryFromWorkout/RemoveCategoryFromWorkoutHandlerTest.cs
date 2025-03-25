@@ -15,10 +15,10 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Workout.RemoveCategoryFromWorko
             _contextMock = new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
 
             var mockWorkoutSet = _fixture.Workouts.CreateDbSetMock<Models.Workout, Guid>();
-            _contextMock.Setup(s=>s.Workouts).Returns(mockWorkoutSet.Object);
+            _contextMock.Setup(s => s.Workouts).Returns(mockWorkoutSet.Object);
 
-            var categories = _fixture.WorkoutCategories.CreateDbSetMock<Models.WorkoutCategory, Guid>();    
-            _contextMock.Setup(s=>s.WorkoutCategories).Returns(categories.Object);
+            var categories = _fixture.WorkoutCategories.CreateDbSetMock<Models.WorkoutCategory, Guid>();
+            _contextMock.Setup(s => s.WorkoutCategories).Returns(categories.Object);
 
             _handler = new RemoveCategoryFromWorkoutCommandHandler(_contextMock.Object);
 
@@ -32,14 +32,14 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Workout.RemoveCategoryFromWorko
             var workout = _fixture.Workouts.First();
             var category = workout.WorkoutCategories.First();
 
-            var command = new RemoveWorkoutCategoryCommand(workout.Id,category.Id);   
+            var command = new RemoveWorkoutCategoryCommand(workout.Id, category.Id);
 
             //act 
             var result = await _handler.Handle(command, CancellationToken.None);
 
 
             //assert
-             var updatedEntity = _contextMock.Object.Workouts.Include(s=>s.WorkoutCategories).FirstOrDefault(s=>s.Id== workout.Id);
+            var updatedEntity = _contextMock.Object.Workouts.Include(s => s.WorkoutCategories).FirstOrDefault(s => s.Id == workout.Id);
 
             Assert.False(updatedEntity.WorkoutCategories.Any(s => s.Id.Equals(updatedEntity.Id)));
         }

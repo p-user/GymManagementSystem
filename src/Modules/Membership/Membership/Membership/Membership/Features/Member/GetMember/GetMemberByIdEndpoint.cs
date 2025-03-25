@@ -13,11 +13,11 @@ namespace Membership.Membership.Features.Member.GetMember
                 .WithDescription("Get a member by id");
         }
 
-        private async Task<IResult> GetMemberById(ISender sender,[FromRoute] Guid id)
+        private async Task<IResult> GetMemberById(ISender sender, [FromRoute] Guid id)
         {
             var query = new GetMemberByIdQuery(id);
             Results<MemberDto> response = await sender.Send(query);
-            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

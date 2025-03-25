@@ -1,7 +1,5 @@
 ﻿
 using AutoMapper;
-using WorkoutCatalog.Models;
-using WorkoutCatalog.Tests.Workouts.Fixtures;
 using WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroupById;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.GetMuscleGroupById
@@ -32,12 +30,12 @@ namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.GetMuscleGroupById
             var query = new GetMuscleGroupByIdQuery(muscleGroup.Id);
 
             _mapperMock.Setup(x => x.Map<ViewMuscleGroupDto>(It.IsAny<Models.MuscleGroup>())).
-                Returns((Models.MuscleGroup muscleGroup)=> new ViewMuscleGroupDto
+                Returns((Models.MuscleGroup muscleGroup) => new ViewMuscleGroupDto
                 {
                     Id = muscleGroup.Id,
                     Muscle = muscleGroup.Muscle,
                     Description = muscleGroup.Description,
-            });
+                });
             // Act
             var result = await _handler.Handle(query, CancellationToken.None);
             // Assert

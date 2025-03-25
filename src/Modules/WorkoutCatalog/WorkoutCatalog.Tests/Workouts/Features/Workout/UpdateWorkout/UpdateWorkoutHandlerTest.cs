@@ -1,7 +1,6 @@
 ﻿
 using FluentValidation;
 using FluentValidation.Results;
-using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 using WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Workout.UpdateWorkout
@@ -19,7 +18,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Workout.UpdateWorkout
             _context = new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
 
             _fixture = fixture;
-         
+
             var dbMockSet = _fixture.Workouts.CreateDbSetMock<Models.Workout, Guid>();
 
             _context.Setup(db => db.Workouts).Returns(dbMockSet.Object);
@@ -44,10 +43,10 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Workout.UpdateWorkout
             var workout = _fixture.Workouts.First();
             var dto = new UpdateWorkoutDto
             {
-                Id= workout.Id,
+                Id = workout.Id,
                 Name = "Updated Workout",
                 Description = "Updated Description",
-     
+
             };
             var updatedWorkout = new UpdateWorkoutCommand(dto);
             // Act

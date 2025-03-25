@@ -15,7 +15,8 @@
         private async Task<IResult> GetWorkoutCategories(ISender sender)
         {
             var response = await sender.Send(new GetWorkoutCategoriesQuery());
-            return Results.Ok(response);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

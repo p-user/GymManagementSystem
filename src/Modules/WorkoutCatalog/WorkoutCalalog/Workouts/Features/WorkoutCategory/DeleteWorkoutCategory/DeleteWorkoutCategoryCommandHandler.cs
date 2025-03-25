@@ -1,9 +1,9 @@
 ﻿namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.DeleteWorkoutCategory
 {
-    public record DeleteWorkoutCategoryCommand(Guid Id) : IRequest<bool>;
-    public class DeleteWorkoutCategoryCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<DeleteWorkoutCategoryCommand, bool>
+    public record DeleteWorkoutCategoryCommand(Guid Id) : IRequest<Shared.Results.Results>;
+    public class DeleteWorkoutCategoryCommandHandler(WorkoutCatalogDbContext context) : IRequestHandler<DeleteWorkoutCategoryCommand, Shared.Results.Results>
     {
-        public async Task<bool> Handle(DeleteWorkoutCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Shared.Results.Results> Handle(DeleteWorkoutCategoryCommand request, CancellationToken cancellationToken)
         {
             var exists = await context.WorkoutCategories.FindAsync(request.Id, cancellationToken);
             if (exists == null)
@@ -21,7 +21,7 @@
             context.WorkoutCategories.Remove(exists);
             await context.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Shared.Results.Results.Success();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿
 using AutoMapper;
-using Microsoft.IdentityModel.Tokens;
 using WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroups;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.GetMuscleGroups
@@ -46,5 +45,5 @@ namespace WorkoutCatalog.Tests.Workouts.Features.MuscleGroups.GetMuscleGroups
             Assert.Contains(result, r => r.Muscle == "Chest");
         }
     }
-  
+
 }

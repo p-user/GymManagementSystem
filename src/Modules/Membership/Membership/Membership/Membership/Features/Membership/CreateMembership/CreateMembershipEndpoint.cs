@@ -15,7 +15,7 @@ namespace Membership.Membership.Features.Membership.CreateMembership
 
         private async Task<IResult> CreateMembership(HttpContext context, [FromBody] MembershipDto membershipDto, ISender sender)
         {
-            var userId   = context.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            var userId = context.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
 
             var command = new CreateMembershipCommand(membershipDto, userId);
             Shared.Results.Results results = await sender.Send(command);

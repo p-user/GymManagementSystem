@@ -1,7 +1,4 @@
-﻿
-using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
+﻿namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
 {
     public class UpdateWorkoutCommandValidator : AbstractValidator<UpdateWorkoutCommand>
     {
@@ -15,8 +12,8 @@ namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
             RuleFor(x => x.dto.Description)
                 .MaximumLength(500).WithMessage("Description cannot exceed 500 characters.");
 
-           
+
         }
-    
+
     }
 }

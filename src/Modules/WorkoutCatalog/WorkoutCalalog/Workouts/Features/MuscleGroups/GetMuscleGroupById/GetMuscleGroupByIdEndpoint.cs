@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroupById
 {
     public class GetMuscleGroupByIdEndpoint : ICarterModule
@@ -19,7 +18,7 @@ namespace WorkoutCatalog.Workouts.Features.MuscleGroups.GetMuscleGroupById
         private async Task<IResult> GetMuscleGroupById(ISender sender, [FromRoute] Guid id)
         {
             var response = await sender.Send(new GetMuscleGroupByIdQuery(id));
-            return response is not null ? Results.Ok(response) : Results.NotFound();
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

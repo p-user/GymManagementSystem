@@ -73,7 +73,7 @@ namespace Membership.Models
         }
 
         //TODO: implement background job to reset visits remaining for the upcomming week
-        public static void ResetVisitsRemaining(Membership membership, MembershipPlan membershipPlan) 
+        public static void ResetVisitsRemaining(Membership membership, MembershipPlan membershipPlan)
         {
             membership.VisitsRemaining = (int)membershipPlan.MaxVisitsPerWeek;
 

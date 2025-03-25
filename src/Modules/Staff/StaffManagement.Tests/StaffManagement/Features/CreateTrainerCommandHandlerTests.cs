@@ -7,9 +7,9 @@ namespace StaffManagement.Tests.StaffManagement.Features
         private readonly Mock<ISender> _mockSender;
         private readonly CreateTrainerCommandHandler _handler;
         private readonly TrainerFixture fixture;
-    
 
-     public CreateTrainerCommandHandlerTests(TrainerFixture trainerFixture)
+
+        public CreateTrainerCommandHandlerTests(TrainerFixture trainerFixture)
         {
             _mockDbContext = new Mock<StaffDbContext>(new DbContextOptions<StaffDbContext>());
             _mockSender = new Mock<ISender>();
@@ -42,9 +42,9 @@ namespace StaffManagement.Tests.StaffManagement.Features
             //_mockDbContext.Verify(db => db.Trainers.AddAsync(It.IsAny<Trainer>(), It.IsAny<CancellationToken>()), Times.Once);
             //_mockDbContext.Verify(db => db.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
 
-          
+
             //result.Should().NotBeNull();
             //result.message.Should().Be("User registered");
         }
     }
- }
+}

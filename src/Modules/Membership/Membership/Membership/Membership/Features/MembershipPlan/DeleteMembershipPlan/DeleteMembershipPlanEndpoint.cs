@@ -13,7 +13,7 @@ namespace Membership.Membership.Features.MembershipPlan.DeleteMembershipPlan
                 .WithDescription("Delete a membership plan by id");
         }
 
-        private async Task<IResult> DeleteMembershipPlan([FromRoute]Guid id, ISender sender)
+        private async Task<IResult> DeleteMembershipPlan([FromRoute] Guid id, ISender sender)
         {
             var command = new DeleteMembershipPlanCommand(id);
             Shared.Results.Results response = await sender.Send(command);

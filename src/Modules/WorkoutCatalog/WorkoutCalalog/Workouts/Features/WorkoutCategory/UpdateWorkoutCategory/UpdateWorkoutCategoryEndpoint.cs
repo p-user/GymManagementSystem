@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.UpdateWorkoutCategory
+﻿namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.UpdateWorkoutCategory
 {
     public class UpdateWorkoutCategoryEndpoint : ICarterModule
     {
@@ -23,7 +21,8 @@ namespace WorkoutCatalog.Workouts.Features.WorkoutCategory.UpdateWorkoutCategory
         {
             dto.Id = id;
             var response = await sender.Send(new UpdateWorkoutCategoryCommand(dto));
-            return response != Guid.Empty ? Results.NoContent() : Results.NotFound();
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Membership.Models
         public Guid AuthenticationId { get; private set; } //from authentication module
 
 
-        public static Member Create(Guid authenticationId, string firstName, string lastName, string email, string phoneNumber,  Gender gender)
+        public static Member Create(Guid authenticationId, string firstName, string lastName, string email, string phoneNumber, Gender gender)
         {
             ArgumentNullException.ThrowIfNull(firstName, nameof(firstName));
             ArgumentNullException.ThrowIfNull(lastName, nameof(lastName));
@@ -34,7 +34,7 @@ namespace Membership.Models
                 LastName = lastName,
                 Email = email,
                 PhoneNumber = phoneNumber,
-                Gender= gender
+                Gender = gender
 
             };
 
@@ -69,6 +69,6 @@ namespace Membership.Models
         }
 
 
-        
+
     }
 }

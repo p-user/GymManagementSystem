@@ -1,9 +1,4 @@
-﻿
-
-using AutoMapper;
-using FluentValidation;
-using Moq;
-using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
+﻿using FluentValidation;
 using WorkoutCatalog.Workouts.Features.Exercise.UpdateExcercise;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.UpdateExercise
@@ -52,7 +47,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.UpdateExercise
             // Act
             var result = await _handler.Handle(updatedExercise, CancellationToken.None);
             // Assert
-           
+
 
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
 
@@ -62,7 +57,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.UpdateExercise
             updatedEntity.Name.Should().Be("Updated Exercise");
             updatedEntity.Description.Should().Be("Updated Description");
             updatedEntity.ExerciseCategory.Should().Be(exercise.ExerciseCategory);
-       
+
         }
     }
 }

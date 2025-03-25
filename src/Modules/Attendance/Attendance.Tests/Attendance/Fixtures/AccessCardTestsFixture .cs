@@ -1,7 +1,7 @@
 ﻿
 namespace Attendance.Tests.Attendance.Fixtures
 {
-    public class AccessCardTestsFixture 
+    public class AccessCardTestsFixture
     {
         public Faker<AccessCardDto> AccessCardFaker { get; }
         public Mock<AttendanceDbContext> MockDbContext { get; }
@@ -19,7 +19,7 @@ namespace Attendance.Tests.Attendance.Fixtures
             AccessCardFaker = new Faker<AccessCardDto>()
                 .RuleFor(ac => ac.OwnerId, f => Guid.NewGuid())
                 .RuleFor(ac => ac.OwnerType, f => f.PickRandom<Models.AccessCard.AccessCardOwnerType>());
-               
+
         }
     }
 }

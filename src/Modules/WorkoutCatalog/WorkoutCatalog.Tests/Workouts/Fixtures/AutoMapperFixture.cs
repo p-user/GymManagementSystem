@@ -1,7 +1,6 @@
 ﻿
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 namespace WorkoutCatalog.Tests.Workouts.Fixtures
 {
     public class AutoMapperFixture
@@ -18,7 +17,7 @@ namespace WorkoutCatalog.Tests.Workouts.Fixtures
 
             var configProvider = serviceProvider.GetRequiredService<IMapper>().ConfigurationProvider;
 
-          
+
             Mapper = serviceProvider.GetRequiredService<IMapper>();
         }
 

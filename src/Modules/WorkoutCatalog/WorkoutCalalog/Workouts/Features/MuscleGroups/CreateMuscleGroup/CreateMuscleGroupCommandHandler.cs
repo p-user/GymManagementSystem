@@ -1,11 +1,9 @@
-﻿using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.MuscleGroups.CreateMuscleGroup
+﻿namespace WorkoutCatalog.Workouts.Features.MuscleGroups.CreateMuscleGroup
 {
-    public record CreateMuscleGroupCommand(CreateMuscleGroupDto dto) : IRequest<Guid>;
-    public class CreateMuscleGroupCommandHandler(WorkoutCatalogDbContext context, IValidator<CreateMuscleGroupCommand> validator) : IRequestHandler<CreateMuscleGroupCommand, Guid>
+    public record CreateMuscleGroupCommand(CreateMuscleGroupDto dto) : IRequest<Results<Guid>>;
+    public class CreateMuscleGroupCommandHandler(WorkoutCatalogDbContext context, IValidator<CreateMuscleGroupCommand> validator) : IRequestHandler<CreateMuscleGroupCommand, Results<Guid>>
     {
-        public async Task<Guid> Handle(CreateMuscleGroupCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(CreateMuscleGroupCommand request, CancellationToken cancellationToken)
         {
             await validator.ValidateAndThrowAsync(request, cancellationToken);
             //validate name

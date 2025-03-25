@@ -1,10 +1,10 @@
 ﻿
-using Results= Shared.Results.Results;
+using Results = Shared.Results.Results;
 
 namespace Membership.Membership.Features.Discount.UpdateDiscount
 {
     public record UpdateDiscountCommand(Guid Id, UpdateDiscountDto dto) : IRequest<Results>;
-    public class UpdateDiscountCommandHandler(MembershipDbContext _context, UpdateDiscountCommandValidator _validator) : IRequestHandler<UpdateDiscountCommand,Results>
+    public class UpdateDiscountCommandHandler(MembershipDbContext _context, UpdateDiscountCommandValidator _validator) : IRequestHandler<UpdateDiscountCommand, Results>
     {
         public async Task<Results> Handle(UpdateDiscountCommand request, CancellationToken cancellationToken)
         {
@@ -32,6 +32,6 @@ namespace Membership.Membership.Features.Discount.UpdateDiscount
         {
             discount.Update(dto.Code, dto.Description, dto.DiscountPercentage, dto.DiscountAmount, dto.StartDate, dto.EndDate, dto.UsageLimit, dto.UsageCount, dto.AppliesToAllPlans);
         }
-    } 
-    
+    }
+
 }

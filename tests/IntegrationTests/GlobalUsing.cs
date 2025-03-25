@@ -1,6 +1,4 @@
-﻿global using Microsoft.AspNetCore.Mvc.Testing;
-global using Microsoft.VisualStudio.TestPlatform.TestHost;
-global using Xunit;
+﻿global using FluentAssertions;
 global using IntegrationTests.Shared;
-
-global using FluentAssertions;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using Xunit;

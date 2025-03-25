@@ -7,7 +7,7 @@
             app.MapPost("/exercise/muscle-groups", CreateMuscleGroup)
                 .WithName("CreateMuscleGroup")
                 .WithTags("Muscle Groups")
-                .Produces<Guid>(StatusCodes.Status201Created)
+                .Produces<Results<Guid>>(StatusCodes.Status201Created)
                 .ProducesValidationProblem(StatusCodes.Status400BadRequest)
                 .WithDescription("Creates a new muscle group for the workout catalog.")
                 .WithSummary("Create a new muscle group.");
@@ -20,7 +20,7 @@
         {
             var command = new CreateMuscleGroupCommand(request);
             var response = await sender.Send(command, ct);
-            return Results.Created($"/exercise/muscle-groups/{response}", response);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

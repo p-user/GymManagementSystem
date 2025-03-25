@@ -1,7 +1,4 @@
-﻿using Membership.Membership.Features.MembershipPlan.GetMembershipPlan;
-using Shared.Results;
-
-namespace Membership.Membership.Features.MembershipPlan.GetAllMembershipPlans
+﻿namespace Membership.Membership.Features.MembershipPlan.GetAllMembershipPlans
 {
     public class GetAllMembershipPlansEndpoint : ICarterModule
     {

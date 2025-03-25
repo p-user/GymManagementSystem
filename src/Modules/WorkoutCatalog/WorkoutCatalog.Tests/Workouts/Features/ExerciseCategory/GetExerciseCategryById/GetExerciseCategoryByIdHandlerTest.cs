@@ -17,7 +17,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.GetExerciseCat
             _mapper = new Mock<IMapper>();
             _fixture = exerciseCategoryFixture;
             _dbContextMock = new Mock<WorkoutCatalogDbContext>(new DbContextOptions<WorkoutCatalogDbContext>());
-            _dbContextMock.Setup(s=>s.ExerciseCategories).Returns(_fixture.ExerciseCategories.CreateDbSetMock<Models.ExerciseCategory, Guid>().Object);
+            _dbContextMock.Setup(s => s.ExerciseCategories).Returns(_fixture.ExerciseCategories.CreateDbSetMock<Models.ExerciseCategory, Guid>().Object);
             _handler = new GetExerciseCategoryByIdQueryHandler(_dbContextMock.Object, _mapper.Object);
         }
 
@@ -31,7 +31,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.GetExerciseCat
                     Id = exerciseCategory.Id,
                     Name = exerciseCategory.Name,
                     Description = exerciseCategory.Description
-                    
+
                 });
 
             //arrange

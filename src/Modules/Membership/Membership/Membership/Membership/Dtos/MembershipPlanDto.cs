@@ -3,10 +3,10 @@ namespace Membership.Membership.Dtos
 {
     public record MembershipPlanDto
     {
-       
-        public string Name { get; init ; }
+
+        public string Name { get; init; }
         public decimal Price { get; init; }
-        public MembershipDuration DurationInMonths { get; init; }  
+        public MembershipDuration DurationInMonths { get; init; }
         public WeeklyAllowance MaxVisitsPerWeek { get; init; }  // Visits per week (3, 5, 6, or 7 days)
         public string? Description { get; init; }
 

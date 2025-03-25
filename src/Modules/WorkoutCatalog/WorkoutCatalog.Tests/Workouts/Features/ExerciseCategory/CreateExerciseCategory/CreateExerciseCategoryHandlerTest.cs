@@ -2,7 +2,6 @@
 
 using FluentValidation;
 using FluentValidation.Results;
-using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 using WorkoutCatalog.Workouts.Features.ExerciseCategory.CreateExerciseCategory;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.CreateExerciseCategory

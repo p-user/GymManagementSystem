@@ -23,10 +23,10 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.DeleteWorkoutCa
         {
             //Arrange 
             var idToDelete = _fixture.WorkoutCategories.First().Id;
-            var command= new DeleteWorkoutCategoryCommand(idToDelete);
+            var command = new DeleteWorkoutCategoryCommand(idToDelete);
 
             //Act
-            var result= await _handler.Handle(command, CancellationToken.None);
+            var result = await _handler.Handle(command, CancellationToken.None);
             Assert.NotNull(result);
             Assert.True(result);
 

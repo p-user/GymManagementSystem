@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutCatalog.Workouts.Features.Exercise.DeleteExercise;
-
-namespace WorkoutCatalog.Workouts.Features.Exercise.DeleteExercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.DeleteExercise
 {
     public class DeleteExerciseEndpoint : ICarterModule
     {
@@ -19,7 +16,7 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.DeleteExercise
         private async Task<IResult> DeleteExercise([FromRoute] Guid id, CancellationToken ct, ISender sender)
         {
             var result = await sender.Send(new DeleteExerciseCommand(id), ct);
-            return Results.NoContent();
+            return result.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

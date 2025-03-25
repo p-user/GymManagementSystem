@@ -6,7 +6,7 @@ namespace Attendance.Attendance.Dtos
     public record AccessCardDto
     {
         public Guid OwnerId { get; init; }
-        public AccessCardOwnerType OwnerType { get;init; }
+        public AccessCardOwnerType OwnerType { get; init; }
 
     }
 

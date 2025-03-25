@@ -1,7 +1,6 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using StaffManagement.Models;
 
 namespace StaffManagement.Data.Configurations
 {
@@ -28,7 +27,7 @@ namespace StaffManagement.Data.Configurations
 
             builder.HasIndex(s => new { s.TrainerId, s.ScheduledAt });
 
-         
+
             builder.Ignore(s => s.Events);
         }
     }

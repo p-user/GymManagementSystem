@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutCatalog.Workouts.Features.Exercise.RemoceMuscleGroupFromExercise;
+﻿using WorkoutCatalog.Workouts.Features.Exercise.RemoceMuscleGroupFromExercise;
 
 namespace WorkoutCatalog.Workouts.Features.Exercise.RemoveMuscleGroupFromExercise
 {
@@ -25,7 +24,7 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.RemoveMuscleGroupFromExercis
         {
             var command = new RemoveMuscleGroupFromExerciseCommand(exerciseId, muscleGroupId);
             var result = await sender.Send(command, cancellationToken);
-            return result is true ? Results.Ok(result) : Results.NotFound();
+            return result.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

@@ -13,15 +13,15 @@ namespace StaffManagement.StaffManagement.Features.Trainer.CreateTrainer
                 .WithTags("Staff")
                 .Produces<string>(StatusCodes.Status200OK)
                 .ProducesValidationProblem(StatusCodes.Status400BadRequest)
-                .WithSummary("Create a new trainer"); 
+                .WithSummary("Create a new trainer");
         }
 
 
-        private async Task<IResult> CreateTrainer(ISender sender , [FromBody] CreateStaffDto dto, CancellationToken ct)
+        private async Task<IResult> CreateTrainer(ISender sender, [FromBody] CreateStaffDto dto, CancellationToken ct)
         {
             var command = new CreateTrainerCommand(dto);
-            Shared.Results.Results response = await sender.Send(command, ct);
-            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
+            Shared.Results.Results<string> response = await sender.Send(command, ct);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

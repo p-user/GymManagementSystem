@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory
+﻿namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory
 {
     public class UpdateExerciseCategoryEndpoint : ICarterModule
     {
@@ -23,7 +21,7 @@ namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCatego
         {
             var command = new UpdateExerciseCategoryCommand(request, id);
             var response = await sender.Send(command);
-            return response ? Results.NoContent() : Results.NotFound();
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

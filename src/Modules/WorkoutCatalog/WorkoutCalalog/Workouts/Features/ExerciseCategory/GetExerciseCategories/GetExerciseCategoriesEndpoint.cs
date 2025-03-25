@@ -16,7 +16,7 @@
         private async Task<IResult> GetExerciseCategories(ISender sender, CancellationToken ct)
         {
             var response = await sender.Send(new GetExerciseCategoriesQuery(), ct);
-            return Results.Ok(response);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

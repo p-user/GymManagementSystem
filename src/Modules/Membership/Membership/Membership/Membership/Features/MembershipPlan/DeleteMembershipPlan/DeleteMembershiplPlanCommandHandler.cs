@@ -13,7 +13,7 @@ namespace Membership.Membership.Features.MembershipPlan.DeleteMembershipPlan
             {
                 return Results.Failure(MembershipModuleErrors.MembershipPlanErrors.NotFound(request.Id));
             }
-            if(entity.Memberships.Any())
+            if (entity.Memberships.Any())
             {
                 var members = entity.Memberships.Select(s => s.GymMemberId).ToList();
                 return Results.Failure(MembershipModuleErrors.MembershipPlanErrors.DeleteProblem(members));

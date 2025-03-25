@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById;
+﻿using WorkoutCatalog.Workouts.Features.Exercise.GetExcerciseById;
 
 namespace WorkoutCatalog.Workouts.Features.Exercise.GetExerciseById
 {
@@ -20,7 +19,8 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.GetExerciseById
         private async Task<IResult> GetExerciseById([FromRoute] Guid id, ISender sender)
         {
             var response = await sender.Send(new GetExerciseByIdQuery(id));
-            return response is not null ? Results.Ok(response) : Results.NotFound();
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

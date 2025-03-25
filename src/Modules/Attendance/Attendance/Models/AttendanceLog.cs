@@ -34,8 +34,8 @@ namespace Attendance.Models
 
             if (accessCard.OwnerType == AccessCard.AccessCardOwnerType.Member)
             {
-               
-                entry.AddDomainEvent(new AttendanceLogCreatedEvent() { UserId = userId});
+
+                entry.AddDomainEvent(new AttendanceLogCreatedEvent() { UserId = userId });
             }
 
             return entry;
@@ -51,19 +51,21 @@ namespace Attendance.Models
             };
 
         public static AttendanceLog CreateBreakIn(Guid userId, Guid accessCardId)
-            => new AttendanceLog 
-            { Id = Guid.NewGuid(),
-                UserId = userId, 
+            => new AttendanceLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
                 AccessCardId = accessCardId,
                 Type = AttendanceType.BreakIn
             };
 
         public static AttendanceLog CreateBreakOut(Guid userId, Guid accessCardId)
-            => new AttendanceLog 
-            { Id = Guid.NewGuid(), 
-               UserId = userId, 
-                AccessCardId = accessCardId, 
-                Type = AttendanceType.BreakOut 
+            => new AttendanceLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                AccessCardId = accessCardId,
+                Type = AttendanceType.BreakOut
             };
     }
 }

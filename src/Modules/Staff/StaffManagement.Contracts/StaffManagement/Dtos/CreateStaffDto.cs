@@ -19,5 +19,5 @@ namespace StaffManagement.Contracts.StaffManagement.Dtos
         public override string UserRole { get; set; }
 
     }
-    
+
 }

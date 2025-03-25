@@ -3,7 +3,7 @@
     public class MuscleGroup : Entity<Guid>
     {
 
-        public  string Muscle { get; private set; }
+        public string Muscle { get; private set; }
         public string? Description { get; private set; }
 
         private List<Exercise> _exercises = new();

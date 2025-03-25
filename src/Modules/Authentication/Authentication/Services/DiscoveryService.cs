@@ -17,7 +17,7 @@ namespace Authentication.Services
             _logger = logger;
 
         }
-        public async  Task<DiscoveryDocumentResponse> GetDiscoveryDocumentAsync(CancellationToken cancellationToken)
+        public async Task<DiscoveryDocumentResponse> GetDiscoveryDocumentAsync(CancellationToken cancellationToken)
         {
             //prevent repetitive calls
             if (_discoveryDocument != null) return _discoveryDocument;
@@ -39,7 +39,7 @@ namespace Authentication.Services
             {
                 _semaphore.Release();
             }
-                return _discoveryDocument;
+            return _discoveryDocument;
         }
 
         public (string ClientId, string ClientSecret, string[] Scopes) GetClientCredentials()

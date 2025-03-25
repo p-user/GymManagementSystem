@@ -1,7 +1,4 @@
-﻿
-using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
+﻿namespace WorkoutCatalog.Workouts.Features.Exercise.CreateExercise
 {
     public class CreateExerciseCommandValidator : AbstractValidator<CreateExerciseCommand>
     {

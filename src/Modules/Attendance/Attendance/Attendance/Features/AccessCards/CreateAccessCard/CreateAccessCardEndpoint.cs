@@ -24,5 +24,5 @@ namespace Attendance.Attendance.Features.AccessCards.CreateAccessCard
             return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
-   
+
 }

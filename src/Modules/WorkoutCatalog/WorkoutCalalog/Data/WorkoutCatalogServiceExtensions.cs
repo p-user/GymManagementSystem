@@ -1,11 +1,5 @@
-﻿
-
-using FluentValidation;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
 using Shared.Data.Interceptors;
-using System.Reflection;
 
 namespace WorkoutCalalog.Data
 {
@@ -36,7 +30,7 @@ namespace WorkoutCalalog.Data
 
         public static IApplicationBuilder UseWorkoutCatalogModule(this IApplicationBuilder app)
         {
-           
+
             using var scope = app.ApplicationServices.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<WorkoutCatalogDbContext>();
             //dbContext.Database.Migrate();

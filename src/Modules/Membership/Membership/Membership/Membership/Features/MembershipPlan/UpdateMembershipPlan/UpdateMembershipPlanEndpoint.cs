@@ -1,7 +1,4 @@
-﻿
-using Shared.Results;
-
-namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
+﻿namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
 {
     public class UpdateMembershipPlanEndpoint : ICarterModule
     {
@@ -19,9 +16,9 @@ namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
 
         private async Task<IResult> UpdateMembershipPlan(ISender sender, [FromRoute] Guid id, [FromBody] CreateMembershipPlanDto dto)
         {
-           var command = new UpdateMembershipPlanCommand(dto, id);
-           Shared.Results.Results response = await sender.Send(command);
-           return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
+            var command = new UpdateMembershipPlanCommand(dto, id);
+            Shared.Results.Results response = await sender.Send(command);
+            return response.Match(() => Microsoft.AspNetCore.Http.Results.Ok(), ApiResults.Problem);
         }
     }
 }

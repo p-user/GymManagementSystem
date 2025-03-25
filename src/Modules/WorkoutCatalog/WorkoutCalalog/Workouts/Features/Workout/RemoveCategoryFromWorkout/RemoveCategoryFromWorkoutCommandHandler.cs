@@ -1,15 +1,13 @@
-﻿
-
-namespace WorkoutCatalog.Workouts.Features.Workout.RemoveCategoryFromWorkout
+﻿namespace WorkoutCatalog.Workouts.Features.Workout.RemoveCategoryFromWorkout
 {
-    public record RemoveWorkoutCategoryCommand(Guid workoutId, Guid categoryId ) : IRequest<Guid>;
-    public class RemoveCategoryFromWorkoutCommandHandler(WorkoutCatalogDbContext _context) : IRequestHandler<RemoveWorkoutCategoryCommand, Guid>
+    public record RemoveWorkoutCategoryCommand(Guid workoutId, Guid categoryId) : IRequest<Results<Guid>>;
+    public class RemoveCategoryFromWorkoutCommandHandler(WorkoutCatalogDbContext _context) : IRequestHandler<RemoveWorkoutCategoryCommand, Results<Guid>>
     {
-        public async Task<Guid> Handle(RemoveWorkoutCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(RemoveWorkoutCategoryCommand request, CancellationToken cancellationToken)
         {
-            var workout = await _context.Workouts.Include(s=>s.WorkoutCategories).FirstOrDefaultAsync(s=>s.Id.Equals(request.workoutId));
+            var workout = await _context.Workouts.Include(s => s.WorkoutCategories).FirstOrDefaultAsync(s => s.Id.Equals(request.workoutId));
             var category = await _context.WorkoutCategories.FindAsync(request.categoryId, cancellationToken);
-            if(workout == null)
+            if (workout == null)
             {
                 throw new ArgumentException("Category does not exist");
             }

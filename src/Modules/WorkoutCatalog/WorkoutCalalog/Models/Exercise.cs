@@ -83,7 +83,7 @@ namespace WorkoutCatalog.Models
             ExerciseCategory = exerciseCategory;
         }
 
-      
+
     }
 
 

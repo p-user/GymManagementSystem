@@ -2,7 +2,7 @@
 
 namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
 {
-    public record UpdateMembershipPlanCommand(CreateMembershipPlanDto dto , Guid Id) : IRequest<Shared.Results.Results>;
+    public record UpdateMembershipPlanCommand(CreateMembershipPlanDto dto, Guid Id) : IRequest<Shared.Results.Results>;
     public record UpdateMembershipPlanResponse(Guid Id);
 
     public class UpdateMembershipPlanCommandHandler(MembershipDbContext _context) : IRequestHandler<UpdateMembershipPlanCommand, Shared.Results.Results>
@@ -13,13 +13,13 @@ namespace Membership.Membership.Features.MembershipPlan.UpdateMembershipPlan
             if (membershipPlan == null)
             {
                 return Shared.Results.Results.Failure(MembershipModuleErrors.MembershipPlanErrors.NotFound(request.Id));
-               
+
             }
 
             membershipPlan.Update(
-                request.dto.Name, 
+                request.dto.Name,
                 (Models.MembershipPlan.MembershipDuration)request.dto.DurationInMonths,
-                (Models.MembershipPlan.WeeklyAllowance)request.dto.MaxVisitsPerWeek, 
+                (Models.MembershipPlan.WeeklyAllowance)request.dto.MaxVisitsPerWeek,
                 request.dto.Description
                 );
 

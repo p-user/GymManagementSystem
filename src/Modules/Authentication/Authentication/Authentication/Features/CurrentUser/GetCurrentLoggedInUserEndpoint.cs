@@ -1,8 +1,4 @@
 ﻿
-using Carter;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-
 namespace Authentication.Authentication.Features.CurrentUser
 {
     public class GetCurrentLoggedInUserEndpoint : ICarterModule
@@ -13,7 +9,7 @@ namespace Authentication.Authentication.Features.CurrentUser
                 .WithDescription("Get current logged in user endpoint")
                 .WithName("GetCurrentLoggedInUser")
                 .WithTags("Authentication")
-                .Produces<GetCurrentLoggedInUserResponse>()
+                .Produces<Results<GetCurrentLoggedInUserResponseDto>>()
                 .RequireAuthorization();
         }
 
@@ -23,10 +19,10 @@ namespace Authentication.Authentication.Features.CurrentUser
 
             if (string.IsNullOrEmpty(accessToken))
             {
-                return Results.Unauthorized();
+                return Microsoft.AspNetCore.Http.Results.Unauthorized();
             }
-            var response = await sender.Send(new GetCurrentLoggedInUserQuery(accessToken));
-            return Results.Ok(response);
+            Shared.Results.Results<GetCurrentLoggedInUserResponseDto> response = await sender.Send(new GetCurrentLoggedInUserQuery(accessToken));
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem); ;
         }
     }
 }

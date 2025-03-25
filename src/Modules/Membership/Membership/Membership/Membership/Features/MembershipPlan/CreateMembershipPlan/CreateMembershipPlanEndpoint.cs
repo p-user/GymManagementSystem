@@ -20,8 +20,8 @@ namespace Membership.Membership.Features.MembershipPlan.CreateMembershipPlan
         private async Task<IResult> CreateMembership(ISender sender, [FromBody] CreateMembershipPlanDto dto)
         {
             var command = new CreateMembershipPlanCommand(dto);
-            Results<Guid>  response = await sender.Send(command);
-            return response.Match(Microsoft.AspNetCore.Http.Results.Ok, ApiResults.Problem);
+            Results<Guid> response = await sender.Send(command);
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
         }
     }
 }

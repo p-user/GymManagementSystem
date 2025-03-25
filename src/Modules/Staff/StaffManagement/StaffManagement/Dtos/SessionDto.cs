@@ -3,7 +3,7 @@ namespace StaffManagement.StaffManagement.Dtos
 {
     public record SessionDto
     {
-        
+
         public Guid TrainerId { get; init; }
         public Guid MemberId { get; init; }
         public DateTime ScheduledAt { get; init; }
@@ -20,7 +20,7 @@ namespace StaffManagement.StaffManagement.Dtos
 
     public record CreateSessionDto : SessionDto
     {
-        
+
     }
 
     public record UpdateSessionDto : SessionDto

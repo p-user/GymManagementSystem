@@ -1,6 +1,4 @@
-﻿
-using IntegrationTesting.Testing_Utilities;
-using WorkoutCatalog.Workouts.Features.ExerciseCategory.DeleteExerciseCategory;
+﻿using WorkoutCatalog.Workouts.Features.ExerciseCategory.DeleteExerciseCategory;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.DeleteExerciseCategory
 {
@@ -36,7 +34,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.DeleteExercise
             // Assert
             Assert.True(result);
             _context.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
-            _context.Verify(x=>x.ExerciseCategories.Remove(It.IsAny<Models.ExerciseCategory>()), Times.Once);
+            _context.Verify(x => x.ExerciseCategories.Remove(It.IsAny<Models.ExerciseCategory>()), Times.Once);
         }
     }
 }

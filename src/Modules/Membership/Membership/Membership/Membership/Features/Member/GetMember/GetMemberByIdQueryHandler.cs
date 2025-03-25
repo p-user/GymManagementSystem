@@ -1,11 +1,8 @@
-﻿
-using AutoMapper;
-
-using Results = Shared.Results.Results;
+﻿using Results = Shared.Results.Results;
 
 namespace Membership.Membership.Features.Member.GetMember
 {
-    
+
     public record GetMemberByIdResponse(MemberDto Member);
 
     public class GetMemberByIdQueryHandler(MembershipDbContext _membershipDbContext, IMapper _mapper) : IRequestHandler<GetMemberByIdQuery, Results<MemberDto>>
@@ -18,7 +15,7 @@ namespace Membership.Membership.Features.Member.GetMember
                 return (Results<MemberDto>)Results.Failure(MembershipModuleErrors.MemberErrors.NotFound(request.Id));
             }
             var dto = _mapper.Map<MemberDto>(entity);
-            return dto;  
+            return dto;
         }
     }
 }

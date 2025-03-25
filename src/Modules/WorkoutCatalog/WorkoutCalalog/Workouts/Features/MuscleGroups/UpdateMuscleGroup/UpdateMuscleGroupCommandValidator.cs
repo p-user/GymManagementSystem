@@ -1,7 +1,4 @@
-﻿
-using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup
+﻿namespace WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup
 {
     public class UpdateMuscleGroupCommandValidator : AbstractValidator<UpdateMuscleGroupCommand>
     {

@@ -1,6 +1,4 @@
-﻿using Duende.IdentityServer.EntityFramework.Entities;
-using Duende.IdentityServer.Models;
-using static Duende.IdentityModel.OidcConstants;
+﻿using Duende.IdentityServer.Models;
 
 namespace Authentication.Data
 {

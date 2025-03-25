@@ -1,6 +1,4 @@
-﻿
-using Authentication.Contracts.Authentication.Dtos;
-using Authentication.Contracts.Authentication.Features;
+﻿using Authentication.Contracts.Authentication.Features;
 using Authentication.Tests.Authentication.Fixtures;
 using FluentAssertions;
 using Membership.Contracts.Membership.Dtos;
@@ -8,7 +6,7 @@ using Shared.Constants;
 
 namespace Authentication.Tests.Authentication.Features.RegisterUser
 {
-    public class RegisterUserCommandHandlerTest : IClassFixture<RegisterUserCommandHandlerFixture>,IClassFixture<RegisterMemberDtoFixture>
+    public class RegisterUserCommandHandlerTest : IClassFixture<RegisterUserCommandHandlerFixture>, IClassFixture<RegisterMemberDtoFixture>
     {
         private readonly RegisterUserCommandHandlerFixture _fixture;
         private readonly RegisterMemberDtoFixture _registerMemberDtoFixture;
@@ -17,13 +15,13 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
         private readonly Mock<ISender> _mockSender;
 
 
-        public RegisterUserCommandHandlerTest(RegisterUserCommandHandlerFixture fixture, RegisterMemberDtoFixture fakeMemberFixture )
+        public RegisterUserCommandHandlerTest(RegisterUserCommandHandlerFixture fixture, RegisterMemberDtoFixture fakeMemberFixture)
         {
             _registerMemberDtoFixture = fakeMemberFixture;
             _fixture = fixture;
             _mockUserManager = fixture.UserManagerMock;
             _mockRoleManager = fixture.RoleManagerMock;
-           _mockSender = new Mock<ISender>();
+            _mockSender = new Mock<ISender>();
         }
 
         [Fact]
@@ -35,10 +33,10 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
 
             var mockRole = new Models.Role { Name = validRole };
             _mockRoleManager.Setup(x => x.FindByNameAsync(validRole))
-                .ReturnsAsync(mockRole); 
+                .ReturnsAsync(mockRole);
 
             _mockUserManager.Setup(x => x.CreateAsync(It.IsAny<Models.User>(), It.IsAny<string>()))
-                .ReturnsAsync(IdentityResult.Success); 
+                .ReturnsAsync(IdentityResult.Success);
 
             var handler = new RegisterUserCommandHandler<CreateMemberDto>(_mockUserManager.Object, _mockRoleManager.Object, _mockSender.Object);
 
@@ -53,7 +51,7 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
         }
 
 
-       
+
 
         [Fact]
         public async Task Handle_ShouldThrowException_WhenRoleIsInvalid()
@@ -64,13 +62,13 @@ namespace Authentication.Tests.Authentication.Features.RegisterUser
 
             _mockRoleManager.Setup(x => x.FindByNameAsync(invalidRole))
 
-                .ReturnsAsync((Models.Role)null); 
+                .ReturnsAsync((Models.Role)null);
 
             var handler = new RegisterUserCommandHandler<CreateMemberDto>(_mockUserManager.Object, _mockRoleManager.Object, _mockSender.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<Exception>(() => handler.Handle(request, CancellationToken.None));
-   
+
         }
 
     }

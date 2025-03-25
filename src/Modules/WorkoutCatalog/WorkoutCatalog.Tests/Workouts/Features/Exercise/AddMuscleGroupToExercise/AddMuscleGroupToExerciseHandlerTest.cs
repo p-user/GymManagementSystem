@@ -1,8 +1,5 @@
 ﻿
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using WorkoutCatalog.Models;
 using WorkoutCatalog.Workouts.Features.Exercise.AddMuscleGroupToExercise;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.AddMuscleGroupToExercise
@@ -35,7 +32,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.AddMuscleGroupToExerci
             _mapper = autoMapperFixture.Mapper;
 
 
-            _handler = new AddMuscleGroupToExerciseCommandHandler(_dbContextMock.Object, _mapper );
+            _handler = new AddMuscleGroupToExerciseCommandHandler(_dbContextMock.Object, _mapper);
 
 
         }
@@ -46,12 +43,12 @@ namespace WorkoutCatalog.Tests.Workouts.Features.Exercise.AddMuscleGroupToExerci
         {
             //arrange
             var entity = _fixture.Exercises.First();
-          
-            var muscleGroup = _fixture.MuscleGroups.MuscleGroups.Where(s=>s.Muscle.Equals("Forearms")).FirstOrDefault();
+
+            var muscleGroup = _fixture.MuscleGroups.MuscleGroups.Where(s => s.Muscle.Equals("Forearms")).FirstOrDefault();
 
 
             var command = new AddMuscleGroupToExerciseCommand(entity.Id, muscleGroup.Id);
-        
+
             //act
             var result = await _handler.Handle(command, CancellationToken.None);
 

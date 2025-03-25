@@ -11,45 +11,45 @@ namespace Membership.Data.Configurations
             builder.ToTable("Discounts");
 
             builder.HasKey(d => d.Code);
-          
+
             builder.Property(d => d.Code)
                 .IsRequired()
-                .HasMaxLength(50) 
-                .IsUnicode(false); 
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             builder.Property(d => d.Description)
                 .HasMaxLength(500)
                 .IsUnicode(true);
 
             builder.Property(d => d.DiscountPercentage)
-                .HasColumnType("decimal(5, 2)") 
-                .HasDefaultValue(null); 
+                .HasColumnType("decimal(5, 2)")
+                .HasDefaultValue(null);
 
             builder.Property(d => d.DiscountAmount)
-                .HasColumnType("decimal(18, 2)") 
-                .HasDefaultValue(null); 
+                .HasColumnType("decimal(18, 2)")
+                .HasDefaultValue(null);
 
             builder.Property(d => d.StartDate)
                 .HasColumnType("datetime")
-                .HasDefaultValue(null); 
+                .HasDefaultValue(null);
 
             builder.Property(d => d.EndDate)
                 .HasColumnType("datetime")
-                .HasDefaultValue(null); 
+                .HasDefaultValue(null);
 
             builder.Property(d => d.UsageLimit)
-                .HasDefaultValue(null); 
+                .HasDefaultValue(null);
 
             builder.Property(d => d.UsageCount)
-                .HasDefaultValue(0); 
+                .HasDefaultValue(0);
 
             builder.Property(d => d.IsActive)
                 .IsRequired()
-                .HasDefaultValue(true); 
+                .HasDefaultValue(true);
 
             builder.Property(d => d.AppliesToAllPlans)
                 .IsRequired()
-                .HasDefaultValue(true); 
+                .HasDefaultValue(true);
 
             builder.HasMany(d => d.ApplicablePlans)
                 .WithMany(p => p.DiscountsApplicable)

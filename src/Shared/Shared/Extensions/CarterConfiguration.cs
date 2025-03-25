@@ -24,5 +24,5 @@ namespace Shared.Extensions
             return services;
         }
     }
-    
+
 }

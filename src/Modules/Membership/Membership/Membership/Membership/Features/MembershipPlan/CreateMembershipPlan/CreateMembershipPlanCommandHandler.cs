@@ -6,10 +6,10 @@ namespace Membership.Membership.Features.MembershipPlan.CreateMembershipPlan
     public record CreateMembershipPlanResponse(Guid Id);
     public class CreateMembershipPlanCommandHandler(MembershipDbContext membershipDbContext) : IRequestHandler<CreateMembershipPlanCommand, Results<Guid>>
     {
-        public async  Task<Results<Guid>> Handle(CreateMembershipPlanCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(CreateMembershipPlanCommand request, CancellationToken cancellationToken)
         {
             var membershipPlan = CreateMembershipPlan(request.dto);
-            var entity =await membershipDbContext.MembershipPlans.AddAsync(membershipPlan);
+            var entity = await membershipDbContext.MembershipPlans.AddAsync(membershipPlan);
             await membershipDbContext.SaveChangesAsync(cancellationToken);
             return membershipPlan.Id;
         }

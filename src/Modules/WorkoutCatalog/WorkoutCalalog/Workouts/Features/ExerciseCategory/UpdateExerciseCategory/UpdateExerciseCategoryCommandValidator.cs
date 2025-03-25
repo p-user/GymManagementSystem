@@ -1,7 +1,4 @@
-﻿
-using FluentValidation;
-
-namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory
+﻿namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory
 {
     public class UpdateExerciseCategoryCommandValidator : AbstractValidator<UpdateExerciseCategoryCommand>
     {

@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using WorkoutCatalog.Workouts.Features.Exercise.CreateExercise;
 using WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCategory;
 
 namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.UpdateExerciseCategory
@@ -29,7 +28,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.ExerciseCategory.UpdateExercise
         [Fact]
         public async Task Update_Exercise_Category_When_Exists()
         {
-          
+
             // Arrange
             var exerciseCategory = _fixture.ExerciseCategories.First();
 

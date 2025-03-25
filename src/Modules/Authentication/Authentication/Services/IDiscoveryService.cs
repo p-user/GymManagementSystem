@@ -1,7 +1,4 @@
-﻿
-using Duende.IdentityModel.Client;
-
-namespace Authentication.Services
+﻿namespace Authentication.Services
 {
     public interface IDiscoveryService
     {

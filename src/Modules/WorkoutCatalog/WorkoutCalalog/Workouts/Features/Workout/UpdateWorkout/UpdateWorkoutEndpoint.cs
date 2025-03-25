@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
 {
     public class UpdateWorkoutEndpoint : ICarterModule
@@ -22,7 +21,8 @@ namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkout
             [FromBody] UpdateWorkoutDto dto)
         {
             var response = await sender.Send(new UpdateWorkoutCommand(dto));
-            return response != Guid.Empty ? Results.NoContent() : Results.NotFound();
+            return response.Match(success => Microsoft.AspNetCore.Http.Results.Ok(success), ApiResults.Problem);
+
         }
     }
 }

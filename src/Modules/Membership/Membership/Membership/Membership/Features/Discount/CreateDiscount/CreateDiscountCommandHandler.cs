@@ -6,14 +6,14 @@ namespace Membership.Membership.Features.Discount.CreateDiscount
 
     public class CreateDiscountCommandHandler(MembershipDbContext _context, CreateDiscountCommandValidator _validator) : IRequestHandler<CreateDiscountCommand, Results<Guid>>
     {
-        public async  Task<Results<Guid>> Handle(CreateDiscountCommand request, CancellationToken cancellationToken)
+        public async Task<Results<Guid>> Handle(CreateDiscountCommand request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new Exception(validationResult.Errors.Select(s=>s.ErrorMessage).FirstOrDefault());
+                throw new Exception(validationResult.Errors.Select(s => s.ErrorMessage).FirstOrDefault());
             }
-            var discount= CreateDiscount(request.dto);
+            var discount = CreateDiscount(request.dto);
             var entity = await _context.Discounts.AddAsync(discount);
             await _context.SaveChangesAsync(cancellationToken);
 

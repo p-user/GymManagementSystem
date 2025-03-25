@@ -1,12 +1,8 @@
-﻿
-
-using AutoMapper;
-
-namespace Membership.Data
+﻿namespace Membership.Data
 {
     public class AutoMapperProfile : Profile
     {
-        public  AutoMapperProfile() 
+        public AutoMapperProfile()
         {
 
             CreateMap<MembershipPlan, ViewMembershipPlanDto>()

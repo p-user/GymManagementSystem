@@ -9,7 +9,7 @@ builder.Host.UseSerilog((context, configuration) =>
 {
     configuration
         .ReadFrom.Configuration(context.Configuration);
-       
+
 });
 
 builder.Services.AddWorkoutCatalogData(builder.Configuration);
@@ -33,7 +33,7 @@ var workoutCatalogModule = typeof(WorkoutCatalogServiceExtensions).Assembly;
 var membershipModule = typeof(MembershipServiceExtensions).Assembly;
 var staffModule = typeof(StaffServiceExtensions).Assembly;
 var authenticationModule = typeof(AuthenticationServiceExtensions).Assembly;
-var attendanceModule = typeof(AttendanceServiceExtensions).Assembly;    
+var attendanceModule = typeof(AttendanceServiceExtensions).Assembly;
 
 
 
@@ -74,7 +74,7 @@ if (app.Environment.IsDevelopment())
                 .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
 }
-app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.MapCarter();
 
 

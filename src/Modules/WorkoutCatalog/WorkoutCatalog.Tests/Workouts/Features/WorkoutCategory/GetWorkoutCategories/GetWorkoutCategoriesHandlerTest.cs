@@ -17,7 +17,7 @@ namespace WorkoutCatalog.Tests.Workouts.Features.WorkoutCategory.GetWorkoutCateg
 
             var mockDbSet = fixture.WorkoutCategories.CreateDbSetMock<Models.WorkoutCategory, Guid>();
 
-            _dbContextMock.Setup(s=>s.WorkoutCategories).Returns(mockDbSet.Object);
+            _dbContextMock.Setup(s => s.WorkoutCategories).Returns(mockDbSet.Object);
             _mapperMock = new Mock<IMapper>();
 
 
