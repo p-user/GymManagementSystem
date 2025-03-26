@@ -8,7 +8,7 @@
             var entity = await context.WorkoutCategories.FindAsync(request.Id, cancellationToken);
             if (entity == null)
             {
-                throw new Exception("Workout category not found!");
+                return (Results<ViewWorkoutCategoryDto>)Shared.Results.Results.Failure(ModuleErrors.WorkoutCategoryErrors.NotFound(request.Id));
             }
             return mapper.Map<ViewWorkoutCategoryDto>(entity);
 

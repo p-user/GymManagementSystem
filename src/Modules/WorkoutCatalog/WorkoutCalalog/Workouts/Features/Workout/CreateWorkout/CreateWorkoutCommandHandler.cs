@@ -1,4 +1,6 @@
-﻿namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
+﻿using Results = Shared.Results.Results;
+
+namespace WorkoutCatalog.Workouts.Features.Workout.CreateWorkout
 {
 
     public record CreateWorkoutCommand(CreateWorkoutDto dto) : IRequest<Results<Guid>>;
@@ -14,20 +16,20 @@
             var isValid = await context.Workouts.AnyAsync(w => w.Name.ToLower() == request.dto.Name.ToLower(), cancellationToken);
             if (isValid)
             {
-                throw new Exception("Workout with same name  already exists!");
+                return (Results<Guid>)Results.Failure(ModuleErrors.WorkoutErrors.NameConflict(request.dto.Name));
+
             }
-            var test = await context.WorkoutCategories.ToListAsync(cancellationToken);
 
             var categories = await context.WorkoutCategories.Where(w => request.dto.Categories.Contains(w.Id)).ToListAsync(cancellationToken);
             if (!categories.Any())
             {
-                throw new Exception("Workout must have at least one valid category!");
+                return (Results<Guid>)Results.Failure(ModuleErrors.WorkoutErrors.InvalidExercises());
             }
 
             var exercises = await context.Exercises.Where(e => request.dto.Exercises.Contains(e.Id)).ToListAsync(cancellationToken);
             if (!exercises.Any())
             {
-                throw new Exception("Workout must have at least one valid exercise!");
+                return (Results<Guid>)Results.Failure(ModuleErrors.WorkoutErrors.InvalidExercises());
             }
 
 

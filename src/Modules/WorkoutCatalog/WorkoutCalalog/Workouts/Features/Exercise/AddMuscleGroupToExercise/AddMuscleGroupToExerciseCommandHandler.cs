@@ -9,28 +9,20 @@
             var exercise = await context.Exercises.Include(e => e.MuscleGroups).FirstOrDefaultAsync(e => e.Id == request.exerciseId, cancellationToken);
             if (exercise is null)
             {
-                throw new Exception("Exercise was not found!");
+                return (Results<ViewExerciseDto>)Shared.Results.Results.Failure(ModuleErrors.ExerciseErrors.NotFound(request.exerciseId));
             }
 
             var muscleGroup = await context.MuscleGroups.FirstOrDefaultAsync(mg => mg.Id == request.muscleGroup, cancellationToken);
 
             if (muscleGroup is null)
             {
-                throw new Exception("Muscle group was not found!");
+                return (Results<ViewExerciseDto>)Shared.Results.Results.Failure(ModuleErrors.MuscleGroupError.NotFound(request.muscleGroup));
             }
 
             exercise.AddMuscleGroup(muscleGroup);
             context.Exercises.Update(exercise);
             await context.SaveChangesAsync(cancellationToken);
-            try
-            {
 
-                var test = mapper.Map<ViewExerciseDto>(exercise);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
             return mapper.Map<ViewExerciseDto>(exercise);
         }
     }

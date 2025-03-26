@@ -10,7 +10,7 @@
             var entity = await context.Exercises.FirstOrDefaultAsync(s => s.Id == request.Id, cancellationToken);
             if (entity == null)
             {
-                throw new Exception("Exercise not found");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.ExerciseErrors.NotFound(request.Id));
             }
 
             var isValid = await context.ExerciseCategories.AnyAsync(e => e.Id == request.Dto.ExerciseCategory, cancellationToken);

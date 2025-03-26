@@ -13,7 +13,7 @@
 
             if (entity == null)
             {
-                throw new Exception("Exercise not found");
+                return (Results<ViewExerciseDto>)Shared.Results.Results.Failure(ModuleErrors.ExerciseErrors.NotFound(request.Id));
             }
 
             return MapToDto(entity);

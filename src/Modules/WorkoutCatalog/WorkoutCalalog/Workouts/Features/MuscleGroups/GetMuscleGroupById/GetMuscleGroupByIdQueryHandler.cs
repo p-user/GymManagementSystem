@@ -8,7 +8,7 @@
             var entity = await context.MuscleGroups.FindAsync(request.Id, cancellationToken);
             if (entity == null)
             {
-                throw new Exception("Muscle group not found");
+                return (Results<ViewMuscleGroupDto>)Shared.Results.Results.Failure(ModuleErrors.MuscleGroupError.NotFound(request.Id));
             }
 
             return mapper.Map<ViewMuscleGroupDto>(entity);

@@ -12,7 +12,7 @@ namespace WorkoutCatalog.Workouts.Features.ExerciseCategory.UpdateExerciseCatego
             var entity = await context.ExerciseCategories.FindAsync(request.Id, cancellationToken);
             if (entity == null)
             {
-                throw new Exception("Exercise category not found");
+                return Shared.Results.Results.Failure(ModuleErrors.ExerciseCategoryErrors.NotFound(request.Id));
             }
             entity.Update(request.dto.Name, request.dto.Description);
             context.ExerciseCategories.Update(entity);

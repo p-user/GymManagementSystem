@@ -13,7 +13,7 @@ namespace WorkoutCatalog.Workouts.Features.Exercise.RemoceMuscleGroupFromExercis
 
             if (entity is null)
             {
-                throw new Exception("Exercise was not found!");
+                return Shared.Results.Results.Failure(ModuleErrors.ExerciseErrors.NotFound(request.exerciseId));
             }
 
             entity.RemoveMuscleGroup(request.muscleGroupId);

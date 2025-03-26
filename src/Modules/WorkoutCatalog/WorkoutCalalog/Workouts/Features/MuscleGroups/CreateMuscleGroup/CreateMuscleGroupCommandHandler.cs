@@ -10,7 +10,7 @@
             var isValid = await context.MuscleGroups.AnyAsync(mg => mg.Muscle.ToLower() == request.dto.Muscle.ToLower(), cancellationToken);
             if (isValid)
             {
-                throw new Exception("Muscle group already exists");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.MuscleGroupError.NameConflict(request.dto.Muscle));
             }
 
             // crete muscle group

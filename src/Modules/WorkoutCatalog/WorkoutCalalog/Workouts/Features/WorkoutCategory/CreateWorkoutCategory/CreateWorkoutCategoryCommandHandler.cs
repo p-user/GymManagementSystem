@@ -10,7 +10,8 @@
             var isValid = await context.WorkoutCategories.AnyAsync(w => w.Name.ToLower() == request.dto.Name.ToLower(), cancellationToken);
             if (isValid)
             {
-                throw new Exception("Workout category with same name  already exists!");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.WorkoutCategoryErrors.NameConflict(request.dto.Name));
+
             }
             var entity = CreateWorkoutCategory(request.dto);
             await context.WorkoutCategories.AddAsync(entity, cancellationToken);

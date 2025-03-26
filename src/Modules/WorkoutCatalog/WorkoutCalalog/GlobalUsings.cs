@@ -15,3 +15,4 @@ global using System;
 global using WorkoutCalalog.Data;
 global using WorkoutCatalog.Models;
 global using WorkoutCatalog.Workouts.Dtos;
+global using ModuleErrors = WorkoutCatalog.Contracts.Workouts.ModuleErrors;

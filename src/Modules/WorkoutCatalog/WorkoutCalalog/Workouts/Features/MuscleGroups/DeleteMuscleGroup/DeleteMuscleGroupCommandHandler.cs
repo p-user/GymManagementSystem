@@ -11,13 +11,13 @@ namespace WorkoutCatalog.Workouts.Features.MuscleGroups.DeleteMuscleGroup
             var entity = await context.MuscleGroups.FindAsync(request.Id, cancellationToken);
             if (entity == null)
             {
-                throw new Exception("Muscle group not found");
+                return Shared.Results.Results.Failure(ModuleErrors.MuscleGroupError.NotFound(request.Id));
             }
 
             var deleteCriteria = await context.MuscleGroups.Include(s => s.Exercises).AnyAsync(s => s.Exercises.Count > 0, cancellationToken);
             if (deleteCriteria)
             {
-                throw new Exception("Muscle group is in use");
+                return Shared.Results.Results.Failure(ModuleErrors.MuscleGroupError.DeleteConflict());
             }
             context.MuscleGroups.Remove(entity);
             await context.SaveChangesAsync(cancellationToken);

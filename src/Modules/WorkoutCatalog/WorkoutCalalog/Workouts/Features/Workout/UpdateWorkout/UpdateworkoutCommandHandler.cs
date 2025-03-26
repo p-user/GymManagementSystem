@@ -8,7 +8,7 @@
             var entity = await workoutCatalogDbContext.Workouts.FindAsync(request.dto.Id, cancellationToken);
             if (entity == null)
             {
-                throw new Exception("Workout not found");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.WorkoutErrors.NotFound(request.dto.Id));
             }
 
             await _validator.ValidateAsync(request, cancellationToken);

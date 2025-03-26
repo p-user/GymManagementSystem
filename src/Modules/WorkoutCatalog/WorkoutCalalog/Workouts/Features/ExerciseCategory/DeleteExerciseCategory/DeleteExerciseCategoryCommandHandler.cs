@@ -6,10 +6,10 @@
         public async Task<Shared.Results.Results> Handle(DeleteExcerciseCategoryCommand request, CancellationToken cancellationToken)
         {
             var existing = await context.ExerciseCategories.FindAsync(request.Id);
-            if (existing == null) { throw new Exception("Excercise category was not found!"); }
+            if (existing == null) { return Shared.Results.Results.Failure(ModuleErrors.ExerciseCategoryErrors.NotFound(request.Id)); }
 
             var isDeletable = await context.ExerciseCategories.Include(s => s.Exercises).AnyAsync(e => e.Exercises.Count > 0, cancellationToken);
-            if (isDeletable) { throw new Exception("Excercise category is in use!"); }
+            if (isDeletable) { return Shared.Results.Results.Failure(ModuleErrors.ExerciseCategoryErrors.DeleteProblem()); }
 
             context.ExerciseCategories.Remove(existing);
             await context.SaveChangesAsync(cancellationToken);

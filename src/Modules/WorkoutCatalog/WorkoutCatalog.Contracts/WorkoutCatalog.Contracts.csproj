@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkoutCalalog\WorkoutCatalog.csproj" />
+    <Folder Include="Workouts\Features\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Workouts\Features\" />
+    <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

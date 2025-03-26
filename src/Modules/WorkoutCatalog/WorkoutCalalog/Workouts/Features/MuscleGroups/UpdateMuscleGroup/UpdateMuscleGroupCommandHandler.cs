@@ -10,7 +10,7 @@ namespace WorkoutCatalog.Workouts.Features.MuscleGroups.UpdateMuscleGroup
             var entity = await context.MuscleGroups.FindAsync(request.Id, cancellationToken);
             if (entity is null)
             {
-                throw new Exception("Muscle group not found");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.MuscleGroupError.NotFound(request.Id));
             }
 
             await _validator.ValidateAndThrowAsync(request, cancellationToken);

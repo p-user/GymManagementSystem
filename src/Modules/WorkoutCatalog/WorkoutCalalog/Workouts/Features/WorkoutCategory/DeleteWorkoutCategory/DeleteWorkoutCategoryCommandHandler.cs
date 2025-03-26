@@ -8,14 +8,14 @@
             var exists = await context.WorkoutCategories.FindAsync(request.Id, cancellationToken);
             if (exists == null)
             {
-                throw new Exception("Workout category not found!");
+                return Shared.Results.Results.Failure(ModuleErrors.WorkoutCategoryErrors.NotFound(request.Id));
             }
 
             var isDeletable = await context.WorkoutCategories.Include(w => w.Workouts)
                 .AnyAsync(w => w.Id == request.Id && w.Workouts.Count > 0, cancellationToken);
             if (isDeletable)
             {
-                throw new Exception("Workout category is in use and cannot be deleted!");
+                return Shared.Results.Results.Failure(ModuleErrors.WorkoutCategoryErrors.DeleteConflict());
             }
 
             context.WorkoutCategories.Remove(exists);

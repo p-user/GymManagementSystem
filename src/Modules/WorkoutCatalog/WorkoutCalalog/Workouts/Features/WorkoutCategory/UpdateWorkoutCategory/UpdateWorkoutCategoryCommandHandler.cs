@@ -8,7 +8,7 @@
             var entity = await context.WorkoutCategories.FirstOrDefaultAsync(s => s.Id == request.dto.Id, cancellationToken);
             if (entity == null)
             {
-                throw new Exception("Workout category not found!");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.WorkoutCategoryErrors.NotFound(request.dto.Id));
             }
 
             await _validator.ValidateAndThrowAsync(request, cancellationToken);

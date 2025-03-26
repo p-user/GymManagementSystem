@@ -9,7 +9,7 @@
             var category = await _context.WorkoutCategories.FindAsync(request.categoryId, cancellationToken);
             if (workout == null)
             {
-                throw new ArgumentException("Category does not exist");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.WorkoutCategoryErrors.NotFound(request.categoryId));
             }
             workout.RemoveWorkoutCategory(category);
             await _context.SaveChangesAsync();

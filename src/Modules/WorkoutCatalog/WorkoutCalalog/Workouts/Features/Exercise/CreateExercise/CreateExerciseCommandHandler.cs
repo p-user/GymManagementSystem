@@ -13,13 +13,14 @@
             var muscleGroups = await context.MuscleGroups.Where(mg => muscleIds.Contains(mg.Id)).ToListAsync();
             if (!muscleGroups.Any())
             {
-                throw new Exception("Muscle groups not found");//TODO: create custom exception
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.ExerciseErrors.NoValidMuscleGroups());
             }
 
             var category = await context.ExerciseCategories.Where(s => s.Id == request.dto.ExerciseCategory).AnyAsync(cancellationToken);
             if (!category)
             {
-                throw new Exception("Exercise category not found");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.ExerciseErrors.NoValidCategories());
+
             }
 
             // crete excercise

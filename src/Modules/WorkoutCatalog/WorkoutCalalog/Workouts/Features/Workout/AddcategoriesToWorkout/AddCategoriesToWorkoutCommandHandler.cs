@@ -10,14 +10,14 @@ namespace WorkoutCatalog.Workouts.Features.Workout.UpdateWorkoutCategories
             var workout = await workoutCatalogDbContext.Workouts.Include(s => s.WorkoutCategories).FirstOrDefaultAsync(s => s.Id == request.WorkoutId, cancellationToken);
             if (workout == null)
             {
-                throw new Exception("Workout not found");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.WorkoutErrors.NotFound(request.WorkoutId));
             }
 
             var categories = await workoutCatalogDbContext.WorkoutCategories.Where(x => request.CategoryIds.Contains(x.Id)).ToListAsync(cancellationToken);
 
-            if (categories.Count != request.CategoryIds.Count)
+            if (categories.Count == 0)
             {
-                throw new Exception("One or more categories not found");
+                return (Results<Guid>)Shared.Results.Results.Failure(ModuleErrors.WorkoutErrors.InvalidCategories());
             }
 
             workout.AddWorkoutCategories(categories);
