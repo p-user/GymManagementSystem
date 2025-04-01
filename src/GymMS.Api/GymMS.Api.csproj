@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aspire\GymMS.ServiceDefaults\GymMS.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Modules\Attendance\Attendance\Attendance.csproj" />
     <ProjectReference Include="..\modules\Authentication\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Modules\Membership\Membership\Membership\Membership.csproj" />

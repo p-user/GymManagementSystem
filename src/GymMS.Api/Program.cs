@@ -1,10 +1,7 @@
-
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.AddServiceDefaults();
 builder.Host.UseSerilog((context, configuration) =>
 {
     configuration

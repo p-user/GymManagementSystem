@@ -6,6 +6,7 @@ namespace Attendance.Data
     {
         public static IServiceCollection AddAttendanceData(this IServiceCollection services, IConfiguration configuration)
         {
+
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddScoped<AuditableEntityInterceptors>();
             services.AddScoped<DispatchDomainEventsInterceptors>();

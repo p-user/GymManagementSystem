@@ -22,7 +22,7 @@ namespace Shared.Exceptions
             Exception exception,
             CancellationToken cancellationToken)
         {
-            _logger.LogError(exception, "An unhandled exception occurred.");
+            _logger.LogError(exception, exception.Message);
 
             httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
             httpContext.Response.ContentType = "application/json";
