@@ -52,6 +52,8 @@ To ensure reliability, the project incorporates:
 
 - MediatR (for CQRS pattern)
 
+- .Net Aspire (for service orchestration)
+
 - xUnit, FluentAssertions, Bogus (for testing)
 
 ## 📌 Features
@@ -71,6 +73,8 @@ To ensure reliability, the project incorporates:
 - Logging and error handling
 
 ## 🔧 Setup & Installation
+
+Please, note that this is a .Net Aspire project and it requires the Docker Desktop to be up and running in order to work.
 
 _Clone the repository:_
 
